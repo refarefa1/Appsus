@@ -1,16 +1,16 @@
 export default {
     template: `
             <form @submit.prevent="send" class="mail-modal">
-                <section>
+                <section class="mail-modal-header">
                     <h2 class="add-mail-title">New message</h2>
-                    <button>Close</button>
+                    <button title="Save draft"></button>
                 </section>
                 <input v-model="mail.to" type="email" placeholder="To"/>
                 <input v-model="mail.title" type="text" placeholder="Topic"/>
                 <textarea v-model="mail.body" cols="30" rows="25"></textarea>
-                <section>
-                    <button>Send</button>
-                    <button>Save as draft</button>
+                <section class="mail-modal-footer">
+                    <button title="Send" class="send-mail-btn">Send</button>
+                    <button title="Remove draft" class="remove-draft-btn"></button>
                 </section>
             </form>
 

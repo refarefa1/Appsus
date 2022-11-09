@@ -6,6 +6,17 @@
 
 .new-mail{
     background-color: var(--secondary-clr1);
+    padding: 20px;
+    border-radius: 1em;
+    font-size: 1em;
+    font-family: roboto-medium;
+    margin-bottom: 20px;
+}
+
+.new-mail::before{
+    font-family: fa;
+    margin-right: 20px;
+    content: "\f304";
 }
 
 .inbox,
