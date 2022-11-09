@@ -1,6 +1,6 @@
 button {
     cursor: pointer;
-    color: var(--clr7);
+    color: var(--primary-color);
 }
 
 input {

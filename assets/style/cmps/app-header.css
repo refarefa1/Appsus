@@ -1,5 +1,5 @@
 .app-header {
-  background-color: var(--clr7);
+  background-color: var(--primary-color);
   color: var(--secondary-clr1);
   padding: 1em;
   min-height: 7.5vh;
