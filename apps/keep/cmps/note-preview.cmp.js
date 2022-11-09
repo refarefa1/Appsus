@@ -1,16 +1,26 @@
+import noteImg from "./note-types/note-img.cmp.js"
+import noteTodo from "./note-types/note-todo.cmp.js"
+import noteVideo from "./note-types/note-video.cmp.js"
+import noteText from "./note-types/note-text.cmp.js"
+
 export default {
-name:`note-preview`,
-  props: ['note'],
-  template: `
-    <section class="note-preview flex column">
-        <div className="title">{{ note.info.title }} </div>
-        <div className="txt"> Text </div>
-    </section>
-  `,
-components:{},
-  data() {
-    return {}
-  },
-  methods: {},
-  computed: {},
+    name: `note-preview`,
+    props: ['note'],
+    template: `
+        <section class="note-preview">
+            <component :is="note.type" :note="note" />
+        </section>
+    `,
+    components: {},
+    data() {
+        return {}
+    },
+    methods: {},
+    computed: {},
+    components: {
+        noteImg,
+        noteText,
+        noteTodo,
+        noteVideo
+    }
 }

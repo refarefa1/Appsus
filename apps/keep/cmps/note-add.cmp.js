@@ -4,12 +4,11 @@ export default {
     name: `note-add`,
     props: [],
     template: `
-    <section class="note-add">
-        <input type="text" v-model="noteToEdit.info.title" placeholder="Note title..">
-        <button class="add-note" @click="addNote">New Note</button>
-    </section>
-  
-  `,
+        <section class="note-add">
+            <input type="text" v-model="noteToEdit.info.title" placeholder="Note title..">
+            <button class="add-note" @click="addNote">New Note</button>
+        </section>
+    `,
     components: {},
     data() {
         return {

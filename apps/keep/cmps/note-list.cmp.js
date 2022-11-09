@@ -8,7 +8,9 @@ export default {
         <ul class="clean-list">
             <li class="note-container" v-for="note in notes" :key="note.id" @click="editNote(note)">
                 <note-preview :note="note" />
-                <button class="remove-note" @click.stop="remove(note.id)">X</button>
+                <div class="actions hide">
+                    <button class="remove-note" @click.stop="remove(note.id)">X</button>
+                </div>
             </li>
         </ul>
     </section>

@@ -8,22 +8,17 @@ export default {
     name: `keep-app`,
     props: [],
     template: `
-    <section className="keep-app">
-        <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit"/>
-        <div className="note-add-container">
-            <note-add class="flex justify-center" @noteSaved="save" />
-        </div>
+        <section class="keep-app flex flex-column">
+            <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit"/>
+            <note-add class="" @noteSaved="save" />
 
-        
-
-        <note-list v-if="notes"
-            @remove="removeNote" 
-            @noteClicked="noteClicked"
-            :notes="notes" />
-        
-    </section>
-  
-  `,
+            <note-list v-if="notes"
+                @remove="removeNote" 
+                @noteClicked="noteClicked"
+                :notes="notes" />
+            
+        </section>
+    `,
     components: {},
     created() {
         noteService.query()
