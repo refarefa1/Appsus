@@ -29,12 +29,13 @@ function add(mail) {
     return storageService.post(EMAILS_KEY, mail, false)
 }
 
-function _createMail(subject, body, from, to, sentAt = new Date(), isRead = false) {
+function _createMail(subject, body, from, to) {
     return {
         id: utilService.makeId(),
         subject,
         body,
-        isRead: false, sentAt: 1551133930594,
+        isRead: false,
+        sentAt: new Date().toISOString().slice(0,10),
         from,
         to
     }
