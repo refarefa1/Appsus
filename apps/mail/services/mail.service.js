@@ -15,24 +15,33 @@ const loggedinUser = {
 }
 
 const EMAILS_KEY = 'mailsDB'
+const SENT_EMAILS_KEY = 'sentMailsDB'
 
 var emails
 _createMails()
 
-function query() {
-    return storageService.query(EMAILS_KEY)
+function query(key) {
+    var storageKey
+    switch (key) {
+        case 'mails': storageKey = EMAILS_KEY
+            break
+        case 'sentMails': storageKey = SENT_EMAILS_KEY
+            break
+    }
+    return storageService.query(storageKey)
 }
 
-function get(mailId) {
-    return storageService.get(EMAILS_KEY, mailId)
+function get(mailId, key) {
+    return storageService.get(key, mailId)
 }
 
-function add(mail) {
-    return storageService.post(EMAILS_KEY, mail, false)
+function add({ to, title, body }) {
+    const mail = _createMail(title, body, loggedinUser.email, to, false)
+    return storageService.post(SENT_EMAILS_KEY, mail, false)
 }
 
-function update(mail) {
-    return storageService.put(EMAILS_KEY, mail)
+function update(mail, key) {
+    return storageService.put(key, mail)
 }
 
 function getUnread() {

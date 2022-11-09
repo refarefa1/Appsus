@@ -60,12 +60,13 @@
     background-color: var(--secondary-clr2);
 }
 
-.mail-body {
+textarea.mail-body {
     border: none;
     padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
     font-family: roboto-regular;
+    font-size: .8em;
 }
 
 .mail-modal input {
