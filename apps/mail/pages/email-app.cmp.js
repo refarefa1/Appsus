@@ -1,13 +1,15 @@
 import mailService from '../services/mail.service.js'
 
 import emailFolderList from '../pages/email-folder-list.cmp.js'
+import emailCompose from '../cmps/email-compose.cmp.js'
 
 export default {
     template: `
 
     <section className="mail-app">
         <main className="mail-container">
-            <email-folder-list :unRead="unRead"/>
+            <email-folder-list @add="add" :unRead="unRead"/>
+            <email-compose @sent="send"/>
             <router-view @read="read" :mails="mails"/>
         </main>
     </section>
@@ -28,6 +30,12 @@ export default {
         read(mail) {
             mail.isRead = true
             this.getUnreadLength()
+        },
+        add() {
+            console.log('adding...');
+        },
+        send(mail){
+            console.log(mail);
         }
     },
 
@@ -40,6 +48,7 @@ export default {
     },
 
     components: {
-        emailFolderList
+        emailFolderList,
+        emailCompose
     },
 }

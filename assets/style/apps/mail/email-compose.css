@@ -1,0 +1,17 @@
+.mail-modal {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgb(37, 39, 39);
+    right: 10%;
+    bottom: 0;
+    width: 550px;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.mail-modal section{
+    display: flex;
+    justify-content: space-between;
+}

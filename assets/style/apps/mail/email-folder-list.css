@@ -6,3 +6,7 @@
 .inbox{
     display: flex;
 }
+
+.sent{
+    display: flex;
+}
