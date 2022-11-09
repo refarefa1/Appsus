@@ -17,8 +17,7 @@ export default {
     },
     methods: {
         edit() {
-            console.log(`editing..:`, this.note.id)
-            this.$emit('noteEdited', editedNote)
+            this.$emit('noteEdited', this.note)
         }
     },
     computed: {},

@@ -9,16 +9,15 @@ export default {
     props: [],
     template: `
     <section className="keep-app">
-        <h1>keep-app</h1>
         <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit"/>
 
-        <note-add @noteSaved="save" />
+        <note-add class="flex justify-center" @noteSaved="save" />
 
         <note-list v-if="notes"
             @remove="removeNote" 
             @noteClicked="noteClicked"
             :notes="notes" />
-    </section>;
+    </section>
   
   `,
     components: {},
@@ -49,16 +48,13 @@ export default {
         save(note) {
             this.notes.push(note)
         },
-        edit(note) {
-            console.log(`note:`, note)
-            noteService.edit(note)
-                .then(note => {
-                    console.log(`note:`, note)
-                    this.noteToEdit = null
-                })
+        edit(updatedNote) {
+            const idx = this.notes.findIndex(note => note.id === updatedNote.id)
+            this.notes.splice(idx, 1, updatedNote)
+            noteService.edit(updatedNote)
+                .then(() => this.noteToEdit = null)
         },
         noteClicked(note) {
-            console.log(`note clicked and arrived to daddy:`, note)
             this.noteToEdit = note
         }
 

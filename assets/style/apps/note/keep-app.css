@@ -1,0 +1,7 @@
+@import './cmps/note-add.css';
+
+
+.keep-app {
+    min-height: 85vh;
+    background-color: #fff;
+}

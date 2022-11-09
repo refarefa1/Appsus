@@ -5,8 +5,8 @@ export default {
     props: ['notes'],
     template: `
     <section class="note-list">
-        <ul>
-            <li v-for="note in notes" :key="note.id" @click="editNote(note)">
+        <ul class="clean-list">
+            <li class="flex" v-for="note in notes" :key="note.id" @click="editNote(note)">
                 <note-preview :note="note" />
                 <button class="remove-note" @click.stop="remove(note.id)">X</button>
             </li>
