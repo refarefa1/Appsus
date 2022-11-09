@@ -1,6 +1,7 @@
 import homePage from './views/app-home.cmp.js'
 import aboutPage from './views/app-about.cmp.js'
 
+
 const { createRouter, createWebHashHistory } = VueRouter
 
 const routerOptions = {
@@ -12,6 +13,14 @@ const routerOptions = {
 		},
 		{
 			path: '/about',
+			component: aboutPage,
+		},
+		{
+			path: '/keep',
+			component: keep,
+		},
+		{
+			path: '/mail',
 			component: aboutPage,
 		},
 	],

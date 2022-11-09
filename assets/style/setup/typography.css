@@ -1,2 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@font-face {
+    font-family: fa;
+    src: url(../../../fonts/fa/fa-solid-900.ttf);
+}
+
+@font-face {
+    font-family: roboto-light;
+    src: url(../../../fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: roboto-regular;
+    src: url(../../../fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: roboto-medium;
+    src: url(../../../fonts/Roboto/Roboto-Medium.ttf);
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src: url(../../../fonts/Roboto/Roboto-Bold.ttf);
+}
