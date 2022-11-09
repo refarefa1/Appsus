@@ -5,9 +5,9 @@ export default {
                     <h2 class="add-mail-title">New message</h2>
                     <button title="Save draft"></button>
                 </section>
-                <input v-model="mail.to" type="email" placeholder="To" required/>
-                <input v-model="mail.title" type="text" placeholder="Topic" required/>
-                <textarea class="mail-body" v-model="mail.body" cols="30" rows="25" required></textarea>
+                <input v-model="mail.to" type="email" placeholder="To"/>
+                <input v-model="mail.title" type="text" placeholder="Topic"/>
+                <textarea class="mail-body" v-model="mail.body" cols="30" rows="25"></textarea>
                 <section class="mail-modal-footer">
                     <button @click="send" title="Send" class="send-mail-btn">Send</button>
                     <button @click="$emit('remove-draft')" title="Remove draft" class="remove-draft-btn"></button>
@@ -27,8 +27,8 @@ export default {
     methods: {
         send() {
             const { to, title, body } = this.mail
-            if (!to || !title || body) return
-                this.$emit('sent', { ...this.mail })
+            if (!to || !title || !body) return
+            this.$emit('sent', { ...this.mail })
             this.mail = {
                 to: '',
                 title: '',

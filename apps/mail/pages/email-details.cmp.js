@@ -20,10 +20,20 @@ export default {
             mail: null
         }
     },
+    computed: {
+        getKey() {
+            const history = this.$router.options.history.state.back
+            var key
+            if (history === '/email/sent') key = 'sentMailsDB'
+            if (history === '/email/inbox') key = 'mailsDB'
+            return key
+        }
+    },
 
     created() {
         const id = this.$route.params.id
-        mailService.get(id)
+        const key = this.getKey
+        mailService.get(id, key)
             .then(mail => { this.mail = mail })
 
     },
