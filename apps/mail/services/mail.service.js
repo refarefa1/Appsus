@@ -1,8 +1,10 @@
 import utilService from '../../../services/util.service.js'
 import storageService from '../../../services/async-storage.service.js'
 
-export default{
-
+export default {
+    query,
+    get,
+    add
 }
 
 const loggedinUser = {
@@ -10,8 +12,22 @@ const loggedinUser = {
     fullname: 'Mahatma Appsus'
 }
 
+const EMAILS_KEY = 'mailsDB'
+
 var emails
 _CreateMails()
+
+function query() {
+    return storageService.query(EMAILS_KEY)
+}
+
+function get(mailId) {
+    return storageService.get(EMAILS_KEY, mailId)
+}
+
+function add(mail) {
+    return storageService.post(EMAILS_KEY, mail, false)
+}
 
 function _createMail(subject, body, from, to, sentAt = new Date(), isRead = false) {
     return {
@@ -25,7 +41,9 @@ function _createMail(subject, body, from, to, sentAt = new Date(), isRead = fals
 }
 
 function _CreateMails() {
-    let mails = []
+    emails = utilService.loadFromStorage(EMAILS_KEY)
+    if (emails) return Promise.resolve(emails)
+    emails = []
     let mail1 = _createMail(
         'Purchase receipt',
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, voluptatibus. Labore ducimus, enim est dolorum sequi cupiditate debitis nihil tempora?',
@@ -38,7 +56,6 @@ function _CreateMails() {
         'yosi@Email.com',
         loggedinUser.email,
     )
-    mails.push(mail1, mail2)
-    emails = mails
-    console.log(emails);
+    emails.push(mail1, mail2)
+    utilService.saveToStorage(EMAILS_KEY, emails)
 }
