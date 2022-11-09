@@ -8,6 +8,7 @@ export default {
     remove,
     save,
     getEmptyNote,
+    edit
 
 
 
@@ -37,6 +38,10 @@ function remove(noteId) {
 
 function save(note) {
     return storageService.post(NOTES_KEY,note)
+}
+
+function edit(note) {
+    return storageService.put(NOTES_KEY, note)
 }
 
 function getEmptyNote(type = 'note-text') {

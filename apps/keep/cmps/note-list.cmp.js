@@ -6,7 +6,7 @@ export default {
     template: `
     <section class="note-list">
         <ul>
-            <li v-for="note in notes" :key="note.id" @click="editNote(note.id)">
+            <li v-for="note in notes" :key="note.id" @click="editNote(note)">
                 <note-preview :note="note" />
                 <button class="remove-note" @click.stop="remove(note.id)">X</button>
             </li>
@@ -20,9 +20,10 @@ export default {
             console.log(`removing...` + ' note:' + noteId)
             this.$emit('remove', noteId)
         },
-        editNote(noteId) {
-            console.log('editing...')
-            console.log(noteId)
+        editNote(clickedNote) {
+            console.log('noteClicked...')
+            const noteToEdit = JSON.parse(JSON.stringify(clickedNote))
+            this.$emit('noteClicked', noteToEdit)
         }
     },
     computed: {},

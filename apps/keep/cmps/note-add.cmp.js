@@ -18,11 +18,10 @@ export default {
     },
     methods: {
         addNote() {
-            const note = noteService.save(this.noteToEdit)
-            .then(note => {
-                console.log(`note:`, note)
-                this.$emit('noteSaved', note)
-            })
+            noteService.save(this.noteToEdit)
+                .then(note => {
+                    this.$emit('noteSaved', note)
+                })
             this.noteToEdit = noteService.getEmptyNote()
         }
 
