@@ -1,4 +1,4 @@
-export const storageService = {
+export default {
     query,
     get,
     post,

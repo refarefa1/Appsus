@@ -1,4 +1,4 @@
-export const utilService = {
+export default {
     makeId,
     saveToStorage,
     loadFromStorage
