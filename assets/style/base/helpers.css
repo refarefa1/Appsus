@@ -23,7 +23,7 @@
 /* text helpers */
 
 .colored-text {
-    color: solid var(--clr7);
+    color: solid var(--primary-color);
 }
 
 .text-center {

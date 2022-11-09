@@ -9,7 +9,7 @@ export default {
     <section className="mail-app">
         <main className="mail-container">
             <email-folder-list @add="add" :unRead="unRead"/>
-            <email-compose @sent="send"/>
+            <email-compose v-if="isCompose" @sent="send" @removeDraft="removeDraft"/>
             <router-view @read="read" :mails="mails"/>
         </main>
     </section>
@@ -18,7 +18,8 @@ export default {
     data() {
         return {
             mails: null,
-            unRead: null
+            unRead: null,
+            isCompose: false
         }
     },
     methods: {
@@ -29,13 +30,18 @@ export default {
 
         read(mail) {
             mail.isRead = true
+            mailService.update(mail)
             this.getUnreadLength()
         },
         add() {
-            console.log('adding...');
+            this.isCompose = !this.isCompose
         },
-        send(mail){
-            console.log(mail);
+        send(mail) {
+            mailService.add(mail)
+                .then(console.log)
+        },
+        removeDraft() {
+            this.isCompose = !this.isCompose
         }
     },
 

@@ -25,7 +25,7 @@
 
 .mail-modal-header h2 {
     font-size: 1em;
-    color: var(--clr7);
+    color: var(--primary-color);
 }
 
 .mail-modal-header button {
@@ -60,8 +60,12 @@
     background-color: var(--secondary-clr2);
 }
 
-textarea {
+.mail-body {
     border: none;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: roboto-regular;
 }
 
 .mail-modal input {
