@@ -2,3 +2,7 @@
     min-width: 250px;
     background-color: antiquewhite;
 }
+
+.inbox{
+    display: flex;
+}

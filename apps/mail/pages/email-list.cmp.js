@@ -1,11 +1,11 @@
-import emailPreview from './email-preview.cmp.js'
+import emailPreview from '../cmps/email-preview.cmp.js'
 
 export default {
     props: ['mails'],
     template: `
 
         <ul class="mail-list-container">
-            <li v-for="mail in mails" @click="select(mail)" :key="mail.id" class="mail-preview">
+            <li v-for="mail in mails" :key="mail.id" class="mail-preview">
                 <router-link :to="'/email/' + mail.id">
                 <button class="toggle-read-btn"></button>
                 <button class="star-btn"></button>
@@ -19,11 +19,6 @@ export default {
     data() {
         return {
 
-        }
-    },
-    methods: {
-        select(mail) {
-            this.$emit('selected', mail)
         }
     },
 
