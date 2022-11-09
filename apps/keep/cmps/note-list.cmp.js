@@ -6,7 +6,7 @@ export default {
     template: `
     <section class="note-list">
         <ul class="clean-list">
-            <li class="flex" v-for="note in notes" :key="note.id" @click="editNote(note)">
+            <li class="note-container" v-for="note in notes" :key="note.id" @click="editNote(note)">
                 <note-preview :note="note" />
                 <button class="remove-note" @click.stop="remove(note.id)">X</button>
             </li>

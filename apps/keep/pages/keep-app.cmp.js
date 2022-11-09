@@ -10,13 +10,17 @@ export default {
     template: `
     <section className="keep-app">
         <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit"/>
+        <div className="note-add-container">
+            <note-add class="flex justify-center" @noteSaved="save" />
+        </div>
 
-        <note-add class="flex justify-center" @noteSaved="save" />
+        
 
         <note-list v-if="notes"
             @remove="removeNote" 
             @noteClicked="noteClicked"
             :notes="notes" />
+        
     </section>
   
   `,
