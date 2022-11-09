@@ -1,16 +1,20 @@
+.mail-preview{
+    background-color: var(--clr1);
+}
+
 .mail-preview a {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--clr2);
+    border-bottom: 1px solid var(--clr4);
     width: 100%;
 }
 
 .mail-preview a:has(> .read) {
-    background-color: var(--clr2);
+    background-color: var(--clr3);
 }
 
 .mail-preview a:first-of-type {
-    border-top: 1px solid var(--clr2);
+    border-top: 1px solid var(--clr4);
 }
 
 .mail-prev-text {
@@ -24,7 +28,7 @@
 .mark-btn {
     background-color: transparent;
     font-family: fa;
-    color: var(--clr5);
+    color: var(--clr7);
     font-size: 1em;
     /* padding: 10px; */
     padding: 0;
@@ -54,7 +58,7 @@
 .mail-body,
 .mail-date {
     font-family: roboto-bold;
-    color: var(--clr5);
+    color: var(--clr7);
 }
 
 .mail-title,

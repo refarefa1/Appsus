@@ -1,12 +1,64 @@
-.folder-list-container{
+.folder-list-container {
     min-width: 250px;
-    background-color: antiquewhite;
+    background-color: var(--clr2);
+    padding: 15px;
 }
 
-.inbox{
-    display: flex;
+.new-mail{
+    background-color: var(--secondary-clr1);
+    padding: 20px;
+    border-radius: 1em;
+    font-size: 1em;
+    font-family: roboto-medium;
+    margin-bottom: 20px;
 }
 
-.sent{
+.new-mail::before{
+    font-family: fa;
+    margin-right: 20px;
+    content: "\f304";
+}
+
+.inbox,
+.sent {
     display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 2em;
+    transition: .4s;
+}
+
+.inbox:hover,
+.sent:hover {
+    background-color: var(--clr3);
+}
+
+.inbox h2,
+.sent h2 {
+    color: var(--clr7);
+    font-size: 1em;
+    font-family: roboto-bold;
+}
+
+.inbox h3 {
+    font-family: roboto-bold;
+    font-size: .8em;
+    color: var(--clr7);
+    margin-left: auto;
+    padding-right: 15px;
+}
+
+
+.inbox button,
+.sent button {
+    background-color: transparent;
+    font-family: fa;
+}
+
+.inbox button::after {
+    content: "\f01c";
+}
+
+.sent button::after {
+    content: "\f1d8";
 }

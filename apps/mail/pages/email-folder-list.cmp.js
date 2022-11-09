@@ -8,13 +8,13 @@ export default {
         <button @click="$emit('add')" className="new-mail">New email</button>
         
         <section @click="goTo('inbox')" className="inbox">
-            <button>Icon</button>
+            <button></button>
             <h2>Inbox</h2>
             <h3>{{ unRead }}</h3>
         </section>
 
         <section @click="goTo('sent')" className="sent">
-            <button>Icon</button>
+            <button></button>
             <h2>Sent</h2>
         </section>
 
