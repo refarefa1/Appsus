@@ -1,5 +1,7 @@
 import noteService from '../services/note.service.js'
+
 import noteList from '../cmps/note-list.cmp.js'
+import noteAdd from '../cmps/note-add.cmp.js'
 
 export default {
     name: `keep-app`,
@@ -7,12 +9,13 @@ export default {
     template: `
     <section className="keep-app">
         <h1>keep-app</h1>
+
+        <note-add @noteSaved="save" />
+
         <note-list v-if="notes"
             @remove="removeNote" 
-            :notes="notes">
-        </note-list>
-
-    </section>
+            :notes="notes" />
+    </section>;
   
   `,
     components: {},
@@ -39,10 +42,15 @@ export default {
                     // eventBus.emit('user-msg', msg)
                 })
         },
+        save(note) {
+            console.log(`note:`, note)
+            this.notes.push(note)
+        }
     },
     computed: {},
     components: {
         noteList,
+        noteAdd,
 
     }
 }

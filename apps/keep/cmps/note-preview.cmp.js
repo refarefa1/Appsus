@@ -2,11 +2,11 @@ export default {
 name:`note-preview`,
   props: ['note'],
   template: `
-    <section class="note-preview"></section>
-  
+    <section class="note-preview">
+        {{ note }}
+    </section>
   `,
 components:{},
-created() {},
   data() {
     return {}
   },

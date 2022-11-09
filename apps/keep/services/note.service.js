@@ -2,12 +2,13 @@ import utilService from '../../../services/util.service.js'
 import storageService from '../../../services/async-storage.service.js'
 
 const NOTES_KEY = 'notesDB'
-let gNotes
 
 export default {
     query,
     remove,
-    
+    save,
+    getEmptyNote,
+
 
 
 }
@@ -24,7 +25,6 @@ function _createNotes() {
         ]
         utilService.saveToStorage(NOTES_KEY, notes)
     }
-    gNotes = notes
 }
 
 function query() {
@@ -33,4 +33,17 @@ function query() {
 
 function remove(noteId) {
     return storageService.remove(NOTES_KEY, noteId)
+}
+
+function save(note) {
+    return storageService.post(NOTES_KEY,note)
+}
+
+function getEmptyNote(type = 'note-text') {
+    switch (type) {
+        case 'note-text':
+            return { type: 'note-text', isPinned: 'false', info: { title: '' } }
+        default:
+            return { type: 'note-text', isPinned: 'false', info: { title: '' } }
+    }
 }
