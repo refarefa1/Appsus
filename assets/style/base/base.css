@@ -28,8 +28,6 @@ a {
   color: unset;
 }
 
-
-
 /* Dont stretch my Media */
 img,
 embed,
@@ -43,6 +41,11 @@ nav a,
 button {
   min-width: 48px;
   min-height: 48px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
 }
 
 /* Simple and useful CSS Debugging Technique */

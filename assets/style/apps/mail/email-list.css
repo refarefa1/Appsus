@@ -1,0 +1,6 @@
+@import url(./email-preview.css);
+
+.mail-list-container{
+    padding: 0;
+    flex-grow: 1;
+}

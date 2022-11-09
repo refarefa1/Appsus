@@ -1,0 +1,8 @@
+@import url(./email-list.css);
+@import url(./email-folder-list.css);
+
+.mail-container {
+    display: flex;
+    min-height: 90vh;
+    width: 95%;
+}
