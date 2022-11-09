@@ -8,43 +8,38 @@ export default {
     <section className="mail-app">
         <main className="mail-container">
             <email-folder-list :unRead="unRead"/>
-            <router-view :mails="mails"/>
+            <router-view @read="read" :mails="mails"/>
         </main>
     </section>
 
         `,
-
     data() {
         return {
             mails: null,
-            unRead: 0
+            unRead: null
         }
     },
     methods: {
         getUnreadLength() {
-            return mailService.getUnread()
-                .then(length => {
-                    return length
-                })
+            const length = this.mails.filter(mail => !mail.isRead).length
+            this.unRead = length
+        },
+
+        read(mail) {
+            mail.isRead = true
+            this.getUnreadLength()
         }
     },
 
-    computed: {
-
-    },
     created() {
         mailService.query()
-            .then(mails => this.mails = mails)
+            .then(mails => {
+                this.mails = mails
+                this.getUnreadLength()
+            })
     },
 
     components: {
         emailFolderList
     },
-    created() {
-        this.getUnreadLength()
-            .then(length => this.unRead = length)
-    },
-    watch: {
-
-    }
 }

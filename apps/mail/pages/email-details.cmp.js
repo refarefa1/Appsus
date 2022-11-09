@@ -32,5 +32,3 @@ export default {
     }
 }
 
-// mail.isRead = true
-// mailService.update(mail)

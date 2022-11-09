@@ -5,7 +5,7 @@ export default {
     template: `
 
         <ul class="mail-list-container">
-            <li v-for="mail in mails" :key="mail.id" class="mail-preview">
+            <li v-for="mail in mails" @click="read(mail)" :key="mail.id" class="mail-preview">
                 <router-link :to="'/email/' + mail.id">
                 <button class="toggle-read-btn"></button>
                 <button class="star-btn"></button>
@@ -16,13 +16,14 @@ export default {
         </ul>
 
         `,
-    data() {
-        return {
-
+    methods: {
+        read(mail) {
+            this.$emit('read', mail)
         }
     },
 
     components: {
         emailPreview
-    }
+    },
+
 }

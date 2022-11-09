@@ -11,12 +11,4 @@ export default {
         </section>
         </aside>
         `,
-    data() {
-        return {
-
-        }
-    },
-    created() {
-
-    }
 }
