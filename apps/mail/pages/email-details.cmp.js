@@ -1,10 +1,18 @@
 import mailService from '../services/mail.service.js'
 
+import emailFolderList from '../pages/email-folder-list.cmp.js'
+
 export default {
     template: `
 
-        <h1>Email details</h1>
-            <h2>Details!!!</h2> 
+
+    <section className="mail-app">
+        <main className="mail-container">
+            <h1>Email details</h1>
+            <pre>{{ mail }}</pre>
+        </main>
+    </section>
+        
 
         `,
     data() {
@@ -15,7 +23,12 @@ export default {
 
     created() {
         const id = this.$route.params.id
-        // mailService
+        mailService.get(id)
+            .then(mail => { this.mail = mail })
 
+    },
+    components: {
+        emailFolderList
     }
 }
+

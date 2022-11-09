@@ -3,4 +3,5 @@
 .mail-list-container{
     padding: 0;
     flex-grow: 1;
+    list-style-type: none;
 }

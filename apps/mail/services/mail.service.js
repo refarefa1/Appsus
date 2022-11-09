@@ -4,7 +4,9 @@ import storageService from '../../../services/async-storage.service.js'
 export default {
     query,
     get,
-    add
+    add,
+    update,
+    getUnread
 }
 
 const loggedinUser = {
@@ -15,7 +17,7 @@ const loggedinUser = {
 const EMAILS_KEY = 'mailsDB'
 
 var emails
-_CreateMails()
+_createMails()
 
 function query() {
     return storageService.query(EMAILS_KEY)
@@ -29,19 +31,30 @@ function add(mail) {
     return storageService.post(EMAILS_KEY, mail, false)
 }
 
-function _createMail(subject, body, from, to) {
+function update(mail) {
+    return storageService.put(EMAILS_KEY, mail)
+}
+
+function getUnread() {
+    return storageService.query(EMAILS_KEY)
+        .then(mails => {
+            return mails.filter(mail => !mail.isRead).length
+        })
+}
+
+function _createMail(subject, body, from, to, isRead) {
     return {
         id: utilService.makeId(),
         subject,
         body,
-        isRead: false,
-        sentAt: new Date().toISOString().slice(0,10),
+        isRead,
+        sentAt: new Date().toISOString().slice(0, 10),
         from,
         to
     }
 }
 
-function _CreateMails() {
+function _createMails() {
     emails = utilService.loadFromStorage(EMAILS_KEY)
     if (emails) return Promise.resolve(emails)
     emails = []
@@ -50,12 +63,14 @@ function _CreateMails() {
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, voluptatibus. Labore ducimus, enim est dolorum sequi cupiditate debitis nihil tempora?',
         'dani@Email.com',
         loggedinUser.email,
+        false
     )
     let mail2 = _createMail(
         'Daniel just posted. View now.',
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, voluptatibus. Labore ducimus, enim est dolorum sequi cupiditate debitis nihil tempora?',
         'yosi@Email.com',
         loggedinUser.email,
+        true
     )
     emails.push(mail1, mail2)
     utilService.saveToStorage(EMAILS_KEY, emails)

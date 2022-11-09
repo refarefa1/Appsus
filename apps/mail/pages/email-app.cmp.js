@@ -1,6 +1,5 @@
 import mailService from '../services/mail.service.js'
 
-import emailList from '../cmps/email-list.cmp.js'
 import emailFolderList from '../pages/email-folder-list.cmp.js'
 
 export default {
@@ -8,33 +7,39 @@ export default {
 
     <section className="mail-app">
         <main className="mail-container">
-            <email-folder-list />
-            <email-list :mails="mails"/>
+            <email-folder-list :unRead="unRead"/>
+            <router-view @read="read" :mails="mails"/>
         </main>
     </section>
 
         `,
-
     data() {
         return {
             mails: null,
+            unRead: null
         }
     },
     methods: {
-    
-    },
+        getUnreadLength() {
+            const length = this.mails.filter(mail => !mail.isRead).length
+            this.unRead = length
+        },
 
-    computed: {
-
+        read(mail) {
+            mail.isRead = true
+            this.getUnreadLength()
+        }
     },
 
     created() {
         mailService.query()
-            .then(mails => this.mails = mails)
+            .then(mails => {
+                this.mails = mails
+                this.getUnreadLength()
+            })
     },
 
     components: {
-        emailList,
         emailFolderList
-    }
+    },
 }
