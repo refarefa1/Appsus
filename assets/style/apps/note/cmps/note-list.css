@@ -1,21 +1,20 @@
-.note-list ul {
+.note-list {
     column-count: 3;
-    column-gap: 40px;
+    /* column-gap: 40px; */
 }
 
 .note-list .note-container {
-    padding: 10px;
-    border: 3px solid gray;
-}
-
-.note-list ul li {
-    min-width: 200px;
-    min-height: 300px;
+    border: 1px solid var(--clr7);
+    border-radius: 1em;
+    padding: 12px 16px;
+    min-width: 240px;
+    max-width: 240px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
 }
 
-.note-list ul >*:not(:first-child) {
+.note-list >*:not(:first-child) {
     margin-top: 10px;
 }
 

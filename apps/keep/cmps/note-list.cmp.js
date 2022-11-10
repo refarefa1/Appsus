@@ -4,8 +4,7 @@ export default {
     name: `note-list`,
     props: ['notes'],
     template: `
-    <section class="note-list">
-        <ul class="clean-list">
+        <ul class="clean-list note-list">
             <li class="note-container" v-for="note in notes" :key="note.id" @click="editNote(note)">
                 <note-preview :note="note" />
                 <div class="actions hide">
@@ -13,10 +12,7 @@ export default {
                 </div>
             </li>
         </ul>
-    </section>
-
-  
-  `,
+    `,
     methods: {
         remove(noteId) {
             console.log(`removing...` + ' note:' + noteId)

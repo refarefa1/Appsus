@@ -1,6 +1,7 @@
 @import './cmps/note-add.css';
 @import './cmps/note-list.css';
 @import './cmps/note-preview.css';
+@import './cmps/note-side-bar.css';
 
 @import './cmps/note-types/note-text.css';
 @import './cmps/note-types/note-todo.css';
@@ -10,5 +11,12 @@
 
 .keep-app {
     min-height: 85vh;
+}
+
+.main-container {
     padding-top: 16px;
+    width: 100%;
+    /* padding: 0 50px; */
+    height: 100%;
+    position: relative;
 }

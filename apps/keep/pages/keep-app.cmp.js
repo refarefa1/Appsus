@@ -3,19 +3,24 @@ import noteService from '../services/note.service.js'
 import noteList from '../cmps/note-list.cmp.js'
 import noteAdd from '../cmps/note-add.cmp.js'
 import noteEdit from '../cmps/note-edit.cmp.js'
+import noteSideBar from '../cmps/note-side-bar.cmp.js'
 
 export default {
     name: `keep-app`,
     props: [],
     template: `
-        <section class="keep-app flex flex-column">
-            <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit"/>
-            <note-add class="" @noteSaved="save" />
+        <section class="keep-app flex">
+            <note-side-bar />
 
-            <note-list v-if="notes"
-                @remove="removeNote" 
-                @noteClicked="noteClicked"
-                :notes="notes" />
+            <main class="main-container flex flex-column align-center">
+                <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit"/>
+                <note-add class="" @noteSaved="save" />
+    
+                <note-list v-if="notes"
+                    @remove="removeNote" 
+                    @noteClicked="noteClicked"
+                    :notes="notes" />
+            </main>
             
         </section>
     `,
@@ -63,6 +68,7 @@ export default {
         noteList,
         noteAdd,
         noteEdit,
+        noteSideBar,
 
     }
 }
