@@ -72,7 +72,7 @@ function _createMails() {
         loggedinUser.email,
         true,
         'Pango',
-        '2022-10-08'
+        '2022-11-02'
     )
     let mail3 = _createMail(
         'Work pdfs',
@@ -99,7 +99,7 @@ function _createMails() {
         loggedinUser.email,
         false,
         'LottieFiles',
-        '2022-10-08'
+        '2022-10-21'
     )
     let mail6 = _createMail(
         'Learn to graphic design in 5 weeks!',
@@ -107,9 +107,8 @@ function _createMails() {
         'commercials@gmail.com',
         loggedinUser.email,
         true,
-        loggedinUser.fullname,
         'Coursera',
-        '2022-10-08'
+        '2022-10-04'
     )
     let mail7 = _createMail(
         'Your monthly receipt',
@@ -118,7 +117,7 @@ function _createMails() {
         loggedinUser.email,
         false,
         'Partner',
-        '2022-10-08',
+        '2022-09-15',
     )
     let mail8 = _createMail(
         'Free courses to learn fullstack',
@@ -127,7 +126,7 @@ function _createMails() {
         loggedinUser.email,
         true,
         'Udemy',
-        '2022-10-08'
+        '2022-09-01'
     )
     let mail9 = _createMail(
         'flyers for print',
@@ -136,7 +135,7 @@ function _createMails() {
         'daniel@yahoo.com',
         false,
         loggedinUser.fullname,
-        '2022-10-08'
+        '2022-08-27'
     )
     let mail10 = _createMail(
         'Hey can you help me ?',
@@ -145,7 +144,7 @@ function _createMails() {
         'puki@hr.com',
         true,
         loggedinUser.fullname,
-        '2022-10-08'
+        '2022-08-25'
     )
     let mail11 = _createMail(
         'Is the earth flat?',
@@ -154,7 +153,7 @@ function _createMails() {
         'earth@knowledge.com',
         false,
         loggedinUser.fullname,
-        '2022-10-08'
+        '2022-07-06'
     )
     let mail12 = _createMail(
         'Watch your video here',
@@ -163,7 +162,7 @@ function _createMails() {
         loggedinUser.email,
         true,
         'Youtube',
-        '2022-10-08'
+        '2022-09-08'
     )
     let mail13 = _createMail(
         'home-test ready',
@@ -172,7 +171,7 @@ function _createMails() {
         'test@testers.co.il',
         false,
         loggedinUser.fullname,
-        '2022-10-08'
+        '2022-09-01'
     )
     let mail14 = _createMail(
         'Keep on green environment',
@@ -181,7 +180,7 @@ function _createMails() {
         loggedinUser.email,
         true,
         'Greenpeace',
-        '2022-10-08'
+        '2022-07-12'
     )
     for (var i = 1; i < 15; i++) {
         emails.push(`mail${i}`)

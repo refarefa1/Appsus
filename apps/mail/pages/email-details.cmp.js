@@ -5,7 +5,7 @@ import mailService from '../services/mail.service.js';
 export default {
     template: `
 
-    <section v-if="mail" className="mail-app flex column" >
+    <section v-if="mail" className="mail-app-details flex column" >
             <section className="mail-details-paging">
                 <button @click="$router.back()" title="Go back" class="back"></button>
                 <button @click="deleteMail(mail)" title="Delete mail" class="delete-mail"></button>

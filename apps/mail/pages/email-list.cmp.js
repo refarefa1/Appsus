@@ -15,10 +15,15 @@ export default {
                 <email-filter @filterRead="filterRead"/>
             </li>
             <li v-for="mail in mailsToShow" @click="read(mail)" :key="mail.id" class="mail-preview">
+                <section className="mail-hover">
+                    <button title="Make note" class="note-btn"></button>
+                    <button title="Mark as read/unread" class="toggle-btn"></button>
+                    <button title="Delete mail" class="remove-btn"></button>
+                </section>
                 <router-link :to="'/email/' + mail.id">
-                <button class="star-btn"></button>
-                <h2 class="mail-fullname" :class="{ read: mail.isRead }">{{ mail.fullname }}</h2>
-                <email-preview :mail="mail" />
+                    <button class="star-btn"></button>
+                    <h2 class="mail-fullname" :class="{ read: mail.isRead }">{{ mail.fullname }}</h2>
+                    <email-preview :mail="mail" />
                 </router-link>
             </li>
 

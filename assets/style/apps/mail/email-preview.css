@@ -2,6 +2,14 @@
     background-color: var(--clr1);
 }
 
+.mail-preview:hover .mail-date {
+    display: none;
+}
+
+.mail-preview:hover .mail-hover {
+    display: flex;
+}
+
 .mail-preview a {
     display: flex;
     align-items: center;
@@ -54,6 +62,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow-x: hidden;
+    max-width: 700px;
 }
 
 .mail-title {
@@ -66,7 +75,6 @@
 .mail-body {
     font-family: roboto-bold;
     font-size: .8em;
-    max-width: 70%;
 }
 
 .mail-fullname {
