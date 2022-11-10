@@ -44,7 +44,6 @@ export default {
     },
 
     created() {
-        console.log(this.$route.params.id);
         const id = this.$route.params.id
         mailService.get(id)
             .then(mail => this.mail = mail)

@@ -2,7 +2,7 @@ import emailPreview from '../cmps/email-preview.cmp.js'
 import emailFilter from '../cmps/email-filter.cmp.js'
 
 export default {
-    emits: ['read', 'sort', 'filterRead'],
+    emits: ['read', 'sort', 'filterRead', 'remove', 'mark'],
     props: ['mailsToShow'],
     template: `
 
@@ -16,9 +16,9 @@ export default {
             </li>
             <li v-for="mail in mailsToShow" @click="read(mail)" :key="mail.id" class="mail-preview">
                 <section className="mail-hover">
-                    <button title="Make note" class="note-btn"></button>
-                    <button title="Mark as read/unread" class="toggle-btn"></button>
-                    <button title="Delete mail" class="remove-btn"></button>
+                    <button @click="" title="Make note" class="note-btn"></button>
+                    <button @click.stop="mark(mail)" title="Mark as read/unread" class="toggle-btn"></button>
+                    <button @click.stop="remove(mail)" title="Delete mail" class="remove-btn"></button>
                 </section>
                 <router-link :to="'/email/' + mail.id">
                     <button class="star-btn"></button>
@@ -41,7 +41,16 @@ export default {
         },
         filterRead(type) {
             this.$emit('filterRead', type)
+        },
+        remove(mail) {
+            this.$emit('remove', mail)
+        },
+        mark(mail) {
+            this.$emit('mark', mail)
         }
+    },
+    computed:{
+
     },
 
     components: {

@@ -38,7 +38,8 @@
 .mail-hover {
     position: absolute;
     display: none;
-    right: 20px;
+    right: 10px;
+    
 }
 
 .mail-hover>* {
@@ -52,9 +53,10 @@
 }
 
 .toggle-btn::after {
-    content: "\f0e0";
+    content: "\f2b6";
 }
 
 .remove-btn::after {
     content: "\f1f8";
+
 }
