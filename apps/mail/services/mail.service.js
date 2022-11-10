@@ -36,7 +36,7 @@ function update(mail) {
 }
 
 function remove(mailId) {
-    storageService.remove(EMAILS_KEY, mailId)
+    return storageService.remove(EMAILS_KEY, mailId)
 }
 
 function _createMail(subject, body, from, to, isRead, fullname, sentAt) {

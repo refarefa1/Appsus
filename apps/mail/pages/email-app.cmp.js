@@ -14,7 +14,7 @@ export default {
         <main className="mail-container">
             <email-folder-list @filterPath="filterPath" @add="add" :mails="mails"/>
             <email-compose v-if="isCompose" @sent="send" @removeDraft="removeDraft"/>
-            <router-view @filterRead="filterRead" @sort="sort" @read="read" :mailsToShow="mailsToShow"/>
+            <router-view @filterRead="filterRead" @sort="sort" @read="read" @remove="remove" @mark="mark" :mailsToShow="mailsToShow"/>
         </main>
     </section>
 
@@ -54,13 +54,21 @@ export default {
         removeDraft() {
             this.isCompose = !this.isCompose
         },
-        remove() {
-            eventBus.on('deleted', (mail) => {
-                mailService.remove(mail.id)
-                const idx = this.mails.findIndex(email => email.id === mail.id)
-                this.mails.splice(idx, 1)
-                this.filter()
-            })
+        remove(mail) {
+            mailService.remove(mail.id)
+                .then(() => {
+                    const idx = this.mails.findIndex(email => email.id === mail.id)
+                    this.mails.splice(idx, 1)
+                    this.filter()
+                })
+        },
+        mark(mail) {
+            mail.isRead = !mail.isRead
+            mailService.update(mail)
+                .then(() => {
+                    const idx = this.mails.findIndex(email => email.id === mail.id)
+                    this.mails.splice(idx, 1, mail)
+                })
         },
         convertToTimestamp(date) {
             let arr = date.split('-')
@@ -106,19 +114,22 @@ export default {
 
         },
         sort(type) {
-
+            // const sorted = numbers.sort((a, b) => a - b)
             if (type === 'date') {
-                this.mailsToShow.sort((a, b) => (this.convertToTimestamp(a.sentAt) - this.convertToTimestamp(b.sentAt)) * this.sortBy.date)
-                this.sortBy.date *= -1
+                this.mailsToShow.sort((a, b) => {
+                    const mailA = this.convertToTimestamp(a.sentAt)
+                    const mailB = this.convertToTimestamp(b.sentAt)
+                    return mailA - mailB
+                })
+
             }
 
             if (type === 'title') {
                 this.mailsToShow.sort((a, b) => {
-                    const nameA = a.subject.toUpperCase()
-                    const nameB = b.subject.toUpperCase()
-                    this.sortBy.title *= -1
-                    if (nameA < nameB) return -1 * this.sortBy.title
-                    if (nameA > nameB) return 1 * this.sortBy.title
+                    const nameA = a.fullname.toUpperCase()
+                    const nameB = b.fullname.toUpperCase()
+                    if (nameA < nameB) return -1
+                    if (nameA > nameB) return 1
                     return 0
                 })
             }
@@ -131,7 +142,7 @@ export default {
                 this.filter()
             })
         this.$emit('hideMainHeader')
-        this.remove()
+        eventBus.on('deleted', (mail => this.remove(mail)))
     },
     components: {
         emailFolderList,
