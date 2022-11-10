@@ -3,6 +3,10 @@
 @import url(./email-compose.css);
 @import url(./email-details.css);
 
+.mail-app{
+    background-color: var(--clr2);
+}
+
 .mail-container {
     display: flex;
     min-height: 95vh;

@@ -1,5 +1,5 @@
 export default {
-    emits:['show'],
+    emits: ['show', 'filterTxt'],
     template: `
         <header class="app-header">
 
@@ -7,7 +7,7 @@ export default {
             <h1 class="logo">AppSus</h1>
             </router-link>
 
-            <input class="search-bar" type="text" placeholder="Search"/>
+            <input @input="filterTxt" v-model="filterByTxt" class="search-bar" type="text" placeholder="Search"/>
             <button class="search"></button>
             <nav class="main-nav">
                 <button @click="toggleMenu = !toggleMenu" class="nav"></button>
@@ -20,6 +20,7 @@ export default {
                 <router-link to="/email/inbox" @click="toggleMenu = !toggleMenu">
                 <img src="assets/img/mail.png" alt="" />
                     <h2>Mail</h2>
+                    
                 </router-link>
                 </section>
             </nav>
@@ -27,7 +28,13 @@ export default {
     `,
     data() {
         return {
-            toggleMenu: false
+            toggleMenu: false,
+            filterByTxt: ''
         }
     },
+    methods: {
+        filterTxt() {
+            this.$emit('filterTxt', this.filterByTxt)
+        }
+    }
 }

@@ -1,25 +1,60 @@
 @import url(./email-preview.css);
 
-.mail-list-container{
+.mail-list-container {
     padding: 0;
+    margin: 0;
     flex-grow: 1;
     list-style-type: none;
+    background-color: var(--clr1);
+    border-top-left-radius: 1em;
 }
 
-.sort-preview{
+.sort-preview {
     padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 20px;
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.sort-preview h4{
+.sort-preview h4 {
     cursor: pointer;
 }
 
-.mail-fullname{
-    width: 200px;
+.filter {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 20px;
+}
+
+.mail-fullname {
+    min-width: 200px;
     font-size: 1em;
+}
+
+.mail-hover {
+    position: absolute;
+    display: none;
+    right: 20px;
+}
+
+.mail-hover>* {
+    background-color: transparent;
+    font-family: fa;
+    min-width: 30px
+}
+
+.note-btn::after {
+    content: "\f249";
+}
+
+.toggle-btn::after {
+    content: "\f0e0";
+}
+
+.remove-btn::after {
+    content: "\f1f8";
 }
