@@ -8,7 +8,7 @@ import noteAppHeader from '../cmps/note-app-header.cmp.js'
 
 export default {
     name: `keep-app`,
-    props: [],
+    emits: ['showMainHeader', 'hideMainHeader'],
     template: `
 
         <note-app-header @show="$emit('showMainHeader')"/>

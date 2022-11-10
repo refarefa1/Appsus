@@ -1,6 +1,10 @@
 .note-list {
     column-count: 3;
-    /* column-gap: 40px; */
+    padding: 10px 0;
+}
+
+.note-list >*:not(:last-child) {
+    margin-bottom: 10px;
 }
 
 .note-list .note-container {
@@ -12,11 +16,14 @@
     min-height: 100px;
     display: flex;
     flex-direction: column;
+    page-break-inside: avoid;
+    /* margin-bottom: 10px; */
+
 }
 
-.note-list >*:not(:first-child) {
+/* .note-list ul >*:not(:first-child) {
     margin-top: 10px;
-}
+} */
 
 .note-list .hide {
     visibility: hidden;

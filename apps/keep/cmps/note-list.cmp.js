@@ -4,7 +4,7 @@ export default {
     name: `note-list`,
     props: ['notes'],
     template: `
-        <ul class="clean-list note-list">
+        <ul class="note-list clean-list">
             <li class="note-container" v-for="note in notes" :key="note.id" @click="editNote(note)">
                 <note-preview :note="note" />
                 <div class="actions hide">
