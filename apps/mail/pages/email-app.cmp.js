@@ -2,10 +2,13 @@ import mailService from '../services/mail.service.js'
 
 import emailFolderList from '../pages/email-folder-list.cmp.js'
 import emailCompose from '../cmps/email-compose.cmp.js'
+import emailAppHeader from '../cmps/email-app-header.cmp.js'
 
 export default {
     template: `
 
+
+    <email-app-header @show="$emit('showMainHeader')"/>
     <section className="mail-app">
         <main className="mail-container">
             <email-folder-list @add="add" :unRead="unRead"/>
@@ -57,7 +60,6 @@ export default {
             return key
         }
     },
-
     created() {
         mailService.query('mails')
             .then(mails => {
@@ -66,10 +68,12 @@ export default {
             })
         mailService.query('sentMails')
             .then(mails => this.sentMails = mails)
+        this.$emit('hideMainHeader')
     },
 
     components: {
         emailFolderList,
-        emailCompose
+        emailCompose,
+        emailAppHeader
     },
 }

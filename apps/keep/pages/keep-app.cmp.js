@@ -4,11 +4,15 @@ import noteList from '../cmps/note-list.cmp.js'
 import noteAdd from '../cmps/note-add.cmp.js'
 import noteEdit from '../cmps/note-edit.cmp.js'
 import noteSideBar from '../cmps/note-side-bar.cmp.js'
+import noteAppHeader from '../cmps/note-app-header.cmp.js'
 
 export default {
     name: `keep-app`,
     props: [],
     template: `
+
+        <note-app-header @show="$emit('showMainHeader')"/>
+
         <section class="keep-app flex">
             <note-side-bar />
 
@@ -28,6 +32,7 @@ export default {
     created() {
         noteService.query()
             .then(notes => this.notes = notes)
+            this.$emit('hideMainHeader')
     },
     data() {
         return {
@@ -69,6 +74,6 @@ export default {
         noteAdd,
         noteEdit,
         noteSideBar,
-
+        noteAppHeader
     }
 }
