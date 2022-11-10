@@ -1,15 +1,13 @@
-import mailService from '../services/mail.service.js'
-import { eventBus } from '../../../services/event-bus.service.js'
-
+import { eventBus } from '../../../services/event-bus.service.js';
 import emailFolderList from '../pages/email-folder-list.cmp.js'
+import mailService from '../services/mail.service.js';
 
 export default {
     template: `
 
-
     <section v-if="mail" className="mail-app flex column" >
             <section className="mail-details-paging">
-                <button @click="goBack" title="Go back" class="back"></button>
+                <button @click="$router.back()" title="Go back" class="back"></button>
                 <button @click="deleteMail(mail)" title="Delete mail" class="delete-mail"></button>
             </section>
             <section className="mail-subject">
@@ -37,34 +35,19 @@ export default {
             mail: null,
         }
     },
-    computed: {
-        getKey() {
-            const history = this.$router.options.history.state.back
-            var key
-            if (history === '/email/sent') key = 'sentMails'
-            if (history === '/email/inbox') key = 'mails'
-            return key
-        },
-    },
     methods: {
-        goBack() {
-            const key = this.getKey
-            if (key === 'sentMails') this.$router.push('sent')
-            else if (key === 'mails') this.$router.push('inbox')
-        },
         deleteMail(mail) {
-            const key = this.getKey
-            this.goBack()
-            eventBus.emit('delete-mail', { mail, key })
+            mailService.remove(mail.id)
+            eventBus.emit('deleted', mail)
+            this.$router.back()
         }
     },
 
     created() {
+        console.log(this.$route.params.id);
         const id = this.$route.params.id
-        const key = this.getKey
-        mailService.get(id, `${key}DB`)
-            .then(mail => { this.mail = mail })
-
+        mailService.get(id)
+            .then(mail => this.mail = mail)
     },
     components: {
         emailFolderList

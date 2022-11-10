@@ -4,7 +4,6 @@ import aboutPage from './views/app-about.cmp.js'
 import keepApp from './apps/keep/pages/keep-app.cmp.js'
 import emailApp from './apps/mail/pages/email-app.cmp.js'
 import emailList from './apps/mail/pages/email-list.cmp.js'
-import emailSentList from './apps/mail/pages/email-sent-list.cmp.js'
 import emailDetails from './apps/mail/pages/email-details.cmp.js'
 
 const { createRouter, createWebHashHistory } = VueRouter
@@ -34,7 +33,7 @@ const routerOptions = {
 				},
 				{
 					path: 'sent',
-					component: emailSentList,
+					component: emailList,
 				},
 				{
 					path: ':id',

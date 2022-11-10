@@ -1,5 +1,5 @@
 export default {
-    emits: ['show','filter'],
+    emits: ['show', 'filterTxt'],
     template: `
         <header class="app-header">
 
@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         filterTxt() {
-            this.$emit('filter', this.filterByTxt)
+            this.$emit('filterTxt', this.filterByTxt)
         }
     }
 }
