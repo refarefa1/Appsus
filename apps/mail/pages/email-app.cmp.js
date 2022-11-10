@@ -1,10 +1,12 @@
 import mailService from '../services/mail.service.js'
+import { eventBus } from '../../../services/event-bus.service.js'
 
 import emailFolderList from '../pages/email-folder-list.cmp.js'
 import emailCompose from '../cmps/email-compose.cmp.js'
 import emailAppHeader from '../cmps/email-app-header.cmp.js'
 
 export default {
+    emits: ['showMainHeader', 'hideMainHeader'],
     template: `
 
 
@@ -13,7 +15,7 @@ export default {
         <main className="mail-container">
             <email-folder-list @add="add" :unRead="unRead"/>
             <email-compose v-if="isCompose" @sent="send" @removeDraft="removeDraft"/>
-            <router-view @read="read" :mails="mails" :sentMails="sentMails"/>
+            <router-view @sort="sort" @read="read" :mails="mails" :sentMails="sentMails"/>
         </main>
     </section>
 
@@ -23,7 +25,11 @@ export default {
             mails: null,
             sentMails: null,
             unRead: null,
-            isCompose: false
+            isCompose: false,
+            sortBy: {
+                title: 1,
+                date: 1
+            }
         }
     },
     methods: {
@@ -49,6 +55,27 @@ export default {
         },
         removeDraft() {
             this.isCompose = !this.isCompose
+        },
+        remove() {
+            eventBus.on('delete-mail', ({ mail, key }) => {
+                mailService.remove(mail.id, `${key}DB`)
+                const currMails = this[`${key}`]
+                const idx = currMails.findIndex(email => email.id === mail.id)
+                currMails.splice(idx, 1)
+            })
+        },
+        sort(type) {
+            // if (type === 'date')
+            if (type === 'title') {
+                this.mails.sort((a, b) => {
+                    const nameA = a.subject.toUpperCase()
+                    const nameB = b.subject.toUpperCase()
+                    this.sortBy.title *= -1
+                    if (nameA < nameB) return -1 * this.sortBy.title
+                    if (nameA > nameB) return 1 * this.sortBy.title
+                    return 0
+                })
+            }
         }
     },
     computed: {
@@ -69,6 +96,7 @@ export default {
         mailService.query('sentMails')
             .then(mails => this.sentMails = mails)
         this.$emit('hideMainHeader')
+        this.remove()
     },
 
     components: {

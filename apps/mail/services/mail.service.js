@@ -6,6 +6,7 @@ export default {
     get,
     add,
     update,
+    remove,
     getUnread
 }
 
@@ -36,12 +37,16 @@ function get(mailId, key) {
 }
 
 function add({ to, title, body }) {
-    const mail = _createMail(title, body, loggedinUser.email, to, false, loggedinUser.fullname)
+    const mail = _createMail(title, body, loggedinUser.email, to, false, loggedinUser.fullname, new Date().toISOString().slice(0, 10))
     return storageService.post(SENT_EMAILS_KEY, mail, false)
 }
 
 function update(mail, key) {
     return storageService.put(key, mail)
+}
+
+function remove(mailId, key) {
+    storageService.remove(key, mailId)
 }
 
 function getUnread() {
@@ -51,13 +56,13 @@ function getUnread() {
         })
 }
 
-function _createMail(subject, body, from, to, isRead, fullname) {
+function _createMail(subject, body, from, to, isRead, fullname, sentAt) {
     return {
         id: utilService.makeId(),
         subject,
         body,
         isRead,
-        sentAt: new Date().toISOString().slice(0, 10),
+        sentAt,
         from,
         to,
         fullname
@@ -74,7 +79,8 @@ function _createMails() {
         'dani@Email.com',
         loggedinUser.email,
         false,
-        'Dani din'
+        'Dani din',
+        '2022-11-09'
     )
     let mail2 = _createMail(
         'Daniel just posted. View now.',
@@ -82,7 +88,8 @@ function _createMails() {
         'yosi@Email.com',
         loggedinUser.email,
         true,
-        'Berry Sakhrof'
+        'Berry Sakhrof',
+        '2022-10-08'
     )
     emails.push(mail1, mail2)
     utilService.saveToStorage(EMAILS_KEY, emails)

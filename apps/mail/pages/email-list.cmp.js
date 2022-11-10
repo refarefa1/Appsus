@@ -4,12 +4,19 @@ export default {
     props: ['mails'],
     template: `
 
+
+
         <ul class="mail-list-container">
+
+            <li class="sort-preview">
+                <h3>Sort by:</h3>
+                <h4 @click="sort('title')">Title</h4>
+                <h4 @click="sort('date')">Date</h4>
+            </li>
             <li v-for="mail in mails" @click="read(mail)" :key="mail.id" class="mail-preview">
                 <router-link :to="'/email/' + mail.id">
-                <button class="toggle-read-btn"></button>
                 <button class="star-btn"></button>
-                <button class="mark-btn"></button>
+                <h3>{{ mail.fullname }}</h3>
                 <email-preview :mail="mail"/>
                 </router-link>
             </li>
@@ -19,8 +26,12 @@ export default {
     methods: {
         read(mail) {
             this.$emit('read', mail)
+        },
+        sort(type) {
+            this.$emit('sort', type)
         }
     },
+
 
     components: {
         emailPreview
