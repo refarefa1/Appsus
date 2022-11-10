@@ -3,7 +3,7 @@ export default {
     template: `
         <aside class="side-bar-container">
 
-        <section @click="goTo('notes')" class="notes">
+        <section @click="goTo('notes')" class="notes active">
             <button></button>
             <h2>Notes</h2>
         </section>

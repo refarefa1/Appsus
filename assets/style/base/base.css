@@ -47,6 +47,7 @@ button {
 button {
   cursor: pointer;
   border: none;
+  background: transparent;
 }
 
 /* Simple and useful CSS Debugging Technique */

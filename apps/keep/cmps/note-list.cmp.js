@@ -5,18 +5,29 @@ export default {
     props: ['notes'],
     template: `
         <ul class="note-list clean-list">
-            <li class="note-container" :style="styleObject" v-for="note in notes" :key="note.id" @click="editNote(note)">
+            <li class="note-container" :class="{hovering: noteHoveredIdx===index}" v-for="(note, index) in notes" :style="note.style"  :key="note.id" @click="editNote(note)" @mouseover="noteHoveredIdx = index" @mouseout="noteHoveredIdx = null">
                 <note-preview :note="note" />
-                <div class="actions hide">
-                    <button class="remove-note" @click.stop="remove(note.id)">X</button>
+                <div class="control-btns">
+                    <button class="remove fa" @click.stop="remove(note.id)"></button>
+                    <button class="archive fa" @click.stop=""></button>
+                    <button class="bg-img fa" @click.stop=""></button>
+                    
+                    <button class="bg-color fa"><input type="color" @click.stop="" v-model="note.style.backgroundColor"></button>  
+                    <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="note.style.color"></button>
                 </div>
             </li>
         </ul>
     `,
     data() {
         return {
+
+            styleObject: {
+                backgroundColor: null,
+            },
+
             backgroundColor: '',
-            backgrounImg: null,
+            backgroundImg: null,
+            noteHoveredIdx: null
         }
     },
     methods: {
@@ -28,15 +39,16 @@ export default {
             console.log('noteClicked...')
             const noteToEdit = JSON.parse(JSON.stringify(clickedNote))
             this.$emit('noteClicked', noteToEdit)
-        }
+        },
+
     },
-    computed: {
-        styleObject() {
-            return{
-                color: (this.backgrounImg)? '' : `${this.backgroundColor}`,
-            }
-        }
-    },
+    // computed: {
+    //     // styleObject() {
+    //     //     return {
+    //     //         color: (this.backgrounImg) ? '' : `${this.backgroundColor}`,
+    //     //     }
+    //     }
+    // },
     components: {
         notePreview
     },

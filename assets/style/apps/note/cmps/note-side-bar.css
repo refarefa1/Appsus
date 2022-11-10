@@ -1,19 +1,27 @@
 .side-bar-container {
+    position: fixed;
     min-width: 300px;
-    background-color: var(--clr2);
-    padding: 15px;
+    background-color: var(--clr1);
+    padding: 15px 15px 15px 0;
 }
 
 .notes {
+    padding: 0 0 0 15px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 2em;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
     transition: .4s;
+    font-size: 1.2em;
 }
 
 .notes:hover {
     background-color: var(--clr3);
+}
+
+.notes.active {
+    background-color: var(--clr8);
 }
 
 .notes h2 {
@@ -25,8 +33,11 @@
 .notes button {
     background-color: transparent;
     font-family: fa;
+    padding: 1px 10px;
+    font-size: 1.4em;
 }
 
 .notes button::after {
-    content: "\f01c";
+    content: "\f0eb";
+    
 }

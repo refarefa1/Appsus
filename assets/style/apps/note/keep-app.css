@@ -1,4 +1,5 @@
 @import './cmps/note-add.css';
+@import './cmps/note-edit.css';
 @import './cmps/note-list.css';
 @import './cmps/note-preview.css';
 @import './cmps/note-side-bar.css';
@@ -16,7 +17,7 @@
 .main-container {
     padding-top: 16px;
     width: 100%;
-    /* padding: 0 50px; */
     height: 100%;
     position: relative;
+    margin-left: 300px;
 }
