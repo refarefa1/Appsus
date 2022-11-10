@@ -1,4 +1,4 @@
-.mail-preview{
+.mail-preview {
     background-color: var(--clr1);
 }
 
@@ -51,20 +51,28 @@
 
 .mail-title,
 .mail-body {
-    font-family: roboto-bold;
-    color: var(--primary-color);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-
 }
 
-.mail-title,
-.mail-body {
+.mail-title {
+    font-family: roboto-bold;
     font-size: 1em;
+    color: var(--primary-color);
+    padding-right: 10px;
 }
 
-.mail-body{
+.mail-body {
+    font-family: roboto-bold;
+    font-size: .8em;
+}
+
+.mail-fullname {
+    font-family: roboto-bold;
+}
+
+.mail-body {
     max-width: 70%;
 }
 
@@ -72,7 +80,7 @@
     font-size: .8em;
     min-width: 100px;
     margin-left: auto;
-    
+
     text-align: right;
     padding-right: 20px;
 }

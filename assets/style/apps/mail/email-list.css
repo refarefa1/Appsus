@@ -18,3 +18,8 @@
 .sort-preview h4{
     cursor: pointer;
 }
+
+.mail-fullname{
+    width: 200px;
+    font-size: 1em;
+}

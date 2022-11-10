@@ -105,7 +105,8 @@ function _createSentMails() {
         loggedinUser.email,
         'dani@gmail.com',
         false,
-        loggedinUser.fullname
+        loggedinUser.fullname,
+        '2022-11-09'
     )
     let mail2 = _createMail(
         'Simple question',
@@ -113,7 +114,8 @@ function _createSentMails() {
         loggedinUser.email,
         'yosi@Email.com',
         true,
-        loggedinUser.fullname
+        loggedinUser.fullname,
+        '2022-10-08'
     )
     emails.push(mail1, mail2)
     utilService.saveToStorage(SENT_EMAILS_KEY, emails)
