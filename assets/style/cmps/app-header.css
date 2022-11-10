@@ -61,6 +61,10 @@
   padding-right: 20px;
 }
 
+.search-bar {
+  margin-left: 150px;
+}
+
 .search::after {
   font-family: fa;
   content: "\f002";
