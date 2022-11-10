@@ -19,7 +19,15 @@
     cursor: pointer;
 }
 
+.filter{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 20px;
+}
+
 .mail-fullname{
-    width: 200px;
+    min-width: 200px;
     font-size: 1em;
 }

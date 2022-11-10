@@ -53,7 +53,7 @@
 .mail-body {
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .mail-title {
@@ -66,21 +66,17 @@
 .mail-body {
     font-family: roboto-bold;
     font-size: .8em;
+    max-width: 70%;
 }
 
 .mail-fullname {
     font-family: roboto-bold;
 }
 
-.mail-body {
-    max-width: 70%;
-}
-
 .mail-date {
     font-size: .8em;
     min-width: 100px;
     margin-left: auto;
-
     text-align: right;
     padding-right: 20px;
 }

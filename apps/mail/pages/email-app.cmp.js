@@ -10,12 +10,12 @@ export default {
     template: `
 
 
-    <email-app-header @show="$emit('showMainHeader')"/>
+    <email-app-header @show="$emit('showMainHeader')" @filter="filter"/>
     <section className="mail-app">
         <main className="mail-container">
             <email-folder-list @add="add" :unRead="unRead"/>
             <email-compose v-if="isCompose" @sent="send" @removeDraft="removeDraft"/>
-            <router-view @sort="sort" @read="read" :mails="mails" :sentMails="sentMails"/>
+            <router-view @filter="filter" @sort="sort" @read="read" :mails="mails" :sentMails="sentMails" :mailsToShow="mailsToShow" :filterBy="filterBy"/>
         </main>
     </section>
 
@@ -24,12 +24,14 @@ export default {
         return {
             mails: null,
             sentMails: null,
+            mailsToShow: null,
             unRead: null,
             isCompose: false,
             sortBy: {
                 title: 1,
                 date: 1
-            }
+            },
+            filterBy: null
         }
     },
     methods: {
@@ -64,10 +66,47 @@ export default {
                 currMails.splice(idx, 1)
             })
         },
-        sort(type) {
-            // if (type === 'date')
-            if (type === 'title') {
-                this.mails.sort((a, b) => {
+        convertToTimestamp(date) {
+            let arr = date.split('-')
+            var newDate = new Date(arr[2], arr[1] - 1, arr[0])
+            return newDate.getTime()
+        },
+        filter(obj) {
+            this.filterBy = true
+            if (obj.path === '/email/inbox') var name = 'mails'
+            if (obj.path === '/email/sent') var name = 'sentMails'
+
+            if (!obj.type) {
+                var name = this.getCurrKey
+                const regex = new RegExp(obj, 'i')
+                this.mailsToShow = this[name].filter(mail => regex.test(mail.subject))
+                return
+            }
+
+            else if (obj.type === 'all') {
+                console.log('filtering all');
+                this.mailsToShow = this[name].filter(mail => mail)
+            }
+            else if (obj.type === 'read') {
+                console.log('filtering read');
+                this.mailsToShow = this[name].filter(mail => mail.isRead)
+            }
+            else if (obj.type === 'unread') {
+                console.log('filtering unread');
+                this.mailsToShow = this[name].filter(mail => !mail.isRead)
+            }
+        },
+        sort(obj) {
+            if (obj.path === '/email/inbox') var name = 'mails'
+            if (obj.path === '/email/sent') var name = 'sentMails'
+
+            if (obj.type === 'date') {
+                this[name].sort((a, b) => (this.convertToTimestamp(a.sentAt) - this.convertToTimestamp(b.sentAt)) * this.sortBy.date)
+                this.sortBy.date *= -1
+            }
+
+            if (obj.type === 'title') {
+                this[name].sort((a, b) => {
                     const nameA = a.subject.toUpperCase()
                     const nameB = b.subject.toUpperCase()
                     this.sortBy.title *= -1
@@ -79,11 +118,11 @@ export default {
         }
     },
     computed: {
-        getKey() {
-            const history = this.$router.options.history.state.back
+        getCurrKey() {
+            const history = this.$route.fullPath
             var key
-            if (history === '/email/sent') key = 'sentMailsDB'
-            if (history === '/email/inbox') key = 'mailsDB'
+            if (history === '/email/sent') key = 'sentMails'
+            if (history === '/email/inbox') key = 'mails'
             return key
         }
     },
