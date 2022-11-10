@@ -17,7 +17,7 @@ export default {
             <note-side-bar />
 
             <main class="main-container flex flex-column align-center">
-                <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit"/>
+                <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit" @cancelEdit="noteToEdit=null"/>
                 <note-add class="" @noteSaved="save" />
     
                 <note-list v-if="notes"
@@ -65,7 +65,8 @@ export default {
         },
         noteClicked(note) {
             this.noteToEdit = note
-        }
+        },
+
 
     },
     computed: {},

@@ -4,16 +4,21 @@ export default {
     template: `
         <section class="note-img">
             <h1 class=img-title>{{ note.info.title }}</h1>
-            <!-- <img class="img">{{ note.info.txt }}</i> -->
+            <img :src="imgUrl" />
         </section>
     `,
     components: {},
     created() { },
     data() {
-        return {}
+        return {
+        }
     },
     methods: {},
-    computed: {},
+    computed: {
+        imgUrl() {
+            return `assets/img/${this.note.info.title.toLowerCase()}.jpg`
+        }
+    },
 }
 
 

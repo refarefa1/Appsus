@@ -32,10 +32,6 @@
     outline: none;
 }
 
-.note-add .title .pin-note, .control-btns >*,  .control-panel .add-note {
-    background-color: transparent;
-}
-
 .note-add .control-btns >*{
     color: var(--clr6);
 
@@ -70,10 +66,12 @@
 .control-btns .color::after {
     content: '\f53f';
 }
+
 .control-btns .img::after {
     content: '\f03e';
 }
+
 .control-btns .archive::after {
-    content: '\f07c';
+    content: '\f187';
 }
 
