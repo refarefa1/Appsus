@@ -16,7 +16,7 @@ export default {
             <li v-for="mail in mails" @click="read(mail)" :key="mail.id" class="mail-preview">
                 <router-link :to="'/email/' + mail.id">
                 <button class="star-btn"></button>
-                <h3>{{ mail.fullname }}</h3>
+                <h2 class="mail-fullname" :class="{ read: mail.isRead }">{{ mail.fullname }}</h2>
                 <email-preview :mail="mail"/>
                 </router-link>
             </li>
