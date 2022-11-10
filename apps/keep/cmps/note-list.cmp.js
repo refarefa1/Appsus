@@ -5,7 +5,7 @@ export default {
     props: ['notes'],
     template: `
         <ul class="note-list clean-list">
-            <li class="note-container" v-for="note in notes" :key="note.id" @click="editNote(note)">
+            <li class="note-container" :style="styleObject" v-for="note in notes" :key="note.id" @click="editNote(note)">
                 <note-preview :note="note" />
                 <div class="actions hide">
                     <button class="remove-note" @click.stop="remove(note.id)">X</button>
@@ -13,6 +13,12 @@ export default {
             </li>
         </ul>
     `,
+    data() {
+        return {
+            backgroundColor: '',
+            backgrounImg: null,
+        }
+    },
     methods: {
         remove(noteId) {
             console.log(`removing...` + ' note:' + noteId)
@@ -24,7 +30,13 @@ export default {
             this.$emit('noteClicked', noteToEdit)
         }
     },
-    computed: {},
+    computed: {
+        styleObject() {
+            return{
+                color: (this.backgrounImg)? '' : `${this.backgroundColor}`,
+            }
+        }
+    },
     components: {
         notePreview
     },

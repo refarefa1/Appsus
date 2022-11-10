@@ -6,11 +6,11 @@ export default {
     template: `
         <section class="note-add flex flex-column">
             <div class="title flex">
-                <input type="text" v-model="noteToEdit.info.title" placeholder="Note title..">
+                <input type="text" v-model="noteToEdit.info.title" placeholder="Title">
                 <button class="pin-note fa" @click="pin"></button>
             </div>
             <div class="title flex">
-                <input type="text" placeholder="Note content..">
+                <input type="text" placeholder="Content">
             </div>
             <!-- <component :is="note.type"/> -->
             <div class="control-panel flex justify-between">
@@ -19,7 +19,11 @@ export default {
                     <button class="img fa"></button>
                     <button class="archive fa"></button>
                 </div>
-                <button class="add-note" @click="addNote">Save</button>
+                <div>
+                    <button class="add-note" @click="cancel">Cancel</button>
+                    <button class="add-note" @click="addNote">Save</button>
+                </div>
+                
             </div>
 
         </section>
