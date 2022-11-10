@@ -1,0 +1,64 @@
+.mail-app {
+    flex-direction: column;
+}
+
+.mail-subject {
+    padding-left: 80px;
+    padding-bottom: 10px;
+}
+
+.mail-details-profile {
+    padding-left: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.mail-details-profile p {
+    font-family: roboto-light;
+}
+
+.mail-details-profile img {
+    width: 5%;
+}
+
+.mail-details-body {
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 1em;
+    font-family: roboto-light;
+}
+
+.back {
+    font-family: fa;
+    background-color: transparent;
+    font-size: 1em;
+}
+
+.back::after {
+    content: "\f060";
+}
+
+.mail-details-footer {
+    margin-top: auto;
+}
+
+.mail-details-footer button {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background: transparent;
+    border: 1px solid var(--clr6);
+    color: var(--clr6);
+    border-radius: 2em;
+    padding: 0px 25px;
+    min-height: 40px;
+}
+
+.delete-mail{
+    background: transparent;
+    font-family: fa;
+}
+
+.delete-mail::after{
+    content: "\f1f8";
+}

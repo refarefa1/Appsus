@@ -1,6 +1,7 @@
 @import url(./email-list.css);
 @import url(./email-folder-list.css);
 @import url(./email-compose.css);
+@import url(./email-details.css);
 
 .mail-container {
     display: flex;
