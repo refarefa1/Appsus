@@ -1,4 +1,5 @@
 export default {
+    emits:['show'],
     template: `
         <header class="app-header">
 

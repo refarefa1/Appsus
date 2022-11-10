@@ -50,8 +50,7 @@
 /* BODY */
 
 .mail-title,
-.mail-body,
-.mail-date {
+.mail-body {
     font-family: roboto-bold;
     color: var(--primary-color);
     text-overflow: ellipsis;
@@ -63,12 +62,6 @@
 .mail-title,
 .mail-body {
     font-size: 1em;
-}
-
-.mail-title {
-    min-width: 250px;
-    max-width: 250px;
-    margin-right: 10px;
 }
 
 .mail-body{
