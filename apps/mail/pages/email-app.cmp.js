@@ -31,7 +31,6 @@ export default {
 
         read(mail) {
             const key = this.getKey
-            console.log(key);
             mail.isRead = true
             mailService.update(mail, key)
             this.getUnreadLength()

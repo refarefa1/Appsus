@@ -6,7 +6,6 @@ export default {
         <aside className="folder-list-container">
 
         <button @click="$emit('add')" className="new-mail">New email</button>
-        
         <section @click="goTo('inbox')" className="inbox">
             <button></button>
             <h2>Inbox</h2>
