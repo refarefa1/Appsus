@@ -1,0 +1,89 @@
+.keep-app-header {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  background-color: var(--clr2);
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  padding: 15px;
+  min-height: 7.5vh;
+  box-shadow: inset 0 -1px 0 0 #dadce0;
+}
+
+.keep-app-header .logo {
+  flex-basis: 235px;
+}
+
+.keep-app-header .search-bar {
+  border: none;
+  background-color: var(--clr3);
+  border-radius: 1em;
+  width: 500px;
+  font-size: .9em;
+  font-family: roboto-regular;
+}
+
+.keep-app-header .main-nav {
+  margin-left: auto;
+}
+
+.keep-app-header .main-nav img{
+  width: 50%;
+}
+
+.keep-app-header .nav{
+  background-color: transparent;
+}
+
+.keep-app-header .nav::after {
+  font-family: fa;
+  font-size: 1.6em;
+  padding: 30px;
+  content: "\f0ca";
+}
+
+.keep-app-header .menu {
+  background-color: var(--clr1);
+  position: absolute;
+  display: flex;
+  border-radius: 1em;
+  right: 10px;
+  top: 7.5vh;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 200px;
+  height: 200px;
+  z-index: 20
+}
+
+.keep-app-header .menu>*{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.keep-app-header .search {
+  position: relative;
+  right: 40px;
+  background-color: transparent;
+  padding-right: 20px;
+}
+
+.keep-app-header .search-bar {
+  margin-left: 150px;
+}
+
+.keep-app-header .search::after {
+  font-family: fa;
+  content: "\f002";
+}
+
+.keep-app-header .search-bar:focus {
+  outline: none;
+}
+
+@media(max-width: 720px) {
+  .keep-app-header {
+    background-color: var(--clr3);
+    color: var(--secondary-clr2);
+  }
+}

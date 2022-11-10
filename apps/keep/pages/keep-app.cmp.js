@@ -3,18 +3,18 @@ import noteService from '../services/note.service.js'
 import noteList from '../cmps/note-list.cmp.js'
 import noteAdd from '../cmps/note-add.cmp.js'
 import noteEdit from '../cmps/note-edit.cmp.js'
-import noteSideBar from '../cmps/note-side-bar.cmp.js'
-import noteAppHeader from '../cmps/note-app-header.cmp.js'
+import keepAppSideBar from '../cmps/keep-app-side-bar.cmp.js'
+import keepAppHeader from '../cmps/keep-app-header.cmp.js'
 
 export default {
     name: `keep-app`,
     emits: ['showMainHeader', 'hideMainHeader'],
     template: `
 
-        <note-app-header @show="$emit('showMainHeader')"/>
+        <keep-app-header :class="scrolled ? 'scroll' : ''" @show="$emit('showMainHeader')"/>
 
         <section class="keep-app flex">
-            <note-side-bar />
+            <keep-app-side-bar />
 
             <main class="main-container flex flex-column align-center">
                 <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit" @cancelEdit="noteToEdit=null"/>
@@ -32,12 +32,18 @@ export default {
     created() {
         noteService.query()
             .then(notes => this.notes = notes)
-            this.$emit('hideMainHeader')
+        this.$emit('hideMainHeader')
+        window.addEventListener('scroll', this.handleScroll)
+
+
+
     },
     data() {
         return {
             notes: null,
-            noteToEdit: null
+            noteToEdit: null,
+            scrolled: false,
+
         }
     },
     methods: {
@@ -66,15 +72,21 @@ export default {
         noteClicked(note) {
             this.noteToEdit = note
         },
+        handleScroll() {
+            this.scrolled = window.scrollY > 0;
+        },
 
 
+    },
+    unmounted() {
+        window.removeEventListener('scroll', this.handleScroll)
     },
     computed: {},
     components: {
         noteList,
         noteAdd,
         noteEdit,
-        noteSideBar,
-        noteAppHeader
+        keepAppSideBar,
+        keepAppHeader
     }
 }

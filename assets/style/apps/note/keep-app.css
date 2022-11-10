@@ -2,7 +2,8 @@
 @import './cmps/note-edit.css';
 @import './cmps/note-list.css';
 @import './cmps/note-preview.css';
-@import './cmps/note-side-bar.css';
+@import './cmps/keep-app-side-bar.css';
+@import './cmps/keep-app-header.css';
 
 @import './cmps/note-types/note-text.css';
 @import './cmps/note-types/note-todo.css';
@@ -15,9 +16,15 @@
 }
 
 .main-container {
+    margin-top: 7.5vh;
     padding-top: 16px;
     width: 100%;
     height: 100%;
     position: relative;
     margin-left: 300px;
+    overflow: auto;
+}
+
+.scroll {
+    box-shadow: 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%), 0px 2px 4px -1px rgb(0 0 0 / 20%);
 }

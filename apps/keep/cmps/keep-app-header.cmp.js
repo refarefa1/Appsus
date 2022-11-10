@@ -1,7 +1,7 @@
 export default {
     emits:['show'],
     template: `
-        <header class="app-header">
+        <header class="keep-app-header">
 
             <router-link to="/" @click="$emit('show')">
             <h1 class="logo">AppSus</h1>

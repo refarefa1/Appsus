@@ -1,11 +1,12 @@
-.side-bar-container {
+.keep-app-side-bar-container {
     position: fixed;
+    margin-top: 7.5vh;
     min-width: 300px;
     background-color: var(--clr1);
     padding: 15px 15px 15px 0;
 }
 
-.notes {
+.keep-app-side-bar-container .notes {
     padding: 0 0 0 15px;
     display: flex;
     align-items: center;
@@ -16,28 +17,39 @@
     font-size: 1.2em;
 }
 
-.notes:hover {
+.keep-app-side-bar-container .notes:hover {
     background-color: var(--clr3);
 }
 
-.notes.active {
+.keep-app-side-bar-container .notes.active {
     background-color: var(--clr8);
 }
 
-.notes h2 {
+.keep-app-side-bar-container .notes h2 {
     color: var(--primary-color);
     font-size: 1em;
     font-family: roboto-bold;
 }
 
-.notes button {
+.keep-app-side-bar-container .notes button {
     background-color: transparent;
     font-family: fa;
     padding: 1px 10px;
     font-size: 1.4em;
 }
 
-.notes button::after {
+.keep-app-side-bar-container .notes-icon  button::after {
     content: "\f0eb";
-    
+}
+
+.keep-app-side-bar-container .label  button::after {
+    content: "\f02c";
+}
+
+.keep-app-side-bar-container .archive  button::after {
+    content: "\f187";
+}
+
+.keep-app-side-bar-container .trash  button::after {
+    content: "\f1f8";
 }
