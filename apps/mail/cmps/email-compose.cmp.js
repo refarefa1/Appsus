@@ -1,16 +1,18 @@
 export default {
+    props: ['editedMail'],
+    emits: ['save-draft', 'remove-draft', 'sent'],
     template: `
             <form @submit.prevent class="mail-modal">
                 <section class="mail-modal-header">
                     <h2 class="add-mail-title">New message</h2>
-                    <button title="Save draft"></button>
+                    <button @click="saveDraft" title="Save draft"></button>
                 </section>
                 <input v-model="mail.to" type="email" placeholder="To"/>
-                <input v-model="mail.title" type="text" placeholder="Topic"/>
+                <input v-model="mail.subject" type="text" placeholder="Topic"/>
                 <textarea class="mail-body" v-model="mail.body" cols="30" rows="25"></textarea>
                 <section class="mail-modal-footer">
                     <button @click="send" title="Send" class="send-mail-btn">Send</button>
-                    <button @click="$emit('remove-draft')" title="Remove draft" class="remove-draft-btn"></button>
+                    <button @click="removeDraft" title="Remove draft" class="remove-draft-btn"></button>
                 </section>
             </form>
 
@@ -19,21 +21,31 @@ export default {
         return {
             mail: {
                 to: '',
-                title: '',
+                subject: '',
                 body: '',
+                isDraft: false
             }
         }
     },
     methods: {
         send() {
-            const { to, title, body } = this.mail
-            if (!to || !title || !body) return
+            const { to, subject, body } = this.mail
+            if (!to || !subject || !body) return
             this.$emit('sent', { ...this.mail })
             this.mail = {
                 to: '',
-                title: '',
+                subject: '',
                 body: '',
             }
+        },
+        saveDraft() {
+            this.$emit('save-draft', this.mail)
+        },
+        removeDraft() {
+            this.$emit('remove-draft', this.mail)
         }
+    },
+    created() {
+        if (this.editedMail) this.mail = { ... this.editedMail }
     }
 }

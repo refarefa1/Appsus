@@ -36,6 +36,18 @@ const routerOptions = {
 					component: emailList,
 				},
 				{
+					path: 'starred',
+					component: emailList,
+				},
+				{
+					path: 'trash',
+					component: emailList,
+				},
+				{
+					path: 'draft',
+					component: emailList,
+				},
+				{
 					path: ':id',
 					component: emailDetails
 				}

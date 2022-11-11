@@ -1,8 +1,9 @@
 import emailPreview from '../cmps/email-preview.cmp.js'
 import emailFilter from '../cmps/email-filter.cmp.js'
+import emailCompose from '../cmps/email-compose.cmp.js'
 
 export default {
-    emits: ['read', 'sort', 'filterRead', 'remove', 'mark'],
+    emits: ['read', 'sort', 'filterRead', 'remove', 'mark', 'star', 'save-draft', 'remove-draft', 'sent'],
     props: ['mailsToShow'],
     template: `
 
@@ -14,24 +15,36 @@ export default {
                 <h4 @click="sort('date')">Date</h4>
                 <email-filter @filterRead="filterRead"/>
             </li>
+
             <li v-for="mail in mailsToShow" @click="read(mail)" :key="mail.id" class="mail-preview">
                 <section className="mail-hover">
                     <button @click="" title="Make note" class="note-btn"></button>
                     <button @click.stop="mark(mail)" title="Mark as read/unread" class="toggle-btn"></button>
                     <button @click.stop="remove(mail)" title="Delete mail" class="remove-btn"></button>
                 </section>
-                <router-link :to="'/email/' + mail.id">
-                    <button class="star-btn"></button>
+                <router-link v-if="!mail.isDraft" :to="'/email/' + mail.id">
+                    <button @click.stop.prevent="toggleStar(mail)" class="star-btn" :class="{ 'starred-mail': mail.isStar }"></button>
                     <h2 class="mail-fullname" :class="{ read: mail.isRead }">{{ mail.fullname }}</h2>
                     <email-preview :mail="mail" />
                 </router-link>
+
+                <section @click="edit(mail)" class="draft-mail" v-if="mail.isDraft">
+                <button @click.stop.prevent="toggleStar(mail)" class="star-btn" :class="{ 'starred-mail': mail.isStar }"></button>
+                    <h2 class="mail-fullname" :class="{ read: mail.isRead }">{{ mail.fullname }}</h2>
+                    <email-preview :mail="mail" />
+                </section>
+
             </li>
-
-
-
+            <email-compose @save-draft="saveDraft" @remove-draft="removeDraft" @sent="sent" :editedMail="editedMail" v-if="isEditing"/>
         </ul>
 
         `,
+    data() {
+        return {
+            isEditing: false,
+            editedMail: null
+        }
+    },
     methods: {
         read(mail) {
             this.$emit('read', mail)
@@ -47,15 +60,32 @@ export default {
         },
         mark(mail) {
             this.$emit('mark', mail)
+        },
+        toggleStar(mail) {
+            this.$emit('star', mail)
+        },
+        edit(mail) {
+            this.editedMail = mail
+            this.isEditing = true
+        },
+        removeDraft(mail) {
+            this.isEditing = false
+            this.$emit('remove-draft', mail)
+        },
+        saveDraft(mail) {
+            this.isEditing = false
+            this.$emit('save-draft', mail)
+        },
+        sent(mail) {
+            this.isEditing = false
+            this.$emit('sent', mail)
         }
-    },
-    computed:{
-
     },
 
     components: {
         emailPreview,
-        emailFilter
+        emailFilter,
+        emailCompose
     },
 
 }

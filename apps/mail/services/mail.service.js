@@ -26,8 +26,8 @@ function get(mailId) {
     return storageService.get(EMAILS_KEY, mailId)
 }
 
-function add({ to, title, body }) {
-    const mail = _createMail(title, body, loggedinUser.email, to, false, loggedinUser.fullname, new Date().toISOString().slice(0, 10))
+function add({ to, subject, body, isDraft }) {
+    const mail = _createMail(subject, body, loggedinUser.email, to, false, loggedinUser.fullname, new Date().toISOString().slice(0, 10), false, null, isDraft)
     return storageService.post(EMAILS_KEY, mail, false)
 }
 
@@ -39,7 +39,7 @@ function remove(mailId) {
     return storageService.remove(EMAILS_KEY, mailId)
 }
 
-function _createMail(subject, body, from, to, isRead, fullname, sentAt) {
+function _createMail(subject, body, from, to, isRead, fullname, sentAt, isStar, removedAt, isDraft) {
     return {
         id: utilService.makeId(),
         subject,
@@ -48,7 +48,10 @@ function _createMail(subject, body, from, to, isRead, fullname, sentAt) {
         sentAt,
         from,
         to,
-        fullname
+        fullname,
+        isStar,
+        removedAt,
+        isDraft
     }
 }
 
@@ -63,7 +66,10 @@ function _createMails() {
         loggedinUser.email,
         false,
         'Leumi',
-        '2022-11-09'
+        '2022-11-09',
+        false,
+        null,
+        false
     )
     let mail2 = _createMail(
         'Monthly receipt',
@@ -72,7 +78,10 @@ function _createMails() {
         loggedinUser.email,
         true,
         'Pango',
-        '2022-11-02'
+        '2022-11-02',
+        false,
+        null,
+        false
     )
     let mail3 = _createMail(
         'Work pdfs',
@@ -82,6 +91,9 @@ function _createMails() {
         false,
         loggedinUser.fullname,
         '2022-11-09',
+        false,
+        null,
+        false
     )
     let mail4 = _createMail(
         'My resume',
@@ -90,7 +102,10 @@ function _createMails() {
         'rebbeca@job.com',
         true,
         loggedinUser.fullname,
-        '2022-10-08'
+        '2022-10-08',
+        false,
+        null,
+        false
     )
     let mail5 = _createMail(
         'Your lottie animation is ready',
@@ -99,7 +114,10 @@ function _createMails() {
         loggedinUser.email,
         false,
         'LottieFiles',
-        '2022-10-21'
+        '2022-10-21',
+        false,
+        null,
+        false
     )
     let mail6 = _createMail(
         'Learn to graphic design in 5 weeks!',
@@ -108,7 +126,10 @@ function _createMails() {
         loggedinUser.email,
         true,
         'Coursera',
-        '2022-10-04'
+        '2022-10-04',
+        true,
+        null,
+        false
     )
     let mail7 = _createMail(
         'Your monthly receipt',
@@ -118,6 +139,9 @@ function _createMails() {
         false,
         'Partner',
         '2022-09-15',
+        false,
+        null,
+        false
     )
     let mail8 = _createMail(
         'Free courses to learn fullstack',
@@ -126,7 +150,10 @@ function _createMails() {
         loggedinUser.email,
         true,
         'Udemy',
-        '2022-09-01'
+        '2022-09-01',
+        true,
+        null,
+        false
     )
     let mail9 = _createMail(
         'flyers for print',
@@ -135,7 +162,10 @@ function _createMails() {
         'daniel@yahoo.com',
         false,
         loggedinUser.fullname,
-        '2022-08-27'
+        '2022-08-27',
+        true,
+        null,
+        false
     )
     let mail10 = _createMail(
         'Hey can you help me ?',
@@ -144,7 +174,10 @@ function _createMails() {
         'puki@hr.com',
         true,
         loggedinUser.fullname,
-        '2022-08-25'
+        '2022-08-25',
+        false,
+        null,
+        false
     )
     let mail11 = _createMail(
         'Is the earth flat?',
@@ -153,38 +186,119 @@ function _createMails() {
         'earth@knowledge.com',
         false,
         loggedinUser.fullname,
-        '2022-07-06'
+        '2022-07-06',
+        true,
+        null,
+        false
     )
     let mail12 = _createMail(
         'Watch your video here',
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, voluptatibus. Labore ducimus, enim est dolorum sequi cupiditate debitis nihil tempora?',
+        'Whether you are starting fresh or building enterprise services, with over 15 APIs and SDKs there’s no limit to what you can build. Get started for free and enjoy a $200 monthly usage credit to keep you going.        ',
         'youtube@video.co.il',
         loggedinUser.email,
         true,
         'Youtube',
-        '2022-09-08'
+        '2022-09-08',
+        false,
+        null,
+        false
     )
     let mail13 = _createMail(
         'home-test ready',
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, voluptatibus. Labore ducimus, enim est dolorum sequi cupiditate debitis nihil tempora?',
+        'Here is the home test you wanted me to do, hope you will like it',
         loggedinUser.email,
         'test@testers.co.il',
         false,
         loggedinUser.fullname,
-        '2022-09-01'
+        '2022-09-01',
+        true,
+        null,
+        false
     )
     let mail14 = _createMail(
-        'Keep on green environment',
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, voluptatibus. Labore ducimus, enim est dolorum sequi cupiditate debitis nihil tempora?',
+        'Cant touch this',
+        'How can it be th',
+        loggedinUser.email,
         'greenpeace@gmail.com',
+        true,
+        loggedinUser.fullname,
+        '2022-07-12',
+        false,
+        null,
+        true
+    )
+    let mail15 = _createMail(
+        'Can you de',
+        'what are you doing omg it cannot be like this',
+        'rebbeca@gmail.com',
         loggedinUser.email,
         true,
-        'Greenpeace',
-        '2022-07-12'
+        loggedinUser.fullname,
+        '2022-06-10',
+        false,
+        null,
+        true
     )
-    for (var i = 1; i < 15; i++) {
-        emails.push(`mail${i}`)
-    }
-    emails = [mail1, mail2, mail3, mail4, mail5, mail6, mail7, mail8, mail9, mail10, mail11, mail12, mail13, mail14,]
+    let mail16 = _createMail(
+        'rafi please answer fast',
+        'hey rafi can you tell me if its okay to',
+        loggedinUser.email,
+        'rafi@walla.com',
+        true,
+        loggedinUser.fullname,
+        '2022-05-10',
+        false,
+        null,
+        true
+    )
+    let mail17 = _createMail(
+        'Come and explore lottie',
+        'The Product Team at LottieFiles helps design and developer teams uplevel their motion design game.        Whether you have questions, brutally honest feedback, bugs, or feature requests, we got you covered.',
+        'lottiefiles@gmail.com',
+        loggedinUser.email,
+        true,
+        'Lottiefiles',
+        '2022-08-11',
+        false,
+        new Date(),
+        false
+    )
+    let mail18 = _createMail(
+        'Best deals!!!',
+        'Last chance for up to €10 off.Your final call to save up to €10 on delicious dishes. Terms & fees apply. Add the promo code before you checkout to claim your meal on us:',
+        'uber@uber.com',
+        loggedinUser.email,
+        true,
+        'Uber',
+        '2022-04-01',
+        false,
+        new Date(),
+        false
+    )
+    let mail19 = _createMail(
+        'Security notification regarding your account',
+        'if you have not yet added 2 Steps-Verification protection to your account, we highly recommend you to activate the feature now to enhance the security of your account and prevent unauthorized access.You can see all the successful and unsuccessful login attempts on your Account Management website, on the Security Settings page.        Please beware of phishing emails, Ubisoft employees will never prompt you or request personal payment or login credentials. If the email you receive asks you to send any of these, contains typos, unusual grammar or phrases, then it does not come from Ubiso',
+        'ubisoft@gmail.com',
+        loggedinUser.email,
+        true,
+        'Ubisoft',
+        '2022-08-22',
+        false,
+        new Date(),
+        false
+    )
+    let mail20 = _createMail(
+        'Welcome to Google Maps platforms',
+        'Whether you’re starting fresh or building enterprise services, with over 15 APIs and SDKs there’s no limit to what you can build. Get started for free and enjoy a $200 monthly usage credit to keep you going.',
+        'google@gmail.com',
+        loggedinUser.email,
+        true,
+        'Google',
+        '2022-06-28',
+        false,
+        new Date(),
+        false
+    )
+    emails = [mail1, mail2, mail3, mail4, mail5, mail6, mail7, mail8, mail9, mail10, mail11, mail12, mail13, mail14, mail15, mail16, mail17, mail18, mail19, mail20]
     utilService.saveToStorage(EMAILS_KEY, emails)
 }

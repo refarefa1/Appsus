@@ -34,6 +34,10 @@
     font-family: roboto-light !important;
 }
 
+.starred-mail::after{
+    color: var(--clr9);
+}
+
 /* list helpers */
 
 .clean-list {
