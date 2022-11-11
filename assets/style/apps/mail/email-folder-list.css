@@ -1,40 +1,56 @@
 .folder-list-container {
     min-width: 250px;
     background-color: var(--clr2);
-    padding: 15px;
+    /* padding: 15px; */
+    padding-right: 20px;
 }
 
-.new-mail{
+.new-mail {
     background-color: var(--secondary-clr1);
     padding: 20px;
     border-radius: 1em;
     font-size: 1em;
+    margin-left: 20px;
     font-family: roboto-medium;
     margin-bottom: 20px;
 }
 
-.new-mail::before{
+.new-mail::before {
     font-family: fa;
     margin-right: 20px;
     content: "\f304";
 }
 
 .inbox,
-.sent {
+.sent,
+.starred,
+.trash,
+.draft {
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 2em;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
     transition: .4s;
 }
 
+.picked {
+    background-color: var(--secondary-clr0);
+}
+
 .inbox:hover,
-.sent:hover {
+.sent:hover,
+.starred:hover,
+.trash:hover,
+.draft:hover {
     background-color: var(--clr3);
 }
 
 .inbox h2,
-.sent h2 {
+.sent h2,
+.starred h2,
+.trash h2,
+.draft h2 {
     color: var(--primary-color);
     font-size: 1em;
     font-family: roboto-bold;
@@ -50,7 +66,10 @@
 
 
 .inbox button,
-.sent button {
+.sent button,
+.starred button,
+.trash button,
+.draft button {
     background-color: transparent;
     font-family: fa;
 }
@@ -61,4 +80,16 @@
 
 .sent button::after {
     content: "\f1d8";
+}
+
+.starred button::after {
+    content: "\f005";
+}
+
+.trash button::after {
+    content: "\f1f8";
+}
+
+.draft button::after {
+    content: "\f15b";
 }

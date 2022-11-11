@@ -13,8 +13,8 @@ export default {
     <section className="mail-app">
         <main className="mail-container">
             <email-folder-list @filterPath="filterPath" @add="add" :mails="mails"/>
-            <email-compose v-if="isCompose" @sent="send" @removeDraft="removeDraft"/>
-            <router-view @filterRead="filterRead" @sort="sort" @read="read" @remove="remove" @mark="mark" :mailsToShow="mailsToShow"/>
+            <email-compose @save-draft="save" v-if="isCompose" @sent="send" @removeDraft="removeDraft"/>
+            <router-view  @save-draft="save" @sent="send" @removeDraft="removeDraft" @filterRead="filterRead" @star="star" @sort="sort" @read="read" @remove="remove" @mark="mark" :mailsToShow="mailsToShow"/>
         </main>
     </section>
 
@@ -47,20 +47,43 @@ export default {
             this.isCompose = !this.isCompose
         },
         send(mail) {
-            mailService.add(mail)
-                .then(mail => this.mails.unshift(mail))
-            this.removeDraft()
+            this.removeDraft(mail)
+            mail.isDraft = false
+            if (mail.id) {
+                mailService.update(mail)
+                    .then(() => {
+                        const idx = this.mails.findIndex(email => email.id === mail.id)
+                        this.mails.splice(idx, 1, mail)
+                        this.filter()
+                    })
+            }
+            else {
+                mailService.add(mail)
+                    .then(mail => this.mails.unshift(mail))
+            }
         },
-        removeDraft() {
-            this.isCompose = !this.isCompose
+        removeDraft(mail) {
+            mail.isDraft = false
+            this.isCompose = false
         },
         remove(mail) {
-            mailService.remove(mail.id)
-                .then(() => {
-                    const idx = this.mails.findIndex(email => email.id === mail.id)
-                    this.mails.splice(idx, 1)
-                    this.filter()
-                })
+            if (!mail.removedAt) {
+                mail.removedAt = new Date()
+                mailService.update(mail)
+                    .then(() => {
+                        this.filter()
+                        return
+                    })
+            }
+            else {
+                mailService.remove(mail.id)
+                    .then(() => {
+                        const idx = this.mails.findIndex(email => email.id === mail.id)
+                        this.mails.splice(idx, 1)
+                        this.filter()
+                    })
+            }
+
         },
         mark(mail) {
             mail.isRead = !mail.isRead
@@ -69,6 +92,35 @@ export default {
                     const idx = this.mails.findIndex(email => email.id === mail.id)
                     this.mails.splice(idx, 1, mail)
                 })
+        },
+        star(mail) {
+            mail.isStar = !mail.isStar
+            mailService.update(mail)
+                .then(() => {
+                    this.filter()
+                })
+        },
+        save(mail) {
+            this.isCompose = false
+            const sent = { ...mail }
+            const { to, subject, body } = sent
+            if (!to && !subject && !body) {
+                this.removeDraft(sent)
+                return
+            }
+            sent.isDraft = true
+            if (sent.id) {
+                mailService.update(sent)
+                    .then(mail => {
+                        const idx = this.mails.findIndex(email => email.id === mail.id)
+                        this.mails.splice(idx, 1, mail)
+                        this.filter()
+                    })
+            }
+            else {
+                mailService.add(sent)
+                    .then(mail => this.mails.unshift(mail))
+            }
         },
         convertToTimestamp(date) {
             let arr = date.split('-')
@@ -92,22 +144,33 @@ export default {
         filter() {
 
             var filtered
-
             const regex = new RegExp(this.criteria.txt, 'i')
-            filtered = this.mails.filter(mail => regex.test(mail.subject) || regex.test(mail.fullname) || regex.test(mail.body))
+            filtered = this.mails.filter(mail => regex.test(mail.subject) || regex.test(mail.fullname) || regex.test(mail.body) && !mail.removedAt)
 
             if (this.criteria.isRead !== null) {
-                filtered = filtered.filter(mail => mail.isRead === this.criteria.isRead)
+                filtered = filtered.filter(mail => mail.isRead === this.criteria.isRead && !mail.removedAt)
             }
 
             const { status } = this.criteria
 
             if (status === 'inbox') {
-                filtered = filtered.filter(mail => mail.to === 'user@appsus.com')
+                filtered = filtered.filter(mail => mail.to === 'user@appsus.com' && !mail.removedAt && !mail.isDraft)
             }
 
             else if (status === 'sent') {
-                filtered = filtered.filter(mail => mail.to !== 'user@appsus.com')
+                filtered = filtered.filter(mail => mail.to !== 'user@appsus.com' && !mail.removedAt && !mail.isDraft)
+            }
+
+            else if (status === 'starred') {
+                filtered = filtered.filter(mail => mail.isStar && !mail.removedAt)
+            }
+
+            else if (status === 'draft') {
+                filtered = filtered.filter(mail => mail.isDraft && !mail.removedAt)
+            }
+
+            else if (status === 'trash') {
+                filtered = filtered.filter(mail => mail.removedAt && !mail.isDraft)
             }
 
             this.mailsToShow = filtered
@@ -139,6 +202,8 @@ export default {
         mailService.query()
             .then(mails => {
                 this.mails = mails
+                const path = this.$route.fullPath.split('/')
+                this.criteria.status = path[path.length - 1]
                 this.filter()
             })
         this.$emit('hideMainHeader')

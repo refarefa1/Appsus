@@ -4,7 +4,7 @@ export default {
         <header class="app-header">
 
             <router-link to="/" @click="$emit('show')">
-            <h1 class="logo">AppSus</h1>
+            <img class="logo" src="assets/img/mail.png" alt="logo" />
             </router-link>
 
             <input @input="filterTxt" v-model="filterByTxt" class="search-bar" type="text" placeholder="Search"/>
@@ -12,7 +12,6 @@ export default {
             <nav class="main-nav">
                 <button @click="toggleMenu = !toggleMenu" class="nav"></button>
                 <section v-if="toggleMenu" className="menu">
-                <!-- <router-link to="/about">About</router-link> | -->
                 <router-link to="/keep" @click="toggleMenu = !toggleMenu">
                     <img src="assets/img/keep.png" alt="" />
                     <h2>Keep</h2>

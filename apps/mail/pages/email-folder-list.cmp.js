@@ -2,18 +2,34 @@ export default {
     emits: ['filterPath', 'add'],
     props: ['mails'],
     template: `
-        <aside className="folder-list-container">
+        <aside class="folder-list-container">
 
-        <button @click="$emit('add')" className="new-mail">New email</button>
-        <section @click="goTo('inbox')" className="inbox">
+        <button @click="$emit('add')" class="new-mail">New email</button>
+
+        <section @click="goTo('inbox')" class="inbox">
             <button></button>
             <h2>Inbox</h2>
             <h3 v-if="mails">{{ unRead }}</h3>
         </section>
 
-        <section @click="goTo('sent')" className="sent">
+        <section @click="goTo('sent')" class="sent">
             <button></button>
             <h2>Sent</h2>
+        </section>
+
+        <section @click="goTo('starred')" class="starred">
+            <button></button>
+            <h2>Starred</h2>
+        </section>
+
+        <section @click="goTo('trash')" class="trash">
+            <button></button>
+            <h2>Trash</h2>
+        </section>
+
+        <section @click="goTo('draft')" class="draft">
+            <button></button>
+            <h2>Draft</h2>
         </section>
 
         </aside>
