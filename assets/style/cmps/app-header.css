@@ -1,10 +1,13 @@
 .app-header {
   background-color: var(--clr2);
   display: flex;
+  position: fixed;
+  width: 100%;
   align-items: center;
   color: var(--primary-color);
   padding: 15px;
   min-height: 7.5vh;
+  z-index: 20;
 }
 
 .logo {

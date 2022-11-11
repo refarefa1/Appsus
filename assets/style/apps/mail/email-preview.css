@@ -2,6 +2,14 @@
     background-color: var(--clr1);
 }
 
+.mail-list-container>.mail-preview {
+    padding-top: 70px;
+}
+
+.mail-list-container>.mail-preview~.mail-preview {
+    padding-top: 0px;
+}
+
 .mail-preview:hover .mail-date {
     visibility: hidden;
 }
@@ -18,7 +26,7 @@
     max-width: 100%;
 }
 
-.mail-preview .draft-mail{
+.mail-preview .draft-mail {
     cursor: pointer;
 }
 

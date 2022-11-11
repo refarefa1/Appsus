@@ -1,8 +1,10 @@
-.folder-list-container {
+.folder-list-container{
     min-width: 250px;
     background-color: var(--clr2);
-    /* padding: 15px; */
     padding-right: 20px;
+    padding-top: 9vh;
+    position: fixed;
+    height: 100%;
 }
 
 .new-mail {
