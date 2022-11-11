@@ -81,7 +81,6 @@ export default {
             this.$emit('sent', mail)
         }
     },
-
     components: {
         emailPreview,
         emailFilter,

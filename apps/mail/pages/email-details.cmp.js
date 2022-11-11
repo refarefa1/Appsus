@@ -42,7 +42,6 @@ export default {
             this.$router.back()
         }
     },
-
     created() {
         const id = this.$route.params.id
         mailService.get(id)

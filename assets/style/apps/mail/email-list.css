@@ -2,6 +2,8 @@
 
 .mail-list-container {
     padding: 0;
+    padding-top: 8vh;
+    padding-left: 250px;
     margin: 0;
     flex-grow: 1;
     list-style-type: none;
@@ -14,8 +16,12 @@
     padding-top: 20px;
     padding-bottom: 20px;
     display: flex;
+    width: calc(100% - 250px);
     gap: 20px;
+    background-color: var(--clr1);
     align-items: center;
+    position: fixed;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .sort-preview h4 {
@@ -39,7 +45,7 @@
     position: absolute;
     display: none;
     right: 10px;
-    
+
 }
 
 .mail-hover>* {
