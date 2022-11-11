@@ -1,0 +1,19 @@
+.note-todo-add input {
+    border: none;
+    padding: 5px;
+    font-size: 1.2em;
+}
+
+.note-todo-add button {
+    font-size: 1.2em;
+}
+
+
+
+.note-todo-add button.add:after {
+    content: '\f055';    
+}
+
+.note-todo-add button.remove:after {
+    content: '\f056'    
+}

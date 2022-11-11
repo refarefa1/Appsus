@@ -1,31 +1,33 @@
 import noteService from "../services/note.service.js"
-import noteAddImg from "./note-add-types/note-add-img.cmp.js"
-import noteAddTodo from "./note-add-types/note-add-todo.cmp.js"
-import noteAddVideo from "./note-add-types/note-add-video.cmp.js"
-import noteAddText from "./note-add-types/note-add-text.cmp.js"
+
+import noteTextAdd from "./note-add-types/note-text-add.cmp.js"
+import noteTodoAdd from "./note-add-types/note-todo-add.cmp.js"
+import noteImgAdd from "./note-add-types/note-img-add.cmp.js"
+import noteVideoAdd from "./note-add-types/note-video-add.cmp.js"
 
 export default {
     name: `note-add`,
     props: ['noteType'],
     template: `
         <section class="note-add flex flex-column">
-            <div class="title flex">
-                <input type="text" v-model="noteToEdit.info.title" placeholder="Title">
-                <button :class="{'pinned': notePin}" class="fa pin-note" @click="pinNote"></button>
-            </div>
+
             
-            <!-- <component :is="note.type"/> -->
-            <div class="control-panel flex justify-between">
-                <div class="control-btns">
-                    <button class="color fa"></button>
-                    <button class="img fa"></button>
-                    <button class="archive fa"></button>
+            <div v-if="noteToEdit" class="edit-area">
+                <component v-if="noteToEdit" :is="strNoteCmp" :note="noteToEdit"/>
+    
+                <div class="control-panel flex justify-between">
+                    <div class="control-btns">
+                        <button class="bg-color fa"><input type="color" @click.stop="" v-model="noteToEdit.style.backgroundColor"></button>  
+                        <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="noteToEdit.style.color"></button>
+                        <button class="img fa"></button>
+                        <button class="archive fa"></button>
+                    </div>
+                    <div>
+                        <button class="add-note" @click="$emit('cancelAdd')">Cancel</button>
+                        <button class="add-note" @click="addNote">Save</button>
+                    </div>
+                    
                 </div>
-                <div>
-                    <button class="add-note" @click="$emit('cancelAdd')">Cancel</button>
-                    <button class="add-note" @click="addNote">Save</button>
-                </div>
-                
             </div>
 
         </section>
@@ -33,29 +35,30 @@ export default {
     components: {},
     data() {
         return {
-            noteToEdit: noteService.getEmptyNote(),
-            notePin: false
+            noteToEdit: null,
+            strNoteCmp: null
         }
     },
+    created() { 
+        this.strNoteCmp = `${this.noteType}-add`
+        this.noteToEdit = noteService.getEmptyNote(this.noteType)
+
+    },
+
     methods: {
         addNote() {
-            // noteService.save(this.noteToEdit)
-            //     .then(note => {
-            //         this.$emit('noteSaved', note)
-            //     })
-            // this.noteToEdit = noteService.getEmptyNote()
+            console.log(`this.noteToEdit:`, this.noteToEdit)
+            noteService.save(this.noteToEdit)
+                .then(note => {
+                    this.$emit('noteSaved', note)
+                })
         },
-        pinNote() {
-            console.log(`pining note...:`)
-            this.notePin = !this.notePin
-
-        }
 
     },
     components: {
-        noteAddImg,
-        noteAddText,
-        noteAddTodo,
-        noteAddVideo
+        noteTextAdd,
+        noteTodoAdd,
+        noteImgAdd,
+        noteVideoAdd
     }
 }

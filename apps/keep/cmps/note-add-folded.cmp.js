@@ -5,7 +5,7 @@ export default {
     template: `
         <section class="note-add-folded flex justify-between" @click="setNoteType('note-text')">
             <div class="title flex">
-                <input type="text" placeholder="Take A Note...">
+                <input type="text" placeholder="Write a note...">
             </div>
             <div class="control-panel flex justify-between">
                 <div class="control-btns">

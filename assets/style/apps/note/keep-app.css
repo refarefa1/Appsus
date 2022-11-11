@@ -12,6 +12,11 @@
 @import './cmps/note-types/note-img.css';
 @import './cmps/note-types/note-video.css';
 
+@import './cmps/note-add-types/note-text-add.css';
+@import './cmps/note-add-types/note-todo-add.css';
+@import './cmps/note-add-types/note-img-add.css';
+@import './cmps/note-add-types/note-video-add.css';
+
 
 .keep-app {
     min-height: 85vh;

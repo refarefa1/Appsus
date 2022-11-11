@@ -9,7 +9,6 @@
 
 .note-add input {
     font-family: roboto-regular;
-    font-size: 1.4em;
 }
 
 .note-add .title .pin-note{
@@ -22,6 +21,7 @@
     width: 100%;
     border: none;
     padding-left: 0;
+    font-size: 1.4em;
 }
 
 .note-add .title input:focus {
@@ -63,8 +63,30 @@
     color: rgb(183, 86, 59);
 }
 
-.control-btns .color::after {
+.note-add .control-btns {
+    padding: 0 16px;
+    margin-top: auto;
+}
+
+.note-add .control-btns input{
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.note-add .control-btns .bg-color, .note-add .control-btns .font-color{
+    position: relative;
+}
+.note-add .control-btns .bg-color::after {
     content: '\f53f';
+}
+
+.note-add .control-btns .font-color:after {
+    content: '\f031';
 }
 
 .control-btns .img::after {

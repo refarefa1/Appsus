@@ -1,5 +1,4 @@
 .note-img {
-    text-align: center;
     font-size: 1.2em;
     gap: 10px;
 }
@@ -7,4 +6,10 @@
 .note-img img {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+}
+
+.note-img h1{
+    font-family: roboto-bold;
+    font-size: 1.2em;
+    text-align: center;
 }

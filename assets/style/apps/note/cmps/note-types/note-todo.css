@@ -1,5 +1,6 @@
 .note-todo {
     padding: 12px 16px 0px 16px;
+    gap: 10px;
 }
 
 .note-todo .todo-txt {
@@ -9,3 +10,10 @@
 .note-todo .todo-txt.isnt-done {
     text-decoration: none !important;
 }
+
+.note-todo h1{
+    font-family: roboto-bold;
+    font-size: 1.2em;
+    text-align: center;
+}
+

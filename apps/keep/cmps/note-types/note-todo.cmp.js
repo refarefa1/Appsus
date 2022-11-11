@@ -3,7 +3,7 @@ export default {
     props: ['note'],
     template: `
         <section class="note-todo">
-            <h1 class="label">{{ note.info.label }}</h1>
+            <h1 v-if="note.info.label" class="label">{{ note.info.label }}</h1>
             <ul class="clean-list">
                 <li v-for="todo in note.info.todos" class="flex justify-between">
                     <p class="todo-txt" :class="{'isnt-done': !todo.doneAt}">{{ todo.txt }}</p>
@@ -16,18 +16,16 @@ export default {
     created() { },
     data() {
         return {
-            
+
         }
     },
     methods: {
         isTodoDone(todo) {
-            if(!todo.doneAt) todo.doneAt = Date.now()
+            if (!todo.doneAt) todo.doneAt = Date.now()
             else todo.doneAt = null
         },
         isChecked(todo) {
-            console.log(`todo:`, todo)
-            console.log(`!todo.doneAt:`, !todo.doneAt)
-            if(!todo.doneAt) return false
+            if (!todo.doneAt) return false
             return true
         }
     },

@@ -4,7 +4,7 @@ export default {
     template: `
         <section class="note-img flex flex-column">
             <img :src="note.info.url" />
-            <h1 class=img-title>{{ note.info.title }}</h1>
+            <h1 v-if="note.info.title" class=img-title>{{ note.info.title }}</h1>
         </section>
     `,
     components: {},

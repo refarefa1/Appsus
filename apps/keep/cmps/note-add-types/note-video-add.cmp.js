@@ -1,7 +1,7 @@
 
 
 export default {
-name:`note-add-video`,
+name:`note-video-add`,
   props: [],
   template: `
   
