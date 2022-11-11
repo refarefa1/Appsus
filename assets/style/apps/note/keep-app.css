@@ -1,9 +1,11 @@
+@import './cmps/keep-app-header.css';
+@import './cmps/keep-app-side-bar.css';
+
+@import './cmps/note-add-folded.css';
 @import './cmps/note-add.css';
 @import './cmps/note-edit.css';
 @import './cmps/note-list.css';
 @import './cmps/note-preview.css';
-@import './cmps/keep-app-side-bar.css';
-@import './cmps/keep-app-header.css';
 
 @import './cmps/note-types/note-text.css';
 @import './cmps/note-types/note-todo.css';

@@ -10,7 +10,7 @@
 .note-list .note-container {
     border: 1px solid var(--clr7);
     border-radius: 1em;
-    padding: 12px 16px;
+    /* padding: 12px 16px; */
     min-width: 240px;
     max-width: 280px;
     min-height: 100px;
@@ -34,6 +34,7 @@
 }
 
 .note-list .control-btns {
+    padding: 0 16px;
     margin-top: auto;
     opacity: 0;
     transition:opacity .4s;
@@ -44,6 +45,7 @@
 }
 
 .note-list .control-btns button {
+    margin-top: 10px;
     min-height: 40px;
 }
 

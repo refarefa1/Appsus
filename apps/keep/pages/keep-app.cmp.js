@@ -1,6 +1,7 @@
 import noteService from '../services/note.service.js'
 
 import noteList from '../cmps/note-list.cmp.js'
+import noteAddFolded from '../cmps/note-add-folded.cmp.js'
 import noteAdd from '../cmps/note-add.cmp.js'
 import noteEdit from '../cmps/note-edit.cmp.js'
 import keepAppSideBar from '../cmps/keep-app-side-bar.cmp.js'
@@ -18,7 +19,8 @@ export default {
 
             <main class="main-container flex flex-column align-center">
                 <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit" @cancelEdit="noteToEdit=null"/>
-                <note-add class="" @noteSaved="save" />
+                <note-add-folded v-if="!selectedNoteTypeToCreate" @noteTypeSelected="setNoteType" />
+                <note-add v-if="selectedNoteTypeToCreate" :noteType="selectedNoteTypeToCreate" @cancelAdd="selectedNoteTypeToCreate=null" @noteSaved="save" />
     
                 <note-list v-if="notes"
                     @remove="removeNote" 
@@ -34,15 +36,13 @@ export default {
             .then(notes => this.notes = notes)
         this.$emit('hideMainHeader')
         window.addEventListener('scroll', this.handleScroll)
-
-
-
     },
     data() {
         return {
             notes: null,
             noteToEdit: null,
             scrolled: false,
+            selectedNoteTypeToCreate: null
 
         }
     },
@@ -62,6 +62,7 @@ export default {
         },
         save(note) {
             this.notes.push(note)
+            this.selectedNoteTypeToCreate = null
         },
         edit(updatedNote) {
             const idx = this.notes.findIndex(note => note.id === updatedNote.id)
@@ -75,6 +76,9 @@ export default {
         handleScroll() {
             this.scrolled = window.scrollY > 0;
         },
+        setNoteType(noteType) {
+            this.selectedNoteTypeToCreate = noteType
+        }
 
 
     },
@@ -87,6 +91,7 @@ export default {
         noteAdd,
         noteEdit,
         keepAppSideBar,
-        keepAppHeader
+        keepAppHeader,
+        noteAddFolded
     }
 }

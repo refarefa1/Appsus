@@ -4,7 +4,7 @@ export default {
         <aside class="keep-app-side-bar-container">
 
             <section @click="goTo('notes')" class="notes notes-icon active">
-                <button></button>
+                <button class="fa-regular"></button>
                 <h2>Notes</h2>
             </section>
 

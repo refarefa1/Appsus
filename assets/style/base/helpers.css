@@ -48,6 +48,10 @@
     font-family: fa;
 }
 
+.fa-regular {
+    font-family: fa-regular;
+}
+
 .fa.fa-facebook::before {
     content: "\f39e";
 }

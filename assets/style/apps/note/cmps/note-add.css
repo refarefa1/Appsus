@@ -1,7 +1,3 @@
-.note-add-container {
-
-}
-
 .note-add {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;    /* box-shadow: 0 3px 5px rgb(0 0 0 / 20%); */
     width: 50%;
@@ -61,6 +57,10 @@
 
 .note-add .title .pin-note::after {
     content: '\f08d';
+}
+
+.pinned {
+    color: rgb(183, 86, 59);
 }
 
 .control-btns .color::after {

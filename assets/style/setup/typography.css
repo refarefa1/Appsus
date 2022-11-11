@@ -2,6 +2,10 @@
     font-family: fa;
     src: url(../../../fonts/fa/fa-solid-900.ttf);
 }
+@font-face {
+    font-family: fa-regular;
+    src: url(../../../fonts/fa/fa-regular-400.ttf);
+}
 
 @font-face {
     font-family: roboto-light;

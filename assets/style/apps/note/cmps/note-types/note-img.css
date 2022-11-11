@@ -1,7 +1,10 @@
 .note-img {
-    /* background-color: bisque; */
+    text-align: center;
+    font-size: 1.2em;
+    gap: 10px;
 }
 
-/* .note-img img {
-    max-width: ;
-} */
+.note-img img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}

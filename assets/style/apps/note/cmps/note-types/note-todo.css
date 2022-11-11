@@ -1,12 +1,11 @@
 .note-todo {
-    /* background-color: aqua; */
+    padding: 12px 16px 0px 16px;
 }
 
 .note-todo .todo-txt {
     text-decoration: line-through;
 }
 
-.note-todo .todo-txt.ongoing {
+.note-todo .todo-txt.isnt-done {
     text-decoration: none !important;
-
 }

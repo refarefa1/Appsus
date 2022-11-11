@@ -1,0 +1,65 @@
+.note-add-folded {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 50%;
+    min-height: 46px;
+    margin-bottom: 20px;
+    border-radius: 1em;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.note-add-folded input {
+    font-family: roboto-regular;
+    font-size: 1.2em;
+}
+
+.note-add-folded .title input {
+    width: 100%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.note-add-folded .title input:focus {
+    outline: none;
+}
+
+.note-add-folded .control-btns >*{
+    color: var(--clr6);
+    font-size: 1.2em;
+}
+
+
+.note-add-folded .control-btns >*, .note-add-folded .title .pin-note {
+  
+    border-radius: 2em;
+    transition: .4s;
+}
+
+.note-add-folded .add-note{
+    border-radius: 0.8em;
+    transition: .4s;
+    min-width: 90px;
+    font-family: roboto-bold;
+    font-size: 1em;
+    color: var(--clr6);
+
+}
+
+.note-add-folded .control-btns >*:hover, .note-add-folded .title .pin-note:hover, .note-add-folded .add-note:hover{
+    background-color: var(--clr2);
+}
+
+
+.control-btns .todos::after {
+    content: '\f14a';
+}
+
+.control-btns .img::after {
+    content: '\f03e';
+}
+
+.control-btns .video::after {
+    content: '\f03d';
+}
+

@@ -33,7 +33,7 @@
 
 .keep-app-side-bar-container .notes button {
     background-color: transparent;
-    font-family: fa;
+    /* font-family: fa; */
     padding: 1px 10px;
     font-size: 1.4em;
 }
