@@ -10,9 +10,6 @@ export default {
     save,
     getEmptyNote,
     edit
-
-
-
 }
 
 _createNotes()

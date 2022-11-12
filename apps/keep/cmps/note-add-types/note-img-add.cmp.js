@@ -10,12 +10,10 @@ export default {
                 <button :class="{'pinned': notePin}" class="fa pin-note" @click="pinNote"></button>
             </div>
             <div class="content flex">
-                <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url">
+                <!-- <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url"> -->
+                <!-- <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url"> -->
+                <input type="file" @change="loadImageFromInput" />
                 
-            </div>
-            <div class="upload-from-pc">
-              <input type="file" @change="onFileSelected"/>
-              <button class="upload">upload</button>
             </div>
     </section>
     `,
@@ -33,10 +31,28 @@ export default {
     }
   },
   methods: {
-    onFileSelected(event) {
-      console.log(`event:`, event)
-      this.selectedFile=event.target.files[0]
+
+    loadImageFromInput(ev) {
+      const changeNoteImgUrl = this.changeNoteImgUrl
+      const reader = new FileReader()
+      // After we read the file
+      reader.onload = function (event) {
+        let img = new Image() // Create a new html img element
+        img.src = event.target.result // Set the img src to the img file we read
+        // Run the callBack func, To render the img on the canvas
+        //   img.onload = onImageReady.bind(null, img)
+        // Can also do it this way:
+        img.onload = () => {changeNoteImgUrl(img.src)}
+      }
+      reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+    },
+    changeNoteImgUrl(url) {
+      this.note.info.url = url
     }
+
   },
-  computed: {},
+  computed: {
+
+  },
+
 }

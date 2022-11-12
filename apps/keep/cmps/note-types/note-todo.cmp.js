@@ -3,7 +3,11 @@ export default {
     props: ['note'],
     template: `
         <section class="note-todo">
-            <h1 v-if="note.info.label" class="label">{{ note.info.label }}</h1>
+            <div class="title flex justify-between align-center">
+                <h1 v-if="note.info.label" class="label">{{ note.info.label }}</h1>
+                <button :class="{'pinned': notePin}" class="fa pin-note" @click="pinNote"></button>
+
+            </div>
             <ul class="clean-list">
                 <li v-for="todo in note.info.todos" class="flex justify-between">
                     <p class="todo-txt" :class="{'isnt-done': !todo.doneAt}">{{ todo.txt }}</p>
@@ -27,6 +31,9 @@ export default {
         isChecked(todo) {
             if (!todo.doneAt) return false
             return true
+        },
+        pinNote() {
+            this.note.isPinned = !this.note.isPinned
         }
     },
     computed: {},

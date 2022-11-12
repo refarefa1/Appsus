@@ -1,7 +1,7 @@
 export default {getNotes}
 
 const notes = [
-    { id: "n101", type: "note-text", isPinned: false, info: { title: "Vue Killer :-)", txt: "Fullstack Me Baby!" }, style: { color: "#0c0c0c", backgroundColor: "#32a852" } },
+    { id: "n101", type: "note-text", isPinned: true, info: { title: "Vue Killer :-)", txt: "Fullstack Me Baby!" }, style: { color: "#0c0c0c", backgroundColor: "#32a852" } },
     { id: "n102", type: "note-img", isPinned: false, info: { url: "assets/img/cat.jpg", title: "Cat" }, style: { color: "#0c0c0c", backgroundColor: "#673ab7" } },
     { id: "n103", type: "note-todo", isPinned: false, info: { label: "This Week Missions:", todos: [{ txt: "Driving liscence", doneAt: null }, { txt: "Coding power", doneAt: 187111111 }] }, style: { color: "#0c0c0c", backgroundColor: "#32a852" } },
     { id: "n104", type: "note-text", isPinned: false, info: { title: "", txt: "Hell Yeahhhhhhh!" }, style: { color: "#0c0c0c", backgroundColor: "#9e9e9e" } },
@@ -10,7 +10,7 @@ const notes = [
     { id: "n107", type: "note-text", isPinned: false, info: { title: "Real Madrid ⚽", txt: "Hala Madrid!" }, style: { color: "#0c0c0c", backgroundColor: "#8a86d9" } },
     { id: "n108", type: "note-img", isPinned: false, info: { url: "assets/img/car.jpg", title: "Car" }, style: { color: "#0c0c0c", backgroundColor: "#b7563b" } },
     { id: "n109", type: "note-todo", isPinned: false, info: { label: "To Do:", todos: [{ txt: "Make A Todo List", doneAt: null }, { txt: "Sign up for the course", doneAt: 187111111 }] }, style: { color: "#0c0c0c", backgroundColor: "#454362" } },
-    { id: "n110", type: "note-text", isPinned: false, info: { title: "Vue Master 😎", txt: "v-if, :class='', $emit('killItInStyle', myStyle)!" }, style: { color: "#0c0c0c", backgroundColor: "#6b8bef" } },
+    { id: "n110", type: "note-text", isPinned: true, info: { title: "Vue Master 😎", txt: "v-if, :class='', $emit('killItInStyle', myStyle)!" }, style: { color: "#0c0c0c", backgroundColor: "#6b8bef" } },
     { id: "n111", type: "note-img", isPinned: false, info: { url: "assets/img/rainbow.jpg", title: "Rainbow" }, style: { color: "#0c0c0c", backgroundColor: "#b7563b" } },
     { id: "n112", type: "note-todo", isPinned: false, info: { label: "", todos: [{ txt: "Fix My Car", doneAt: null }, { txt: "Hang out", doneAt: 187111111 }] }, style: { color: "#0c0c0c", backgroundColor: "#32a852" } },
     { id: "n113", type: "note-text", isPinned: false, info: { title: "My note", txt: "Work Hard Gain Much!" }, style: { color: "#0c0c0c", backgroundColor: "#32a852" } },

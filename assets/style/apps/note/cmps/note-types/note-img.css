@@ -13,3 +13,12 @@
     font-size: 1.2em;
     text-align: center;
 }
+
+.note-img .title {
+    padding: 0 16px;
+}
+
+.note-img .title .pin-note::after {
+    content: '\f08d';
+    font-size: 1.4em;
+}

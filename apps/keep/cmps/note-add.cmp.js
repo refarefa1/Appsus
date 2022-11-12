@@ -13,8 +13,8 @@ export default {
 
             
             <div v-if="noteToEdit" class="edit-area">
-                <component v-if="noteToEdit" :is="strNoteCmp" :note="noteToEdit"/>
-    
+                <component :is="strNoteCmp" :note="noteToEdit"/>
+                
                 <div class="control-panel flex justify-between">
                     <div class="control-btns">
                         <button class="bg-color fa"><input type="color" @click.stop="" v-model="noteToEdit.style.backgroundColor"></button>  
@@ -39,7 +39,7 @@ export default {
             strNoteCmp: null
         }
     },
-    created() { 
+    created() {
         this.strNoteCmp = `${this.noteType}-add`
         this.noteToEdit = noteService.getEmptyNote(this.noteType)
 
@@ -47,7 +47,10 @@ export default {
 
     methods: {
         addNote() {
-            console.log(`this.noteToEdit:`, this.noteToEdit)
+            if (this.noteToEdit.type === "note-todo") {
+                const emptyTodosFilter = this.noteToEdit.info.todos.filter(todo => todo.txt)
+                this.noteToEdit.info.todos = emptyTodosFilter
+            }
             noteService.save(this.noteToEdit)
                 .then(note => {
                     this.$emit('noteSaved', note)
