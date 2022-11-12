@@ -71,6 +71,9 @@
     padding-right: 15px;
 }
 
+.is-active{
+    background-color: var(--secondary-clr0)
+}
 
 .inbox button,
 .sent button,
@@ -102,6 +105,10 @@
 }
 
 @media only screen and (max-width: 846px) {
+
+    .is-active{
+        background-color: transparent
+    }
 
     .folder-list-container {
         width: 100%;
