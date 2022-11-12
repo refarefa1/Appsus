@@ -1,13 +1,17 @@
-.note-list {
+.note-list ul:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+.note-list  .non-pinned {
     column-count: 4;
     padding: 10px 0;
 }
 
-.note-list >*:not(:last-child) {
+.note-list  .non-pinned >*:not(:last-child) {
     margin-bottom: 10px;
 }
 
-.note-list .note-container {
+.note-list  .non-pinned .note-container {
     border: 1px solid var(--clr7);
     border-radius: 1em;
     /* padding: 12px 16px; */
@@ -21,19 +25,19 @@
 
 }
 
-/* .note-list ul >*:not(:first-child) {
+/* .note-list  .non-pinned ul >*:not(:first-child) {
     margin-top: 10px;
 } */
 
-.note-list .hide {
+.note-list  .non-pinned .hide {
     visibility: hidden;
 }
 
-.note-list .hide:hover {
+.note-list  .non-pinned .hide:hover {
     visibility: visible !important;
 }
 
-.note-list .control-btns {
+.note-list  .non-pinned .control-btns {
     padding: 0 16px;
     margin-top: auto;
     opacity: 0;
@@ -45,28 +49,28 @@
     opacity: 1 !important;
 }
 
-.note-list .control-btns button {
+.note-list  .non-pinned .control-btns button {
     margin-top: 10px;
     min-height: 40px;
 }
 
-.note-list .control-btns .remove::after {
+.note-list  .non-pinned .control-btns .remove::after {
     content: '\f1f8';
 }
 
-.note-list .control-btns .archive::after {
+.note-list  .non-pinned .control-btns .archive::after {
     content: '\f187';
 }
 
-.note-list .control-btns .bg-img::after {
+.note-list  .non-pinned .control-btns .bg-img::after {
     content: '\f03e';
 }
 
-.note-list .control-btns .bg-color, .note-list .control-btns .font-color{
+.note-list  .non-pinned .control-btns .bg-color, .note-list  .non-pinned .control-btns .font-color{
     position: relative;
 }
 
-.note-list .control-btns input{
+.note-list  .non-pinned .control-btns input{
     position: absolute;
     opacity: 0;
     top: 0;
@@ -76,15 +80,15 @@
     cursor: pointer;
 }
 
-.note-list .control-btns >*:hover{
+.note-list  .non-pinned .control-btns >*:hover{
     background-color: var(--clr2);
     border-radius: 4em;
 }
 
-.note-list .control-btns .bg-color::after {
+.note-list  .non-pinned .control-btns .bg-color::after {
     content: '\f53f';
 }
 
-.note-list .control-btns .font-color:after {
+.note-list  .non-pinned .control-btns .font-color:after {
     content: '\f031';
 }

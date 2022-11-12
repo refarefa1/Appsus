@@ -17,3 +17,8 @@
     text-align: center;
 }
 
+
+.note-todo .title .pin-note::after {
+    content: '\f08d';
+}
+

@@ -10,3 +10,8 @@
     font-size: 1.2em;
     text-align: center;
 }
+
+
+.note-text .title .pin-note::after {
+    content: '\f08d';
+}
