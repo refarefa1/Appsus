@@ -18,8 +18,8 @@
 .note-list .note-container {
     border: 1px solid var(--clr7);
     border-radius: 1em;
-    min-width: 240px;
-    max-width: 280px;
+    min-width: 300px;
+    max-width: 340px;
     min-height: 100px;
     page-break-inside: avoid;
 
@@ -88,3 +88,5 @@
 .note-list .control-btns .font-color:after {
     content: '\f031';
 }
+
+
