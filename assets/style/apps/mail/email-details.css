@@ -8,8 +8,7 @@
 }
 
 .mail-subject {
-    padding-left: 80px;
-    padding-bottom: 10px;
+    padding: 20px;
 }
 
 .mail-details-profile {
@@ -71,7 +70,7 @@
 
 @media only screen and (max-width: 846px) {
 
-    .mail-details-footer{
+    .mail-details-footer {
         padding: 20px;
         margin-left: auto;
     }
@@ -82,18 +81,18 @@
         padding-bottom: 15vh;
         border-radius: 0;
     }
-    
-    .mail-details-paging{
+
+    .mail-details-paging {
         display: flex;
         justify-content: space-between;
         padding: 20px;
     }
 
-    .mail-details-paging button{
+    .mail-details-paging button {
         font-size: 2em;
     }
 
-    .mail-details-profile{
+    .mail-details-profile {
         /* font-size: 1.2em; */
         font-size: 3vw;
     }
