@@ -11,7 +11,7 @@ export default {
 
 const loggedinUser = {
     email: 'user@appsus.com',
-    fullname: 'Mahatma Appsus'
+    fullname: 'Mahatma Gandhi'
 }
 
 const EMAILS_KEY = 'mailsDB'

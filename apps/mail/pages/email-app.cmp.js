@@ -32,10 +32,7 @@ export default {
                 isStared: false,
                 lables: ['important', 'romantic']
             },
-            sortBy: {
-                title: 1,
-                date: 1
-            },
+            sortBy: -1
         }
     },
     methods: {
@@ -179,12 +176,12 @@ export default {
 
         },
         sort(type) {
-            // const sorted = numbers.sort((a, b) => a - b)
+            this.sortBy *= -1
+
             if (type === 'date') {
-                this.mailsToShow.sort((a, b) => {
-                    const mailA = this.convertToTimestamp(a.sentAt)
-                    const mailB = this.convertToTimestamp(b.sentAt)
-                    return mailA - mailB
+                this.mailsToShow.sort((x, y) => {
+                    const ans = +new Date(x.sentAt) - +new Date(y.sentAt)
+                    return ans * this.sortBy
                 })
 
             }
@@ -193,9 +190,16 @@ export default {
                 this.mailsToShow.sort((a, b) => {
                     const nameA = a.fullname.toUpperCase()
                     const nameB = b.fullname.toUpperCase()
-                    if (nameA < nameB) return -1
-                    if (nameA > nameB) return 1
-                    return 0
+                    if (this.sortBy === 1) {
+                        if (nameA < nameB) return -1
+                        if (nameA > nameB) return 1
+                        return 0
+                    }
+                    else {
+                        if (nameA < nameB) return 1
+                        if (nameA > nameB) return -1
+                        return 0
+                    }
                 })
             }
         }

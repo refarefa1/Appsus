@@ -31,8 +31,12 @@
   margin-left: auto;
 }
 
+.main-nav h2{
+  font-size: 1em;
+}
+
 .main-nav img {
-  width: 50%;
+  width: 40%;
 }
 
 .nav {
@@ -54,8 +58,8 @@
   right: 10px;
   top: 7.5vh;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 100px;
   z-index: 20
 }
 
