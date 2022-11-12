@@ -2,17 +2,10 @@
     margin-bottom: 40px;
 }
 
-.pinned-notes-list, .unpinned-notes-list {
+.pinned-notes-list,
+.unpinned-notes-list {
     column-count: 5;
     padding: 10px 0;
-}
-
-.pinned-notes-list >*:not(:last-child) {
-    margin-bottom: 10px;
-}
-
-.unpinned-notes-list >*:not(:last-child) {
-    margin-bottom: 10px;
 }
 
 .note-list .note-container {
@@ -24,6 +17,15 @@
     page-break-inside: avoid;
 
 }
+
+.pinned-notes-list>*:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.unpinned-notes-list>*:not(:last-child) {
+    margin-bottom: 10px;
+}
+
 
 .note-list .hide {
     visibility: hidden;
@@ -37,11 +39,13 @@
     padding: 0 16px;
     margin-top: auto;
     opacity: 0;
-    transition:opacity .4s;
+    transition: opacity .4s;
+    display: flex;
+    justify-content: center;
 
 }
 
-.hovering .control-btns{
+.hovering .control-btns {
     opacity: 1 !important;
 }
 
@@ -62,11 +66,12 @@
     content: '\f03e';
 }
 
-.note-list .control-btns .bg-color, .note-list .control-btns .font-color{
+.note-list .control-btns .bg-color,
+.note-list .control-btns .font-color {
     position: relative;
 }
 
-.note-list .control-btns input{
+.note-list .control-btns input {
     position: absolute;
     opacity: 0;
     top: 0;
@@ -76,7 +81,7 @@
     cursor: pointer;
 }
 
-.note-list .control-btns >*:hover{
+.note-list .control-btns>*:hover {
     background-color: var(--clr2);
     border-radius: 4em;
 }
@@ -90,3 +95,127 @@
 }
 
 
+@media only screen and (max-width: 2150px) {
+
+    .pinned-notes-list,
+    .unpinned-notes-list {
+        column-count: 4;
+    }
+
+    .note-list .note-container {
+        min-width: 300px;
+        max-width: 340px;
+    }
+}
+
+@media only screen and (max-width: 1800px) {
+
+    .pinned-notes-list,
+    .unpinned-notes-list {
+        column-count: 3;
+    }
+
+}
+
+@media only screen and (max-width: 1450px) {
+
+    .note-list .note-container {
+        min-width: 200px;
+        max-width: 240px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .keep-app-side-bar-container {
+        min-width: 200px;
+    }
+
+    .main-container {
+        margin-left: 200px !important;
+    }
+
+    .note-add-folded,
+    .note-add {
+        width: 70%;
+    }
+
+}
+
+@media only screen and (max-width: 1050px) {
+
+    .pinned-notes-list,
+    .unpinned-notes-list {
+        column-count: 2;
+    }
+
+    .note-add-folded,
+    .note-add {
+        width: 90%;
+    }
+
+
+}
+
+@media only screen and (max-width: 800px) {
+
+    .pinned-notes-list,
+    .unpinned-notes-list {
+        column-count: 2;
+    }
+
+    .note-add-folded,
+    .note-add {
+        width: 90%;
+    }
+
+    .keep-app-side-bar-container h2 {
+        display: none;
+    }
+
+    .main-container {
+        margin-left: 70px !important;
+    }
+
+    .keep-app-side-bar-container {
+        min-width: 70px !important;
+
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .pinned-notes-list,
+    .unpinned-notes-list {
+        column-count: 1;
+    }
+
+    .note-list .note-container {
+        max-width: 100%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .control-panel {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .control-panel>* {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .main-container {
+        margin-top: 10vh !important;
+    }
+
+    .keep-app-side-bar-container {
+        margin-top: 10vh !important;
+    }
+
+}
