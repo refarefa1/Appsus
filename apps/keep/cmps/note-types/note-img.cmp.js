@@ -1,3 +1,5 @@
+import { emitUpdated } from "../../../../services/event-bus.service.js"
+
 export default {
     name: `note-img`,
     props: ['note'],
@@ -6,7 +8,7 @@ export default {
             <img :src="note.info.url" />
             <div class="title flex justify-between align-center">
                 <h1 v-if="note.info.title" class=img-title>{{ note.info.title }}</h1>
-                <button :class="{'pinned': notePin}" class="fa pin-note" @click.stop="pinNote"></button>
+                <button :class="{'pinned': notePin}" class="fa pin-note" @click.stop="pin"></button>
             </div>
         </section>
     `,
@@ -18,10 +20,13 @@ export default {
         }
     },
     methods: {
-        pinNote() {
-            this.note.isPinned = !this.note.isPinned
-            this.$emit('pin', this.note)
-            console.log(`12:`, )
+        pin() {
+            const note = JSON.parse(JSON.stringify(this.note))
+            // console.log(`note:`, jsonNote)
+            // console.log(`pinning in notecmp:`, )
+            // this.$emit('pin', jsonNote)
+            note.isPinned = !note.isPinned
+            emitUpdated(note)
         }
     },
     computed: {

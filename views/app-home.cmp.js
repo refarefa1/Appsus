@@ -14,7 +14,7 @@ export default {
                 <button>Appsus Mail</button>
                 </router-link>
 
-                <router-link to="/keep">
+                <router-link to="/keep/notes">
                 <button>Appsus Keep</button>
                 </router-link>
 

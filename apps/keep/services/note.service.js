@@ -41,14 +41,14 @@ function edit(note) {
 function getEmptyNote(type = 'note-text') {
     switch (type) {
         case 'note-text':
-            return { id: undefined, type: "note-text", isPinned: false, info: { title: "", txt: "" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
+            return { id: undefined, type: "note-text", isPinned: false, isArchived: false, info: { title: "", txt: "" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
         case 'note-todo':
-            return { id: undefined, type: "note-todo", isPinned: false, info: { label: "", todos: [{ txt: "", doneAt: null }] }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
+            return { id: undefined, type: "note-todo", isPinned: false, isArchived: false, info: { label: "", todos: [{ txt: "", doneAt: null }] }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
         case 'note-img':
-            return { id: undefined, type: "note-img", isPinned: false, info: { url: "", title: "" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
+            return { id: undefined, type: "note-img", isPinned: false, isArchived: false, info: { url: "", title: "" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
         case 'note-video':
-            return { id: "n101", type: "note-text", isPinned: false, info: { title: "My note", txt: "Fullstack Me Baby!" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
+            return { id: "n101", type: "note-text", isPinned: false, isArchived: false, info: { title: "My note", txt: "Fullstack Me Baby!" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
         default:
-            return { id: "n101", type: "note-text", isPinned: false, info: { title: "My note", txt: "Fullstack Me Baby!" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
+            return { id: "n101", type: "note-text", isPinned: false, isArchived: false, info: { title: "My note", txt: "Fullstack Me Baby!" }, style: { color: "#0c0c0c", backgroundColor: "#ffffff" } }
     }
 }

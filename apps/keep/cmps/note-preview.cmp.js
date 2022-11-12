@@ -8,7 +8,7 @@ export default {
     props: ['note'],
     template: `
         <section class="note-preview">
-            <component :is="note.type" :note="note" @pin="pin" />
+            <component :is="note.type" :note="note" @pin="pin"/>
         </section>
     `,
     components: {},
@@ -17,8 +17,9 @@ export default {
     },
     methods: {
         pin(note) {
+            console.log(`pinning in preview:`, )
             this.$emit('pin', note)
-            console.log(`34:`)
+
         }
     },
     computed: {},

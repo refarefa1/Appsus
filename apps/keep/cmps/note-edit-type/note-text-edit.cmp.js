@@ -1,19 +1,13 @@
 
 export default {
-  name: `note-text-add`,
+  name: `note-text-edit`,
   props: ['note'],
   template: `
-    <section class="note-text-add">
-            <div class="title flex">
+    <section class="note-text-add flex flex-column">
                 <input type="text" v-model="note.info.title" placeholder="Title">
-                <button :class="{'pinned': notePin}" class="fa pin-note" @click="pinNote"></button>
-            </div>
-            <div class="content flex">
                 <input type="text" v-model="note.info.txt" placeholder="Write a note...">
-            </div>
     </section>
     `,
-    
   components: {},
   created() { },
   data() {

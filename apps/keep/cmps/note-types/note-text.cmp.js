@@ -1,3 +1,5 @@
+import { emitUpdated } from "../../../../services/event-bus.service.js"
+
 export default {
     name: `note-text`,
     props: ['note'],
@@ -5,7 +7,7 @@ export default {
         <section class="note-text flex flex-column justify-between">
         <div class="title flex justify-between align-center">
             <h1 v-if="note.info.title">{{ note.info.title }}</h1>
-            <button :class="{'pinned': notePin}" class="fa pin-note" @click="pinNote"></button>
+            <button :class="{'pinned': notePin}" class="fa pin-note" @click.stop="pin"></button>
         </div>    
             <p v-if="note.info.txt" class="label">{{ note.info.txt }}</p>
         </section>
@@ -19,8 +21,13 @@ export default {
         }
     },
     methods: {
-        pinNote() {
-            this.note.isPinned = !this.note.isPinned
+        pin() {
+            const note = JSON.parse(JSON.stringify(this.note))
+            // console.log(`note:`, jsonNote)
+            // console.log(`pinning in notecmp:`, )
+            // this.$emit('pin', jsonNote)
+            note.isPinned = !note.isPinned
+            emitUpdated(note)
         }
     },
     computed: {},

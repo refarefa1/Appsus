@@ -1,3 +1,5 @@
+import { emitUpdated } from "../../../../services/event-bus.service.js"
+
 export default {
     name: `note-todo`,
     props: ['note'],
@@ -5,7 +7,7 @@ export default {
         <section class="note-todo">
             <div class="title flex justify-between align-center">
                 <h1 v-if="note.info.label" class="label">{{ note.info.label }}</h1>
-                <button :class="{'pinned': notePin}" class="fa pin-note" @click="pinNote"></button>
+                <button :class="{'pinned': notePin}" class="fa pin-note" @click.stop="pin"></button>
 
             </div>
             <ul class="clean-list">
@@ -33,8 +35,13 @@ export default {
             if (!todo.doneAt) return false
             return true
         },
-        pinNote() {
-            this.note.isPinned = !this.note.isPinned
+        pin() {
+            const note = JSON.parse(JSON.stringify(this.note))
+            // console.log(`note:`, jsonNote)
+            // console.log(`pinning in notecmp:`, )
+            // this.$emit('pin', jsonNote)
+            note.isPinned = !note.isPinned
+            emitUpdated(note)
         }
     },
     computed: {},
