@@ -2,19 +2,25 @@
 
 .mail-list-container {
     padding: 0;
-    padding-top: 8vh;
-    padding-left: 250px;
-    margin: 0;
+    margin-top: 7.5vh;
+    margin-left: 250px;
+    margin-bottom: 0;
     flex-grow: 1;
     list-style-type: none;
     background-color: var(--clr1);
     border-top-left-radius: 1em;
 }
 
+.filter-select {
+    display: none;
+}
+
 .sort-preview {
+    height: 70px;
     padding-left: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
+    border-top-left-radius: 1em;
     display: flex;
     width: calc(100% - 250px);
     gap: 20px;
@@ -65,4 +71,56 @@
 .remove-btn::after {
     content: "\f1f8";
 
+}
+
+@media only screen and (max-width: 846px) {
+
+    .mail-list-container {
+        margin-left: 0;
+        padding-bottom: 15vh;
+    }
+
+    .sort-preview {
+        border-radius: 0;
+        width: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+
+    .mail-list-container {
+        margin-top: 10vh;
+        width: 100%;
+    }
+
+    .mail-preview .mail-fullname{
+        min-width: 0px;
+    }
+
+    .sort-preview{
+        display: block;
+        padding-left: 0;
+    }
+
+    .sort-preview h3,
+    .sort-preview h4 {
+        display: none;
+    }
+
+    .filter-select {
+        display: flex;
+        margin: auto;
+        width: 80%;
+        height: 100%;
+        padding-left: 5px;
+        border-radius: 2em;
+        background-color: var(--clr2);
+        border: none;
+        font-family: roboto-light;
+    }
+
+    .filter-select:focus{
+        outline: none;
+    }
 }

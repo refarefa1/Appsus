@@ -35,8 +35,12 @@
     font-family: fa;
 }
 
-.mail-modal-header button::after {
+.mail-modal-header .save-draft-btn::after {
     content: "\f00d";
+}
+
+.mail-modal-header .send-mail-query {
+    display: none;
 }
 
 .remove-draft-btn {
@@ -82,4 +86,41 @@ textarea.mail-body {
 .mail-modal input:focus,
 textarea:focus {
     outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .mail-modal {
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        border-radius: 0;
+    }
+    
+    .mail-modal-header {
+        background-color: var(--clr1);
+        padding-top: 50px;
+    }
+
+    .mail-modal-header button {
+        font-size: 2em;
+    }
+
+    .mail-modal input{
+        height: 60px;
+    }
+    
+    .mail-modal-header .send-mail-query {
+        display: inline;
+    }
+
+    .mail-modal-header .send-mail-query::after {
+        content: "\f1d8";
+    }
+
+    .mail-modal .mail-modal-footer{
+        display: none;
+    }
+
 }

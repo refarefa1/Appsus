@@ -11,7 +11,7 @@ const options = {
         <section>
             <app-header v-if="!isApp"/>
             <router-view @hideMainHeader="isApp = true" @showMainHeader="isApp = false"/>
-            <app-footer class="text-center flex flex-column justify-center" />
+            <!-- <app-footer class="text-center flex flex-column justify-center" /> -->
             <user-msg />
         </section>
     `,

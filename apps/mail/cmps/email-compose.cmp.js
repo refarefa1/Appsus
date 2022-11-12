@@ -5,7 +5,10 @@ export default {
             <form @submit.prevent class="mail-modal">
                 <section class="mail-modal-header">
                     <h2 class="add-mail-title">New message</h2>
-                    <button @click="saveDraft" title="Save draft"></button>
+                    <div>
+                    <button @click="send" class="send-mail-query"></button>
+                    <button class="save-draft-btn" @click="saveDraft" title="Save draft"></button>
+                    </div>
                 </section>
                 <input v-model="mail.to" type="email" placeholder="To"/>
                 <input v-model="mail.subject" type="text" placeholder="Topic"/>
