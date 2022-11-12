@@ -1,4 +1,4 @@
-import utilService from "../../../services/util.service.js"
+import { eventBus } from "../../../services/event-bus.service.js"
 
 export default {
     props: ['editedMail'],
@@ -45,6 +45,8 @@ export default {
         },
         saveDraft() {
             this.$emit('save-draft', this.mail)
+            eventBus.emit('user-msg', 'Draft saved')
+
         },
         removeDraft() {
             this.$emit('remove-draft', this.mail)

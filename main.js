@@ -2,6 +2,7 @@ const { createApp } = Vue
 
 import { router } from './routes.js'
 
+import { eventBus } from './services/event-bus.service.js'
 import appHeader from './cmps/app-header.cmp.js'
 import appFooter from './cmps/app-footer.cmp.js'
 import userMsg from './cmps/user-msg.cmp.js'
@@ -11,7 +12,6 @@ const options = {
         <section>
             <app-header v-if="!isApp"/>
             <router-view @hideMainHeader="isApp = true" @showMainHeader="isApp = false"/>
-            <!-- <app-footer class="text-center flex flex-column justify-center" /> -->
             <user-msg />
         </section>
     `,
@@ -25,6 +25,10 @@ const options = {
         appFooter,
         userMsg,
     },
+    created() {
+        eventBus.on('draft-saved', (msg) => {
+        })
+    }
 }
 
 const app = createApp(options)
