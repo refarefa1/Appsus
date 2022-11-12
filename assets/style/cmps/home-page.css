@@ -15,7 +15,11 @@
     color: var(--clr6);
 }
 
-.home-btns  {
+.home-title .span {
+    color: (--secondary-clr4) !important;
+}
+
+.home-btns {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,11 +30,25 @@
     margin: 20px;
     border-radius: 3em;
     width: 30vw;
-    background-color: var(--clr6);
+    background-color: var(--secondary-clr4);
     color: var(--clr1);
     font-family: roboto-regular;
     font-size: 1em;
+    transition: .4s;
+}
 
+.home-btns button:hover {
+    background-color: #262f61;
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -46,13 +64,14 @@
         flex-direction: column;
     }
 
-    .home-btns a{
+    .home-btns a {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 80%;
     }
-    .home-btns button{
+
+    .home-btns button {
         width: 100%;
     }
 }
@@ -60,11 +79,19 @@
 @media only screen and (max-width: 450px) {
 
     .home-title {
-        font-size: 2.5em;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
-    .home-btns button{
+    .home-btns button {
         height: 50px;
         margin: 10px;
     }
+}
+@media only screen and (max-width: 380px) {
+
+    .home-title {
+        font-size: 3.2em;
+    }
+
 }

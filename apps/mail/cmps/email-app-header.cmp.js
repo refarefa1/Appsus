@@ -11,6 +11,7 @@ export default {
             <button class="search"></button>
             <nav class="main-nav">
                 <button @click="toggleMenu = !toggleMenu" class="nav"></button>
+
                 <section v-if="toggleMenu" className="menu">
                 <router-link to="/keep" @click="toggleMenu = !toggleMenu">
                     <img src="assets/img/keep.png" alt="" />
@@ -19,9 +20,9 @@ export default {
                 <router-link to="/email/inbox" @click="toggleMenu = !toggleMenu">
                 <img src="assets/img/mail.png" alt="" />
                     <h2>Mail</h2>
-                    
                 </router-link>
-                </section>
+                </section>     
+
             </nav>
         </header>
     `,

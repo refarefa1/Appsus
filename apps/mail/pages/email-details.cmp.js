@@ -22,10 +22,10 @@ export default {
                 <p>{{ mail.body }}</p>
             </section>
 
-            <section className="mail-details-footer">
+            <!-- <section className="mail-details-footer">
                 <button>Respond</button>
                 <button>Forward</button>
-            </section>
+            </section> -->
     </section>
         
 
