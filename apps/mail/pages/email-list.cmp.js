@@ -10,12 +10,12 @@ export default {
         <ul class="mail-list-container">
 
             <li class="sort-preview">
-                <select class="filter-select">
-                    <option>All</option>
-                    <option>Read</option>
-                    <option>Unread</option>
-                    <option>Title</option>
-                    <option>Date</option>
+                <select @change="select" class="filter-select">
+                    <option value="all">All</option>
+                    <option value="read">Read</option>
+                    <option value="unread">Unread</option>
+                    <option value="title">Title</option>
+                    <option value="date">Date</option>
                 </select>
                 <h3>Sort by:</h3>
                 <h4 @click="sort('title')">Title</h4>
@@ -54,6 +54,14 @@ export default {
         }
     },
     methods: {
+        select(ev) {
+            const value = ev.target.value
+            if (value === 'all' || value === 'read' || value === 'unread') {
+                this.filterRead(value)
+            } else {
+                this.sort(value)
+            }
+        },
         read(mail) {
             this.$emit('read', mail)
         },

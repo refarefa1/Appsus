@@ -71,8 +71,9 @@ export default {
                 mail.removedAt = new Date()
                 mailService.update(mail)
                     .then(() => {
+                        const idx = this.mails.findIndex(email => email.id === mail.id)
+                        this.mails[idx].removedAt = mail.removedAt
                         this.filter()
-                        return
                     })
             }
             else {
@@ -142,6 +143,7 @@ export default {
             this.filter()
         },
         filter() {
+
 
             var filtered
             const regex = new RegExp(this.criteria.txt, 'i')
