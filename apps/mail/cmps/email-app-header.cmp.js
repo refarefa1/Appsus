@@ -13,7 +13,7 @@ export default {
                 <button @click="toggleMenu = !toggleMenu" class="nav"></button>
 
                 <section v-if="toggleMenu" className="menu">
-                <router-link to="/keep" @click="toggleMenu = !toggleMenu">
+                <router-link to="/keep/notes" @click="toggleMenu = !toggleMenu">
                     <img src="assets/img/keep.png" alt="" />
                     <h2>Keep</h2>
                 </router-link>

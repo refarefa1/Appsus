@@ -47,6 +47,7 @@ export default {
             this.removeDraft(mail)
             mail.isDraft = false
             if (mail.id) {
+                eventBus.emit('user-msg', 'Message sent')
                 mailService.update(mail)
                     .then(() => {
                         const idx = this.mails.findIndex(email => email.id === mail.id)
@@ -55,6 +56,7 @@ export default {
                     })
             }
             else {
+                eventBus.emit('user-msg', 'Message sent')
                 mailService.add(mail)
                     .then(mail => this.mails.unshift(mail))
             }
@@ -62,9 +64,11 @@ export default {
         removeDraft(mail) {
             mail.isDraft = false
             this.isCompose = false
+            eventBus.emit('user-msg', 'Draft removed')
         },
         remove(mail) {
             if (!mail.removedAt) {
+                eventBus.emit('user-msg', 'Sent to trash')
                 mail.removedAt = new Date()
                 mailService.update(mail)
                     .then(() => {
@@ -74,6 +78,7 @@ export default {
                     })
             }
             else {
+                eventBus.emit('user-msg', 'Mail removed')
                 mailService.remove(mail.id)
                     .then(() => {
                         const idx = this.mails.findIndex(email => email.id === mail.id)
@@ -210,6 +215,7 @@ export default {
             })
         this.$emit('hideMainHeader')
         eventBus.on('deleted', (mail => this.remove(mail)))
+        
     },
     components: {
         emailFolderList,
