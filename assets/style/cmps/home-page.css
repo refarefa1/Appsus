@@ -15,7 +15,7 @@
     color: var(--clr6);
 }
 
-.home-btns {
+.home-btns  {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,8 +46,14 @@
         flex-direction: column;
     }
 
-    .home-btns button{
+    .home-btns a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 80%;
+    }
+    .home-btns button{
+        width: 100%;
     }
 }
 
