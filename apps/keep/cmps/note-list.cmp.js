@@ -4,38 +4,47 @@ export default {
     name: `note-list`,
     props: ['notes'],
     template: `
-        <section class="note-list">
+        <section class="note-list flex flex-column">
 
-            <h1 v-if="pinnedNotesToShow.length">Pinned notes</h1>
-            <ul v-if="pinnedNotesToShow.length" class="non-pinned clean-list">
-                <li class="note-container" :class="{hovering: noteHoveredIdx===index}" v-for="(note, index) in pinnedNotesToShow"  :style="note.style"  :key="note.id" @click="editNote(note)" @mouseover="noteHoveredIdx = index" @mouseout="noteHoveredIdx = null">
-                    <note-preview :note="note" />
-                    <div class="control-btns">
-                        <button class="remove fa" @click.stop="remove(note.id)"></button>
-                        <button class="archive fa" @click.stop=""></button>
-                        <button class="bg-img fa" @click.stop=""></button>
-                        
-                        <button class="bg-color fa"><input type="color" @click.stop="" v-model="note.style.backgroundColor"></button>  
-                        <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="note.style.color"></button>
-                    </div>
+        <section class="pinned-notes" v-if="isTherePinnedNotes">
+            <h1>Pinned notes</h1>
+            <ul class="pinned-notes clean-list">
+                <li :class="{hovering: noteHoveredIdx===index}" v-for="(note, index) in notes" :key="note.id" @click="editNote(note)" @mouseover="noteHoveredIdx = index" @mouseout="noteHoveredIdx = null" >
+                    <section class="note-container" v-if="note.isPinned" :style="note.style">
+                        <note-preview :note="note" @pin="pin(note,index)"/>
+                        <div class="control-btns">
+                            <button class="remove fa" @click.stop="remove(note.id)"></button>
+                            <button class="archive fa" @click.stop=""></button>
+                            <button class="bg-img fa" @click.stop=""></button>
+                            <button class="bg-color fa"><input type="color" @click.stop="" v-model="note.style.backgroundColor"></button>  
+                            <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="note.style.color"></button>
+                        </div>
+                    </section>
                 </li>
             </ul>
+        </section>
 
-            <h1 v-if="pinnedNotesToShow.length">Other notes</h1>
-            <ul class="non-pinned clean-list">
-                <li class="note-container" :class="{hovering: noteHoveredIdx===index}" v-for="(note, index) in nonPinnedNoteToShow" :style="note.style"  :key="note.id" @click="editNote(note)" @mouseover="noteHoveredIdx = index" @mouseout="noteHoveredIdx = null">
-                    <note-preview :note="note" />
-                    <div class="control-btns">
-                        <button class="remove fa" @click.stop="remove(note.id)"></button>
-                        <button class="archive fa" @click.stop=""></button>
-                        <button class="bg-img fa" @click.stop=""></button>
-                        
-                        <button class="bg-color fa"><input type="color" @click.stop="" v-model="note.style.backgroundColor"></button>  
-                        <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="note.style.color"></button>
-                    </div>
+        <section class="unpinned-notes">
+            <h1 v-if="isTherePinnedNotes">Other notes</h1>
+            <ul class="clean-list">
+                <li :class="{hovering: noteHoveredIdx===index}" v-for="(note, index) in notes" :key="note.id" @click="editNote(note)" @mouseover="noteHoveredIdx = index" @mouseout="noteHoveredIdx = null" >
+                    <section class="note-container" v-if="!note.isPinned" :style="note.style">
+                        <note-preview :note="note" @pin="pin(note,index)"/>
+                        <div class="control-btns">
+                            <button class="remove fa" @click.stop="remove(note.id)"></button>
+                            <button class="archive fa" @click.stop=""></button>
+                            <button class="bg-img fa" @click.stop=""></button>
+                            <button class="bg-color fa"><input type="color" @click.stop="" v-model="note.style.backgroundColor"></button>  
+                            <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="note.style.color"></button>
+                        </div>
+                    </section>
                 </li>
             </ul>
-     
+        </section>
+
+        
+
+            
         </section>
     `,
     data() {
@@ -43,14 +52,10 @@ export default {
             styleObject: {
                 backgroundColor: null,
             },
-
             backgroundColor: '',
             backgroundImg: null,
             noteHoveredIdx: null,
-            pinnedNotes: null,
-            pinnedNotesToShow: null,
-            nonPinnedNoteToShow: null
-
+            isTherePinnedNotes: null,
         }
     },
     methods: {
@@ -63,11 +68,16 @@ export default {
             const noteToEdit = JSON.parse(JSON.stringify(clickedNote))
             this.$emit('noteClicked', noteToEdit)
         },
+        pin(note, index) {
+            console.log(`note:`, note)
+            console.log(`index:`, index)
+            const currentIdx = this.notes.findIndex(note => note)
+        }
 
     },
     created() {
-        this.pinnedNotesToShow = this.notes.filter(note => note.isPinned)
-        this.nonPinnedNoteToShow = this.notes.filter(note => !note.isPinned)
+        const pinnedNotes = this.notes.filter(note=>note.isPinned)
+        this.isTherePinnedNotes = (pinnedNotes.length) ? true:false
     },
     components: {
         notePreview

@@ -14,6 +14,7 @@ export default {
     created() { },
     data() {
         return {
+            notePin: this.note.isPinned
 
         }
     },

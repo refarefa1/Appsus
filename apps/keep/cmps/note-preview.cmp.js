@@ -8,14 +8,19 @@ export default {
     props: ['note'],
     template: `
         <section class="note-preview">
-            <component :is="note.type" :note="note" />
+            <component :is="note.type" :note="note" @pin="pin" />
         </section>
     `,
     components: {},
     data() {
         return {}
     },
-    methods: {},
+    methods: {
+        pin(note) {
+            this.$emit('pin', note)
+            console.log(`34:`)
+        }
+    },
     computed: {},
     components: {
         noteImg,

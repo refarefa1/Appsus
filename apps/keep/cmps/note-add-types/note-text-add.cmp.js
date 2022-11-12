@@ -18,6 +18,8 @@ export default {
   created() { },
   data() {
     return {
+      notePin: false,
+
       pinNote() {
         console.log(`pining note...:`)
         this.notePin = !this.notePin
