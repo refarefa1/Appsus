@@ -12,7 +12,7 @@ export default {
     <email-app-header @show="$emit('showMainHeader')" @filterTxt="filterTxt"/>
     <section className="mail-app">
         <main className="mail-container">
-            <email-folder-list @filterPath="filterPath" @add="add" :mails="mails"/>
+            <email-folder-list @filterPath="filterPath" @add="compose" :mails="mails"/>
             <email-compose @save-draft="save" v-if="isCompose" @sent="send" @removeDraft="removeDraft"/>
             <router-view  @save-draft="save" @sent="send" @removeDraft="removeDraft" @filterRead="filterRead" @star="star" @sort="sort" @read="read" @remove="remove" @mark="mark" :mailsToShow="mailsToShow"/>
         </main>
@@ -40,7 +40,7 @@ export default {
             mail.isRead = true
             mailService.update(mail)
         },
-        add() {
+        compose() {
             this.isCompose = !this.isCompose
         },
         send(mail) {
@@ -100,30 +100,26 @@ export default {
         },
         save(mail) {
             this.isCompose = false
-            const sent = { ...mail }
-            const { to, subject, body } = sent
+            const { to, subject, body } = mail
             if (!to && !subject && !body) {
-                this.removeDraft(sent)
+                this.removeDraft(mail)
                 return
             }
-            sent.isDraft = true
-            if (sent.id) {
-                mailService.update(sent)
+            mail.isDraft = true
+            if (mail.id) {
+                mailService.update(mail)
                     .then(mail => {
                         const idx = this.mails.findIndex(email => email.id === mail.id)
-                        this.mails.splice(idx, 1, mail)
+                        this.mailsToShow.splice(idx, 1, mail)
                         this.filter()
                     })
             }
             else {
-                mailService.add(sent)
-                    .then(mail => this.mails.unshift(mail))
+                mailService.add(mail)
+                    .then(mail => {
+                        this.mailsToShow.unshift(mail)
+                    })
             }
-        },
-        convertToTimestamp(date) {
-            let arr = date.split('-')
-            var newDate = new Date(arr[2], arr[1] - 1, arr[0])
-            return newDate.getTime()
         },
         filterTxt(txt) {
             this.criteria.txt = txt

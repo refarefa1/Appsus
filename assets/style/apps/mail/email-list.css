@@ -15,6 +15,17 @@
     display: none;
 }
 
+.sort-select {
+    display: flex;
+    width: 150px;
+    height: 100%;
+    padding-left: 5px;
+    border-radius: .6em;
+    background-color: var(--clr2);
+    border: none;
+    font-family: roboto-light;
+}
+
 .sort-preview {
     height: 70px;
     padding-left: 10px;
@@ -94,17 +105,19 @@
         width: 100%;
     }
 
-    .mail-preview .mail-fullname{
+    .mail-preview .mail-fullname {
         min-width: 0px;
     }
 
-    .sort-preview{
+    .sort-preview {
         display: block;
         padding-left: 0;
     }
 
     .sort-preview h3,
-    .sort-preview h4 {
+    .sort-preview h4,
+    .sort-select,
+    .filter span {
         display: none;
     }
 
@@ -120,7 +133,7 @@
         font-family: roboto-light;
     }
 
-    .filter-select:focus{
+    .filter-select:focus {
         outline: none;
     }
 }

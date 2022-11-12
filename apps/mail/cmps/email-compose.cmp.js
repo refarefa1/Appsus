@@ -1,3 +1,5 @@
+import utilService from "../../../services/util.service.js"
+
 export default {
     props: ['editedMail'],
     emits: ['save-draft', 'remove-draft', 'sent'],
@@ -7,7 +9,7 @@ export default {
                     <h2 class="add-mail-title">New message</h2>
                     <div>
                     <button @click="send" class="send-mail-query"></button>
-                    <button class="save-draft-btn" @click="saveDraft" title="Save draft"></button>
+                    <button class="save-draft-btn" @click="saveDraft()" title="Save draft"></button>
                     </div>
                 </section>
                 <input v-model="mail.to" type="email" placeholder="To"/>
@@ -27,7 +29,7 @@ export default {
                 subject: '',
                 body: '',
                 isDraft: false
-            }
+            },
         }
     },
     methods: {
@@ -49,6 +51,9 @@ export default {
         }
     },
     created() {
-        if (this.editedMail) this.mail = { ... this.editedMail }
-    }
+        if (this.editedMail) {
+            console.log('this is edited!');
+            this.mail = { ... this.editedMail }
+        }
+    },
 }
