@@ -171,4 +171,12 @@
         width: 100%;
     }
 
+    .mail-title {
+        font-family: roboto-bold;
+        font-size: 1em;
+        color: var(--primary-color);
+        padding-right: 10px;
+        min-width: 0;
+    }    
+
 }

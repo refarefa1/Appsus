@@ -17,9 +17,11 @@ export default {
                     <option value="title">Title</option>
                     <option value="date">Date</option>
                 </select>
-                <h3>Sort by:</h3>
-                <h4 @click="sort('title')">Title</h4>
-                <h4 @click="sort('date')">Date</h4>
+                <select @change="sort" class="sort-select">
+                    <option>Sort by</option>
+                    <option value="title">Title</option>
+                    <option value="date">Date</option>
+                </select>
                 <email-filter @filterRead="filterRead"/>
             </li>
 
@@ -65,7 +67,8 @@ export default {
         read(mail) {
             this.$emit('read', mail)
         },
-        sort(type) {
+        sort(ev) {
+            const type = ev.target.value
             this.$emit('sort', type)
         },
         filterRead(type) {
