@@ -20,6 +20,10 @@
     align-items: center;
 }
 
+.justify-right{
+    justify-content: flex-end !important;
+}
+
 /* text helpers */
 
 .colored-text {

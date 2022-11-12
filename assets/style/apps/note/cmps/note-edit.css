@@ -12,6 +12,47 @@
 
 }
 
+.note-edit input {
+    border: none;
+    font-size: 1.2em;
+
+}
+
+.note-edit img {
+    width: 100%;
+}
+
+.note-todo-add {
+    width: 100%;
+}
+.note-todo-add .note-todo-edit-input {
+    font-size: 0.9em !important;
+
+}
+.note-text-edit-input {
+    font-size: 0.9em !important;
+}
+
+
+.img-upload::after {
+    content: '\f093';
+    font-size: 1.6em;
+}
+
+.img-upload {
+    position: relative;
+}
+
+.img-upload input{
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
 
 .note-edit .header >* {
     

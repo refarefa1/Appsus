@@ -15,7 +15,7 @@ export default {
                             <div class="control-btns">
                                 <button class="remove fa" @click.stop="remove(note.id)"></button>
                                 <button class="archive fa" @click.stop="archive(note)"></button>
-                                <button class="bg-img fa" @click.stop=""></button>
+                                <!-- <button class="bg-img fa" @click.stop=""></button> -->
                                 <button class="bg-color fa"><input type="color" @click.stop="" v-model="note.style.backgroundColor"></button>  
                                 <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="note.style.color"></button>
                             </div>
@@ -33,7 +33,7 @@ export default {
                             <div class="control-btns">
                                 <button class="remove fa" @click.stop="remove(note.id)"></button>
                                 <button class="archive fa" @click.stop="archive(note)"></button>
-                                <button class="bg-img fa" @click.stop=""></button>
+                                <!-- <button class="bg-img fa" @click.stop=""></button> -->
                                 <button class="bg-color fa"><input type="color" @click.stop="" v-model="note.style.backgroundColor"></button>  
                                 <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="note.style.color"></button>
                             </div>
@@ -62,12 +62,10 @@ export default {
             this.$emit('archive', note)
         },
         editNote(clickedNote) {
-            console.log('noteClicked...')
             const noteToEdit = JSON.parse(JSON.stringify(clickedNote))
             this.$emit('noteClicked', noteToEdit)
         },
         pin(note) {
-            console.log(`pinning in note-list:`,)
             this.$emit('pin', note)
         }
 

@@ -60,50 +60,46 @@ export default {
         removeNote(noteId) {
             noteService.remove(noteId)
                 .then(() => {
-                    const idx = this.notes.findIndex(note => note.id === noteId)
-                    this.notes.splice(idx, 1)
+                    const idx = this.notes.findIndex(noteB => noteB.id === noteId)
+                    this.notes.splice(idx,1)
+                    let path = this.$route.fullPath.split('/')
+                    const loc = path[path.length - 1]
+                    this.filter(loc)
+                    eventBus.emit('user-msg', 'Note Removed')
                 })
         },
         archiveNote(note) {
             note.isArchived = !note.isArchived
-            console.log(`note.isArchived:`, note.isArchived)
             noteService.edit(note)
                 .then(() => {
-                    const idx = this.notes.findIndex(noteB => noteB.id === note.id)
-                    this.notes.splice(idx, 1, note)
                     let path = this.$route.fullPath.split('/')
                     const loc = path[path.length - 1]
                     this.filter(loc)
+                    eventBus.emit('user-msg', 'Note Archived')
+
                 })
         },
-        // pinNote(note) {
-        //     console.log(`pinning in app:`,)
-        //     console.log(`note:`, note)
-        //     note.isPinned = !note.isPinned
-        //     noteService.edit(note)
-        //         .then((editedNote) => {
-        //             const idx = this.notes.findIndex(noteB => noteB.id === editedNote.id)
-        //             console.log(`idx:`, idx)
-        //             this.notes.splice(idx, 1, editedNote)
-        //             let path = this.$route.fullPath.split('/')
-        //             const loc = path[path.length - 1]
-        //             this.filter(loc)
-        //         })
-        // },
         save(note) {
-            this.notes.push(note)
-            this.selectedNoteTypeToCreate = null
+            noteService.save(note)
+            .then(() => {
+                this.notes.push(note)
+                let path = this.$route.fullPath.split('/')
+                const loc = path[path.length - 1]
+                this.filter(loc)
+                this.selectedNoteTypeToCreate = null
+                eventBus.emit('user-msg', 'Note Add')
+            })
         },
         edit(note) {
             noteService.edit(note)
                 .then((updatedNote) => {
-                    console.log(updatedNote);
                     const idx = this.notes.findIndex(note => note.id === updatedNote.id)
                     this.notes.splice(idx, 1, updatedNote)
                     this.noteToEdit = null
                     let path = this.$route.fullPath.split('/')
                     const loc = path[path.length - 1]
                     this.filter(loc)
+                    eventBus.emit('user-msg', 'Note Edited')
                 })
         },
         noteClicked(note) {
@@ -119,7 +115,6 @@ export default {
             if (location === 'notes') this.notesToShow = this.notes.filter(note => !note.isArchived)
             else {
                 this.notesToShow = this.notes.filter(note => note.isArchived)
-                console.log(`this.notesToShow:`, this.notesToShow)
             }
         }
 

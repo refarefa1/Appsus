@@ -5,7 +5,7 @@ export default {
     props: ['note'],
     template: `
         <section class="note-todo">
-            <div class="title flex justify-between align-center">
+            <div class="title flex justify-between align-center" :class="{'justify-right': !note.info.label}">
                 <h1 v-if="note.info.label" class="label">{{ note.info.label }}</h1>
                 <button :class="{'pinned': notePin}" class="fa pin-note" @click.stop="pin"></button>
 
@@ -38,9 +38,6 @@ export default {
         },
         pin() {
             const note = JSON.parse(JSON.stringify(this.note))
-            // console.log(`note:`, jsonNote)
-            // console.log(`pinning in notecmp:`, )
-            // this.$emit('pin', jsonNote)
             note.isPinned = !note.isPinned
             emitUpdated(note)
         }

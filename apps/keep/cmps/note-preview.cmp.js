@@ -17,7 +17,6 @@ export default {
     },
     methods: {
         pin(note) {
-            console.log(`pinning in preview:`, )
             this.$emit('pin', note)
 
         }

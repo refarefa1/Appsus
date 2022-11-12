@@ -4,15 +4,21 @@ export default {
   name: `note-img-edit`,
   props: ['note'],
   template: `
-      <section class="note-text-edit">
+      <section class="note-image-edit">
             <div class="title flex">
                 <input type="text" v-model="note.info.title" placeholder="Title">
             </div>
-            <div class="content flex">
-              <img :src="note.info.url" alt="" />
-                <!-- <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url"> -->
-                <!-- <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url"> -->
-                <input type="file" @change="loadImageFromInput" />
+            <div class="content flex justify-between">
+              <div>
+                <img :src="note.info.url" alt="" />
+
+              </div>
+              <div class="flex flex-column align-center justify-center">
+                <button class="img-upload fa" @click.stop=""><input type="file" @change="loadImageFromInput" /></button>
+                <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url">
+                <h1>place other url to change photo</h1>
+              </div>
+
                 
             </div>
     </section>
@@ -24,7 +30,6 @@ export default {
     return {
       selectedFile: null,
       pinNote() {
-        console.log(`pining note...:`)
         this.notePin = !this.notePin
       },
       notePin: false,
@@ -42,7 +47,7 @@ export default {
         // Run the callBack func, To render the img on the canvas
         //   img.onload = onImageReady.bind(null, img)
         // Can also do it this way:
-        img.onload = () => {changeNoteImgUrl(img.src)}
+        img.onload = () => { changeNoteImgUrl(img.src) }
       }
       reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
     },

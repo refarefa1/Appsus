@@ -20,9 +20,7 @@ export default {
     `,
     components: {},
     created() { 
-        console.log(`note.type:`, this.note.type)
         this.strNoteCmp = `${this.note.type}-edit`
-        console.log(`this.strNoteCmp:`, this.strNoteCmp)
     },
     data() {
         return {}

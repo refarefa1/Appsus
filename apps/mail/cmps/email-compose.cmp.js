@@ -54,7 +54,6 @@ export default {
     },
     created() {
         if (this.editedMail) {
-            console.log('this is edited!');
             this.mail = { ... this.editedMail }
         }
     },

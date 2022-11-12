@@ -21,7 +21,6 @@ export default {
       notePin: false,
 
       pinNote() {
-        console.log(`pining note...:`)
         this.notePin = !this.notePin
       },
       notePin: false,

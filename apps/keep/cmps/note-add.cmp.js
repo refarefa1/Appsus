@@ -19,7 +19,7 @@ export default {
                     <div class="control-btns">
                         <button class="bg-color fa"><input type="color" @click.stop="" v-model="noteToEdit.style.backgroundColor"></button>  
                         <button class="font-color fa" @click.stop=""><input type="color" @click.stop="" v-model="noteToEdit.style.color"></button>
-                        <button class="img fa"></button>
+                        <!-- <button class="img fa"></button> -->
                         <button class="archive fa"></button>
                     </div>
                     <div>
@@ -41,7 +41,6 @@ export default {
     },
     created() {
         this.strNoteCmp = `${this.noteType}-add`
-        console.log(`this.strNoteCmp:`, this.strNoteCmp)
         this.noteToEdit = noteService.getEmptyNote(this.noteType)
 
     },

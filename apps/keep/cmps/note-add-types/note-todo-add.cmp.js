@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     addTodoItem() {
-      console.log(`addingLine:`,)
       const newTodo = { txt: "", doneAt: null }
       this.newTodos.push(newTodo)
 
@@ -42,7 +41,6 @@ export default {
       this.newTodos.splice(todoIdx, 1)
     },
     pinNote() {
-      console.log(`pining note...:`)
       this.notePin = !this.notePin
 
     },

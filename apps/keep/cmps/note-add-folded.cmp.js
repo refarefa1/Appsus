@@ -11,7 +11,7 @@ export default {
                 <div class="control-btns">
                     <button class="todos fa" @click.stop="setNoteType('note-todo')"></button>
                     <button class="img fa" @click.stop="setNoteType('note-img')"></button>
-                    <button class="video fa" @click.stop="setNoteType('note-video')"></button>     
+                    <!-- <button class="video fa" @click.stop="setNoteType('note-video')"></button>      -->
                 </div>
                 
             </div>

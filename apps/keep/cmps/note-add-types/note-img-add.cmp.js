@@ -25,7 +25,6 @@ export default {
     return {
       selectedFile: null,
       pinNote() {
-        console.log(`pining note...:`)
         this.notePin = !this.notePin
       },
       notePin: false,
