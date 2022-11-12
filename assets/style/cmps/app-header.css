@@ -10,7 +10,7 @@
   z-index: 20;
 }
 
-.logo {
+.app-header .logo {
   flex-basis: 235px;
   min-width: 40px;
   max-width: 40px;
@@ -18,7 +18,7 @@
   color: var(--primary-color);
 }
 
-.search-bar {
+.app-header .search-bar {
   border: none;
   background-color: var(--clr3);
   border-radius: 1em;
@@ -29,30 +29,30 @@
   margin-left: 195px;
 }
 
-.main-nav {
+.app-header .main-nav {
   margin-left: auto;
 }
 
-.main-nav h2{
+.app-header .main-nav h2{
   font-size: 1em;
 }
 
-.main-nav img {
+.app-header .main-nav img {
   width: 40%;
 }
 
-.nav {
+.app-header .nav {
   background-color: transparent;
 }
 
-.nav::after {
+.app-header .nav::after {
   font-family: fa;
   font-size: 1.6em;
   padding: 30px;
   content: "\f0ca";
 }
 
-.menu {
+.app-header .menu {
   background-color: var(--clr1);
   position: absolute;
   display: flex;
@@ -65,24 +65,24 @@
   z-index: 20
 }
 
-.menu>* {
+.app-header .menu>* {
   text-align: center;
   padding-top: 20px;
 }
 
-.search {
+.app-header .search {
   position: relative;
   right: 40px;
   background-color: transparent;
   padding-right: 20px;
 }
 
-.search::after {
+.app-header .search::after {
   font-family: fa;
   content: "\f002";
 }
 
-.search-bar:focus {
+.app-header .search-bar:focus {
   outline: none;
 }
 
@@ -94,20 +94,20 @@
     justify-content: space-between;
   }
 
-  .main-nav {
+  .app-header .main-nav {
     margin: 0;
   }
 
-  .nav::after{
+  .app-header .nav::after{
     padding: 0;
   }
 
-  .search-bar {
+  .app-header .search-bar {
     width: 50%;
     margin: 0;
   }
 
-  .search{
+  .app-header .search{
     display: none;
   }
 
@@ -118,7 +118,5 @@
   .app-header {
     min-height: 10vh;
   }
-
-  
 
 }

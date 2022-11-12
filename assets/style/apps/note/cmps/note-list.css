@@ -2,20 +2,24 @@
     margin-bottom: 40px;
 }
 
-.note-list >* ul {
-    column-count: 4;
+.pinned-notes-list, .unpinned-notes-list {
+    column-count: 5;
     padding: 10px 0;
 }
 
-.note-list >*:not(:last-child) {
+.pinned-notes-list >*:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.unpinned-notes-list >*:not(:last-child) {
     margin-bottom: 10px;
 }
 
 .note-list .note-container {
     border: 1px solid var(--clr7);
     border-radius: 1em;
-    min-width: 240px;
-    max-width: 280px;
+    min-width: 300px;
+    max-width: 340px;
     min-height: 100px;
     page-break-inside: avoid;
 
@@ -84,3 +88,5 @@
 .note-list .control-btns .font-color:after {
     content: '\f031';
 }
+
+

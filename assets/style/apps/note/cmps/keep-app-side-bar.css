@@ -3,7 +3,7 @@
     margin-top: 7.5vh;
     min-width: 300px;
     background-color: var(--clr1);
-    padding: 15px 15px 15px 0;
+    padding: 25px 15px 15px 0;
 }
 
 .keep-app-side-bar-container .notes {
@@ -36,20 +36,15 @@
     /* font-family: fa; */
     padding: 1px 10px;
     font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.keep-app-side-bar-container .notes-icon  button::after {
+.keep-app-side-bar-container button.notes::after {
     content: "\f0eb";
 }
 
-.keep-app-side-bar-container .label  button::after {
-    content: "\f02c";
-}
-
-.keep-app-side-bar-container .archive  button::after {
+.keep-app-side-bar-container button.archive::after {
     content: "\f187";
-}
-
-.keep-app-side-bar-container .trash  button::after {
-    content: "\f1f8";
 }
