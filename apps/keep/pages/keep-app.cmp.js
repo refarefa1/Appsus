@@ -6,6 +6,7 @@ import noteAdd from '../cmps/note-add.cmp.js'
 import noteEdit from '../cmps/note-edit.cmp.js'
 import keepAppSideBar from '../cmps/keep-app-side-bar.cmp.js'
 import keepAppHeader from '../cmps/keep-app-header.cmp.js'
+import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     name: `keep-app`,
@@ -15,35 +16,44 @@ export default {
         <keep-app-header :class="scrolled ? 'scroll' : ''" @show="$emit('showMainHeader')"/>
 
         <section class="keep-app flex">
-            <keep-app-side-bar />
+
+            <div v-if="noteToEdit" class="black-screen" @click="noteToEdit=null"></div>
+            <keep-app-side-bar @goTo="filter" />
 
             <main class="main-container flex flex-column align-center">
                 <note-edit v-if="noteToEdit" :note="noteToEdit" @noteEdited="edit" @cancelEdit="noteToEdit=null"/>
                 <note-add-folded v-if="!selectedNoteTypeToCreate" @noteTypeSelected="setNoteType" />
                 <note-add v-if="selectedNoteTypeToCreate" :noteType="selectedNoteTypeToCreate" @cancelAdd="selectedNoteTypeToCreate=null" @noteSaved="save" />
     
-                <note-list v-if="notes"
+                <router-view v-if="notesToShow"
                     @remove="removeNote" 
+                    @pin="pinNote"
                     @noteClicked="noteClicked"
-                    :notes="notes" />
-            </main>
-            
+                    :notes="notesToShow"> </router-view>
+            </main>            
+
         </section>
     `,
     components: {},
     created() {
         noteService.query()
-            .then(notes => this.notes = notes)
+            .then(notes => {
+                this.notes = notes
+                const path = this.$route.fullPath.split('/')
+                this.filter(path[path.length - 1])
+
+            })
         this.$emit('hideMainHeader')
         window.addEventListener('scroll', this.handleScroll)
+        eventBus.on('updated', this.edit)
     },
     data() {
         return {
             notes: null,
             noteToEdit: null,
             scrolled: false,
-            selectedNoteTypeToCreate: null
-
+            selectedNoteTypeToCreate: null,
+            notesToShow: null
         }
     },
     methods: {
@@ -60,15 +70,30 @@ export default {
                     // eventBus.emit('user-msg', msg)
                 })
         },
+        pinNote(note) {
+            console.log(`pinning in app:`,)
+            console.log(`note:`, note)
+            note.isPinned = !note.isPinned
+            noteService.edit(note)
+                .then((editedNote) => {
+                    const idx = this.notes.findIndex(noteB => noteB.id === editedNote.id)
+                    console.log(`idx:`, idx)
+                    this.notes.splice(idx, 1, editedNote)
+                })
+        },
         save(note) {
             this.notes.push(note)
             this.selectedNoteTypeToCreate = null
         },
-        edit(updatedNote) {
-            const idx = this.notes.findIndex(note => note.id === updatedNote.id)
-            this.notes.splice(idx, 1, updatedNote)
-            noteService.edit(updatedNote)
-                .then(() => this.noteToEdit = null)
+        edit(note) {
+
+            noteService.edit(note)
+                .then((updatedNote) => {
+                    console.log(updatedNote);
+                    const idx = this.notes.findIndex(note => note.id === updatedNote.id)
+                    this.notes.splice(idx, 1, updatedNote)
+                    this.noteToEdit = null
+                })
         },
         noteClicked(note) {
             this.noteToEdit = note
@@ -78,6 +103,13 @@ export default {
         },
         setNoteType(noteType) {
             this.selectedNoteTypeToCreate = noteType
+        },
+        filter(location) {
+            if (location === 'notes') this.notesToShow = this.notes.filter(note => !note.isArchived)
+            else {
+                this.notesToShow = this.notes.filter(note => note.isArchived)
+                console.log(`this.notesToShow:`, this.notesToShow)
+            }
         }
 
 

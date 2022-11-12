@@ -41,6 +41,7 @@ export default {
     },
     created() {
         this.strNoteCmp = `${this.noteType}-add`
+        console.log(`this.strNoteCmp:`, this.strNoteCmp)
         this.noteToEdit = noteService.getEmptyNote(this.noteType)
 
     },

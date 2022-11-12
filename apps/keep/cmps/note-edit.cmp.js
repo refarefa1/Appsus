@@ -1,21 +1,29 @@
+import noteTextEdit from "./note-edit-type/note-text-edit.cmp.js"
+import noteImgEdit from "./note-edit-type/note-img-edit.cmp.js"
+import noteTodoEdit from "./note-edit-type/note-todo-edit.cmp.js"
+// import noteVideo from "./note-edit-types/note-edit-video.cmp.js"
+
+
 export default {
     name: `note-edit`,
     props: ['note'],
     template: `
         <section class="note-edit flex flex-column justify-between">
             <div class="header flex justify-between align-center">
-                <button class="pin-note fa"></button>
-                <h1>{{ note.info.title }}</h1>
-                <button class="cancel fa" @click="$emit('cancelEdit')"></button>
+                <component :is="strNoteCmp" :note="note"/>
+
             </div>
-            <input type="note-title" v-model="note.info.title" placeholder="note.info.title" />
-            <pre>{{ note }}</pre>
+            <!-- <input type="note-title" v-model="note.info.title" placeholder="note.info.title" /> -->
             <button class="save" @click="edit">Save</button>
         </section>
   
-  `,
+    `,
     components: {},
-    created() { },
+    created() { 
+        console.log(`note.type:`, this.note.type)
+        this.strNoteCmp = `${this.note.type}-edit`
+        console.log(`this.strNoteCmp:`, this.strNoteCmp)
+    },
     data() {
         return {}
     },
@@ -25,4 +33,11 @@ export default {
         }
     },
     computed: {},
+
+    components: {
+        noteImgEdit,
+        noteTextEdit,
+        noteTodoEdit,
+        // noteVideo
+    }
 }

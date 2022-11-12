@@ -1,19 +1,18 @@
 
 
 export default {
-  name: `note-img-add`,
+  name: `note-img-edit`,
   props: ['note'],
   template: `
-      <section class="note-text-add">
+      <section class="note-text-edit">
             <div class="title flex">
                 <input type="text" v-model="note.info.title" placeholder="Title">
-                <button :class="{'pinned': notePin}" class="fa pin-note" @click="pinNote"></button>
             </div>
-            <div class="content flex column">
+            <div class="content flex">
+              <img :src="note.info.url" alt="" />
                 <!-- <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url"> -->
-                <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url">
-                
-                <button v-if="!note.info.url" class="img-upload fa" @click.stop=""><input type="file" @change="loadImageFromInput" /></button>
+                <!-- <input v-if="!selectedFile" type="text" v-model="note.info.url" placeholder="insert url"> -->
+                <input type="file" @change="loadImageFromInput" />
                 
             </div>
     </section>
@@ -32,6 +31,7 @@ export default {
     }
   },
   methods: {
+
     loadImageFromInput(ev) {
       const changeNoteImgUrl = this.changeNoteImgUrl
       const reader = new FileReader()

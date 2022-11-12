@@ -9,7 +9,7 @@ export default {
                 <button>Mail</button>
                 </router-link>
 
-                <router-link to="/keep">
+                <router-link to="/keep/notes">
                 <button>Keep</button>
                 </router-link>
 
