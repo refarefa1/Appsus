@@ -71,8 +71,15 @@
 
 @media only screen and (max-width: 846px) {
 
+    .mail-details-footer{
+        padding: 20px;
+        margin-left: auto;
+    }
+
     .mail-app-details {
+        margin-top: 10vh;
         margin-left: 0;
+        padding-bottom: 15vh;
         border-radius: 0;
     }
     
