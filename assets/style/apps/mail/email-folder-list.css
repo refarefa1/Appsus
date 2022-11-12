@@ -1,4 +1,4 @@
-.folder-list-container{
+.folder-list-container {
     min-width: 250px;
     background-color: var(--clr2);
     padding-right: 20px;
@@ -13,8 +13,13 @@
     border-radius: 1em;
     font-size: 1em;
     margin-left: 20px;
-    font-family: roboto-medium;
     margin-bottom: 20px;
+    display: flex;
+}
+
+.new-mail h2 {
+    font-size: 1em;
+    font-family: roboto-regular;
 }
 
 .new-mail::before {
@@ -94,4 +99,125 @@
 
 .draft button::after {
     content: "\f15b";
+}
+
+@media only screen and (max-width: 846px) {
+
+    .folder-list-container {
+        width: 100%;
+        position: fixed;
+        height: 10%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .new-mail {
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        bottom: 10%;
+        left: 10%;
+        border-radius: 3em;
+        height: 80px;
+        width: 80px;
+        margin: 0;
+        margin-bottom: 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .new-mail h2 {
+        display: none;
+    }
+
+    .new-mail::before {
+        margin: 0;
+        font-size: 2em;
+        content: "\2b";
+    }
+
+    .inbox,
+    .sent,
+    .starred,
+    .trash,
+    .draft {
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .inbox:hover,
+    .sent:hover,
+    .starred:hover,
+    .trash:hover,
+    .draft:hover {
+        background-color:transparent;
+    }
+
+
+    .inbox button,
+    .sent button,
+    .starred button,
+    .trash button,
+    .draft button {
+        font-size: 1.4em;
+        min-height: 30px;
+    }
+
+    .inbox h3 {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .inbox,
+    .sent,
+    .starred,
+    .trash,
+    .draft {
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    .folder-list-container{
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+    }
+
+    .inbox,
+    .sent,
+    .starred,
+    .trash,
+    .draft {
+        padding: 10px;
+    }
+
+    .inbox h2,
+    .sent h2,
+    .starred h2,
+    .trash h2,
+    .draft h2 {
+        font-size: .8em;
+        font-family: roboto-light;
+    }
+
+}
+
+@media only screen and (max-width: 360px) {
+
+    .inbox,
+    .sent,
+    .starred,
+    .trash,
+    .draft {
+        padding: 0px;
+    }
+
 }

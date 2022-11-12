@@ -4,7 +4,9 @@ export default {
     template: `
         <aside class="folder-list-container">
 
-        <button @click="$emit('add')" class="new-mail">New email</button>
+        <button @click="$emit('add')" class="new-mail">
+            <h2>New mail</h2>
+        </button>
 
         <section @click="goTo('inbox')" class="inbox">
             <button></button>

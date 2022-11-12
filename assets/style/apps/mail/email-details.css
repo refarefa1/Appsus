@@ -3,6 +3,8 @@
     background-color: var(--clr1);
     border-top-left-radius: 1em;
     width: 100%;
+    margin-top: 7.5vh;
+    margin-left: 250px;
 }
 
 .mail-subject {
@@ -65,4 +67,28 @@
 
 .delete-mail::after {
     content: "\f1f8";
+}
+
+@media only screen and (max-width: 846px) {
+
+    .mail-app-details {
+        margin-left: 0;
+        border-radius: 0;
+    }
+    
+    .mail-details-paging{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .mail-details-paging button{
+        font-size: 2em;
+    }
+
+    .mail-details-profile{
+        /* font-size: 1.2em; */
+        font-size: 3vw;
+    }
+
 }

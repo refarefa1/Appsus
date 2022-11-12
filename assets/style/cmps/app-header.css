@@ -6,13 +6,14 @@
   align-items: center;
   color: var(--primary-color);
   padding: 15px;
-  min-height: 7.5vh;
+  height: 7.5vh;
   z-index: 20;
 }
 
 .logo {
   flex-basis: 235px;
-  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
 }
 
 .search-bar {
@@ -20,6 +21,7 @@
   background-color: var(--clr3);
   border-radius: 1em;
   width: 500px;
+  height: 80%;
   font-size: .9em;
   font-family: roboto-regular;
   margin-left: 195px;
@@ -29,11 +31,11 @@
   margin-left: auto;
 }
 
-.main-nav img{
+.main-nav img {
   width: 50%;
 }
 
-.nav{
+.nav {
   background-color: transparent;
 }
 
@@ -57,13 +59,12 @@
   z-index: 20
 }
 
-.menu>*{
+.menu>* {
   text-align: center;
   padding-top: 20px;
 }
 
 .search {
-  /* z-index: 10; */
   position: relative;
   right: 40px;
   background-color: transparent;
@@ -79,9 +80,27 @@
   outline: none;
 }
 
-@media(max-width: 720px) {
+@media only screen and (max-width: 846px) {
+
   .app-header {
-    background-color: var(--clr3);
-    color: var(--secondary-clr2);
+    justify-content: space-between;
   }
+
+  .main-nav {
+    margin: 0;
+  }
+
+  .nav::after{
+    padding: 0;
+  }
+
+  .search-bar {
+    width: 50%;
+    margin: 0;
+  }
+
+  .search{
+    display: none;
+  }
+
 }
