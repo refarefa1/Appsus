@@ -10,12 +10,13 @@ export default {
                 <button :class="{'pinned': notePin}" class="fa pin-note" @click.stop="pin"></button>
 
             </div>
-            <ul class="clean-list">
+            <ul class="clean-list flex flex-column">
                 <li v-for="todo in note.info.todos" class="flex justify-between">
                     <p class="todo-txt" :class="{'isnt-done': !todo.doneAt}">{{ todo.txt }}</p>
                     <input class="isDone" :checked="isChecked(todo)" type="checkbox" @click.stop="isTodoDone(todo)" />
                 </li>
             </ul>
+            <!-- <pre>{{note}}</pre> -->
         </section>
     `,
     components: {},

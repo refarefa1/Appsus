@@ -26,8 +26,8 @@ export default {
                 <note-add v-if="selectedNoteTypeToCreate" :noteType="selectedNoteTypeToCreate" @cancelAdd="selectedNoteTypeToCreate=null" @noteSaved="save" />
     
                 <router-view v-if="notesToShow"
-                    @remove="removeNote" 
-                    @pin="pinNote"
+                    @remove="removeNote"
+                    @archive="archiveNote"
                     @noteClicked="noteClicked"
                     :notes="notesToShow"> </router-view>
             </main>            
@@ -62,37 +62,48 @@ export default {
                 .then(() => {
                     const idx = this.notes.findIndex(note => note.id === noteId)
                     this.notes.splice(idx, 1)
-
-                    // const msg = {
-                    //     txt: `Note ${noteId} deleted...`,
-                    //     type: `success`,
-                    // }
-                    // eventBus.emit('user-msg', msg)
                 })
         },
-        pinNote(note) {
-            console.log(`pinning in app:`,)
-            console.log(`note:`, note)
-            note.isPinned = !note.isPinned
+        archiveNote(note) {
+            note.isArchived = !note.isArchived
+            console.log(`note.isArchived:`, note.isArchived)
             noteService.edit(note)
-                .then((editedNote) => {
-                    const idx = this.notes.findIndex(noteB => noteB.id === editedNote.id)
-                    console.log(`idx:`, idx)
-                    this.notes.splice(idx, 1, editedNote)
+                .then(() => {
+                    const idx = this.notes.findIndex(noteB => noteB.id === note.id)
+                    this.notes.splice(idx, 1, note)
+                    let path = this.$route.fullPath.split('/')
+                    const loc = path[path.length - 1]
+                    this.filter(loc)
                 })
         },
+        // pinNote(note) {
+        //     console.log(`pinning in app:`,)
+        //     console.log(`note:`, note)
+        //     note.isPinned = !note.isPinned
+        //     noteService.edit(note)
+        //         .then((editedNote) => {
+        //             const idx = this.notes.findIndex(noteB => noteB.id === editedNote.id)
+        //             console.log(`idx:`, idx)
+        //             this.notes.splice(idx, 1, editedNote)
+        //             let path = this.$route.fullPath.split('/')
+        //             const loc = path[path.length - 1]
+        //             this.filter(loc)
+        //         })
+        // },
         save(note) {
             this.notes.push(note)
             this.selectedNoteTypeToCreate = null
         },
         edit(note) {
-
             noteService.edit(note)
                 .then((updatedNote) => {
                     console.log(updatedNote);
                     const idx = this.notes.findIndex(note => note.id === updatedNote.id)
                     this.notes.splice(idx, 1, updatedNote)
                     this.noteToEdit = null
+                    let path = this.$route.fullPath.split('/')
+                    const loc = path[path.length - 1]
+                    this.filter(loc)
                 })
         },
         noteClicked(note) {

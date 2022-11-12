@@ -2,12 +2,16 @@
     margin-bottom: 40px;
 }
 
-.note-list >* ul {
-    column-count: 4;
+.pinned-notes-list, .unpinned-notes-list {
+    column-count: 5;
     padding: 10px 0;
 }
 
-.note-list >*:not(:last-child) {
+.pinned-notes-list >*:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.unpinned-notes-list >*:not(:last-child) {
     margin-bottom: 10px;
 }
 
