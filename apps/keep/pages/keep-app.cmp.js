@@ -87,7 +87,7 @@ export default {
                 const loc = path[path.length - 1]
                 this.filter(loc)
                 this.selectedNoteTypeToCreate = null
-                eventBus.emit('user-msg', 'Note Add')
+                eventBus.emit('user-msg', 'Note Added')
             })
         },
         edit(note) {

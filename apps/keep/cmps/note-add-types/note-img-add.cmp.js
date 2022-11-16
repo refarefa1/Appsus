@@ -24,9 +24,7 @@ export default {
   data() {
     return {
       selectedFile: null,
-      pinNote() {
-        this.notePin = !this.notePin
-      },
+
       notePin: false,
     }
   },
@@ -41,13 +39,15 @@ export default {
         // Run the callBack func, To render the img on the canvas
         //   img.onload = onImageReady.bind(null, img)
         // Can also do it this way:
-        img.onload = () => {changeNoteImgUrl(img.src)}
+        img.onload = () => { changeNoteImgUrl(img.src) }
       }
       reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
     },
     changeNoteImgUrl(url) {
       this.note.info.url = url
-    }
+    }, pinNote() {
+      this.notePin = !this.notePin
+    },
 
   },
   computed: {

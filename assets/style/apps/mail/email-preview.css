@@ -108,6 +108,10 @@
 
 @media only screen and (max-width: 600px) {
 
+    .mail-preview:hover .mail-date {
+        display: none;
+    }
+
     .mail-preview a,
     .mail-preview .draft-mail {
         display: grid;

@@ -13,19 +13,21 @@ export default {
             </div>
     </section>
     `,
-    
+
   components: {},
   created() { },
   data() {
     return {
       notePin: false,
 
-      pinNote() {
-        this.notePin = !this.notePin
-      },
+
       notePin: false,
     }
   },
-  methods: {},
+  methods: {
+    pinNote() {
+      this.notePin = !this.notePin
+    },
+  },
   computed: {},
 }

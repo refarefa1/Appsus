@@ -29,9 +29,7 @@ export default {
   data() {
     return {
       selectedFile: null,
-      pinNote() {
-        this.notePin = !this.notePin
-      },
+      
       notePin: false,
     }
   },
@@ -53,7 +51,10 @@ export default {
     },
     changeNoteImgUrl(url) {
       this.note.info.url = url
-    }
+    },
+    pinNote() {
+      this.notePin = !this.notePin
+    },
 
   },
   computed: {
