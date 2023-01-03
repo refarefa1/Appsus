@@ -37,7 +37,7 @@
 
 .mail-prev-text {
     display: grid;
-    grid-template-columns: 1fr 15fr;
+    grid-template-columns: 300px 1fr;
     flex-grow: 1;
 }
 
